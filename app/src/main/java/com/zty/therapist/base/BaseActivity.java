@@ -9,12 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.zty.therapist.R;
 import com.zty.therapist.manager.AppManager;
 import com.zty.therapist.url.RequestCallback;
 
-import java.util.List;
+import butterknife.ButterKnife;
 
 /**
  * Created by zty on 2016/8/16.
@@ -33,24 +32,25 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(getContentView());
+        ButterKnife.bind(this);
 
         AppManager.getInstance().addActivity(this);
 
         getScreenSize();
 
         initTitleBar();
-        initView();
         initData();
     }
 
     private void initTitleBar() {
 
         if (actionBarView == null) {
-//            actionBarView = LayoutInflater.from(this).inflate(R.layout.view_title, null);
-//            title = (TextView) actionBarView.findViewById(R.id.title);
-//            left = (TextView) actionBarView.findViewById(R.id.titleLeft);
-//            right = (TextView) actionBarView.findViewById(R.id.titleRight);
+            actionBarView = LayoutInflater.from(this).inflate(R.layout.view_title, null);
+            title = (TextView) actionBarView.findViewById(R.id.title);
+            left = (TextView) actionBarView.findViewById(R.id.titleLeft);
+            right = (TextView) actionBarView.findViewById(R.id.titleRight);
         }
         if (getSupportActionBar() != null) {
             //去除阴影
@@ -67,8 +67,6 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
     }
 
     protected abstract int getContentView();
-
-    protected abstract void initView();
 
     protected abstract void initData();
 

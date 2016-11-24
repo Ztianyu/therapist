@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/homeMargin"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgLogin"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/editLoginName"
+        android:layout_width="match_parent"
+        android:layout_marginTop="56dp"
+        android:hint="账  号"
+        android:gravity="center"
+        android:layout_height="@dimen/editHeight" />
+
+    <EditText
+        android:id="@+id/editLoginPassWord"
+        android:layout_width="match_parent"
+        android:hint="密  码"
+        android:gravity="center"
+        android:layout_height="@dimen/editHeight"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/textForgetPw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="8dp"
+        android:text="忘记密码？"/>
+    
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnHeight"
+        android:layout_marginTop="16dp"
+        android:text="登   录"
+        android:textSize="18sp"/>
+
+</LinearLayout>

@@ -10,11 +10,6 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-    @Override
     protected void initData() {
 
     }
