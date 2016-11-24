@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyStripMenuView">
+        <attr name="imgSrc" format="reference" />
+        <attr name="textName" format="string" />
+        <attr name="textNameColor" format="color" />
+        <attr name="textAddition" format="string" />
+        <attr name="textAdditionColor" format="color" />
+    </declare-styleable>
+
+</resources>
