@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@mipmap/back_main"
     android:padding="@dimen/homeMargin"
     android:orientation="vertical">
 
@@ -10,6 +11,7 @@
         android:id="@+id/imgLogin"
         android:layout_width="72dp"
         android:layout_height="72dp"
+        android:background="@mipmap/ic_main"
         android:layout_gravity="center_horizontal" />
 
     <EditText
@@ -18,6 +20,8 @@
         android:layout_marginTop="56dp"
         android:hint="账  号"
         android:gravity="center"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_height="@dimen/editHeight" />
 
     <EditText
@@ -25,6 +29,8 @@
         android:layout_width="match_parent"
         android:hint="密  码"
         android:gravity="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:layout_height="@dimen/editHeight"
         android:layout_marginTop="8dp" />
 
@@ -34,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginTop="8dp"
+        android:textColor="@color/white"
         android:text="忘记密码？"/>
     
     <Button
@@ -42,6 +49,8 @@
         android:layout_height="@dimen/btnHeight"
         android:layout_marginTop="16dp"
         android:text="登   录"
+        android:background="@mipmap/bg_login"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp"/>
 
 </LinearLayout>

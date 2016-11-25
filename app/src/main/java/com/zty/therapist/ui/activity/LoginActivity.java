@@ -39,9 +39,8 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        title.setText("登  录");
-        left.setVisibility(View.INVISIBLE);
-        right.setVisibility(View.INVISIBLE);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().hide();
     }
 
     @Override
@@ -62,6 +61,7 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.btnLogin:
                 startActivity(new Intent(this, MainActivity.class));
+                finish();
                 break;
         }
     }

@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Therapist</string>
+    <string name="app_name">首席康复官</string>
+
+    <string name="personalTip1">个人中心</string>
+    <string name="personalTip2">服务记录</string>
+    <string name="personalTip3">班组管理</string>
+    <string name="personalTip4">班组聊天</string>
+    <string name="personalTip5">在线请假</string>
+    <string name="personalTip6">公告通知</string>
+    <string name="personalTip7">缴纳会费</string>
+    <string name="personalTip8">收入明细</string>
+    <string name="personalTip9">账号管理</string>
 </resources>

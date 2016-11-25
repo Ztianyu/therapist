@@ -7,9 +7,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- AppCompatEditText默认状态状态设置底线颜色 -->
-        <item name="colorControlNormal">#3F51b5</item>
+        <item name="colorControlNormal">@color/white</item>
         <!-- AppCompatEditText选择的底线颜色 -->
-        <item name="colorControlActivated">#c6174e</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
+    <style name="MyRadioButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/MiWhite</item>
+        <item name="android:textColor">@drawable/home_text_select</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

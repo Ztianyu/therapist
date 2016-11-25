@@ -7,6 +7,9 @@
         <attr name="textNameColor" format="color" />
         <attr name="textAddition" format="string" />
         <attr name="textAdditionColor" format="color" />
+        <attr name="isHasTopLine" format="boolean" />
+        <attr name="isHasBottomLine" format="boolean" />
+        <attr name="lineMargin" format="integer" />
     </declare-styleable>
 
 </resources>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MiWhite"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal1"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textName="@string/personalTip1"
+            app:textNameColor="@color/gray" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal2"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="true"
+            app:lineMargin="16"
+            app:textName="@string/personalTip2"
+            app:textNameColor="@color/gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorDivider" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal3"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textName="@string/personalTip3"
+            app:textNameColor="@color/gray" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal4"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="true"
+            app:lineMargin="16"
+            app:textName="@string/personalTip4"
+            app:textNameColor="@color/gray" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal5"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textName="@string/personalTip5"
+            app:textNameColor="@color/gray" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal6"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textName="@string/personalTip6"
+            app:textNameColor="@color/gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorDivider" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal7"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textName="@string/personalTip7"
+            app:textNameColor="@color/gray" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal8"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textName="@string/personalTip8"
+            app:textNameColor="@color/gray" />
+
+        <com.zty.therapist.widget.MyStripMenuView
+            android:id="@+id/textStrip9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgSrc="@mipmap/ic_personal9"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textName="@string/personalTip9"
+            app:textNameColor="@color/gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="48dp"></View>
+
+    </LinearLayout>
+</ScrollView>

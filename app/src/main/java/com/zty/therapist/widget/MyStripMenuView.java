@@ -20,11 +20,16 @@ public class MyStripMenuView extends RelativeLayout {
     private ImageView imgSign;
     private TextView tvName;
     private TextView tvAddition;
+    private View topLine;
+    private View bottomLine;
     private String name;
     private String addition;
+    private boolean isHasTop;
+    private boolean isHasBottom;
+    private int lineMargin;
 
     public MyStripMenuView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public MyStripMenuView(Context context, AttributeSet attrs) {
@@ -44,6 +49,29 @@ public class MyStripMenuView extends RelativeLayout {
         addition = a.getString(R.styleable.MyStripMenuView_textAddition);
         tvAddition.setText(addition);
         tvAddition.setTextColor(a.getColor(R.styleable.MyStripMenuView_textAdditionColor, ContextCompat.getColor(context, R.color.black)));
+
+        topLine = (View) view.findViewById(R.id.topLine);
+        isHasTop = a.getBoolean(R.styleable.MyStripMenuView_isHasTopLine, true);
+        bottomLine = (View) view.findViewById(R.id.bottomLine);
+        isHasBottom = a.getBoolean(R.styleable.MyStripMenuView_isHasBottomLine, true);
+
+        lineMargin = a.getInteger(R.styleable.MyStripMenuView_lineMargin, 0);
+
+        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, 1);
+        lp.setMargins(lineMargin, 0, lineMargin, 0);
+        topLine.setLayoutParams(lp);
+        bottomLine.setLayoutParams(lp);
+
+        if (isHasTop) {
+            topLine.setVisibility(View.VISIBLE);
+        } else {
+            topLine.setVisibility(View.INVISIBLE);
+        }
+        if (isHasBottom) {
+            bottomLine.setVisibility(View.VISIBLE);
+        } else {
+            bottomLine.setVisibility(View.INVISIBLE);
+        }
 
     }
 
