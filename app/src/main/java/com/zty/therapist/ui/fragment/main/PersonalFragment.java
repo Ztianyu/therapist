@@ -2,8 +2,10 @@ package com.zty.therapist.ui.fragment.main;
 
 import android.view.View;
 
+import com.zty.therapist.MainActivity;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.utils.ResourceUtil;
 
 /**
  * Created by zty on 2016/11/25.

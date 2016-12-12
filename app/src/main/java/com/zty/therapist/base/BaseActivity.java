@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zty.therapist.R;
@@ -23,7 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
     private View actionBarView;
     public TextView title;
     public TextView left;
-    public TextView right;
+    public ImageView right;
 
     public static boolean isGetSize = false;
     public static int screenHeight = 0;
@@ -50,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
             actionBarView = LayoutInflater.from(this).inflate(R.layout.view_title, null);
             title = (TextView) actionBarView.findViewById(R.id.title);
             left = (TextView) actionBarView.findViewById(R.id.titleLeft);
-            right = (TextView) actionBarView.findViewById(R.id.titleRight);
+            right = (ImageView) actionBarView.findViewById(R.id.titleRight);
         }
         if (getSupportActionBar() != null) {
             //去除阴影

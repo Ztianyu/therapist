@@ -7,6 +7,7 @@ import com.zty.therapist.R;
 import com.zty.therapist.model.TaskModel;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
+import com.zty.therapist.utils.ImageLoader;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class TaskAdapter extends FooterRefreshAdapter<TaskModel> {
 
         ViewHolder viewHolder = (ViewHolder) holder;
 
+        viewHolder.setImage(mContext, R.id.imgTaskHeader, "http://img03.tooopen.com/images/20131102/sy_45238929299.jpg");
     }
 
     @Override

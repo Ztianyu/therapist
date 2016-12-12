@@ -12,6 +12,15 @@
         <item name="colorControlActivated">@color/white</item>
     </style>
 
+    <style name="TrainRadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@drawable/tab_text_select</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:drawableLeft">@drawable/radio_selector</item>
+        <item name="android:button">@null</item>
+    </style>
+
     <style name="MyRadioButton">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -20,6 +29,19 @@
         <item name="android:textColor">@drawable/home_text_select</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextTaskObject">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorContent1</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

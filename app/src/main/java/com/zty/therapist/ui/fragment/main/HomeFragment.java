@@ -1,20 +1,23 @@
 package com.zty.therapist.ui.fragment.main;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.siyamed.shapeimageview.CircularImageView;
 import com.zty.therapist.MainActivity;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.TaskAdapter;
+import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.manager.LayoutManager;
 import com.zty.therapist.model.TaskModel;
 import com.zty.therapist.recycler.OnItemClickListener;
 import com.zty.therapist.recycler.ViewHolder;
+import com.zty.therapist.utils.ImageLoader;
 import com.zty.therapist.utils.ResourceUtil;
+import com.zty.therapist.widget.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +31,7 @@ import butterknife.OnClick;
 
 public class HomeFragment extends BaseFragment implements OnItemClickListener<TaskModel> {
     @BindView(R.id.imgHomeUser)
-    CircularImageView imgHomeUser;
+    CircleImageView imgHomeUser;
     @BindView(R.id.textHomeName)
     TextView textHomeName;
     @BindView(R.id.textHomeAge)
@@ -50,10 +53,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ta
     @Override
     public void initData() {
 
-        ((MainActivity)context).left.setVisibility(View.INVISIBLE);
-        ((MainActivity)context).right.setVisibility(View.INVISIBLE);
-        ((MainActivity)context).title.setText(ResourceUtil.resToStr(context,R.string.app_name));
-
         LayoutManager.setVertical(context, listCurrentTask);
 
         for (int i = 0; i < 10; i++) {
@@ -65,6 +64,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ta
 
         adapter.setOnItemClickListener(this);
 
+        ImageLoader.load(context, "http://img03.tooopen.com/images/20131102/sy_45238929299.jpg", imgHomeUser);
     }
 
     @Override

@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">首席康复官</string>
 
+    <string name="train">技能培训</string>
+    <string name="communication">交流圈</string>
+    <string name="personal">个人中心</string>
+
     <string name="personalTip1">个人中心</string>
     <string name="personalTip2">服务记录</string>
     <string name="personalTip3">班组管理</string>
@@ -10,4 +14,5 @@
     <string name="personalTip7">缴纳会费</string>
     <string name="personalTip8">收入明细</string>
     <string name="personalTip9">账号管理</string>
+
 </resources>

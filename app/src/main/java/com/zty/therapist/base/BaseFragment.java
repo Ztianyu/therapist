@@ -3,6 +3,7 @@ package com.zty.therapist.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,4 +44,18 @@ public abstract class BaseFragment extends Fragment implements RequestCallback {
         this.context = getActivity();
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser) {
+            lazyLoadData();
+        }
+    }
+
+    public void setTitle() {
+    }
+
+    protected void lazyLoadData() {
+    }
 }
