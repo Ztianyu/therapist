@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgTrainLecture"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@mipmap/pic_default" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/ic_radio" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textLectureName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="脑中风康复讲解"
+        android:maxLines="1"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textLectureDoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="刘天华主任"
+        android:maxLines="1"
+        android:textColor="@color/black" />
+
+</LinearLayout>

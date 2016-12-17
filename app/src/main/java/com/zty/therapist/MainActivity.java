@@ -1,18 +1,16 @@
 package com.zty.therapist;
 
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.ui.fragment.main.CommunicationFragment;
-import com.zty.therapist.ui.fragment.main.HomeFragment;
+import com.zty.therapist.ui.fragment.main.HomeFragment2;
 import com.zty.therapist.ui.fragment.main.PersonalFragment;
 import com.zty.therapist.ui.fragment.main.TrainFragment;
 import com.zty.therapist.utils.ResourceUtil;
-import com.zty.therapist.utils.ToastUtils;
 
 import butterknife.BindView;
 
@@ -23,7 +21,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
 
-    HomeFragment homeFragment;
+    HomeFragment2 homeFragment;
     TrainFragment trainFragment;
     CommunicationFragment communicationFragment;
     PersonalFragment personalFragment;
@@ -42,7 +40,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         radioGroup.setOnCheckedChangeListener(this);
 
         if (homeFragment == null) {
-            homeFragment = new HomeFragment();
+            homeFragment = new HomeFragment2();
         }
         if (!homeFragment.isAdded()) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentHome, homeFragment).commit();
@@ -69,7 +67,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             case R.id.radioButton1:
                 currentPage = 1;
                 if (homeFragment == null) {
-                    homeFragment = new HomeFragment();
+                    homeFragment = new HomeFragment2();
                 }
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), homeFragment);
                 break;
@@ -117,33 +115,17 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private void setTitle() {
-
         switch (currentPage) {
             case 1:
-                left.setVisibility(View.INVISIBLE);
-                right.setVisibility(View.INVISIBLE);
-                title.setText(ResourceUtil.resToStr(this, R.string.app_name));
+                title.setText(ResourceUtil.resToStr(this, R.string.Housekeeping));
                 break;
             case 2:
-                left.setVisibility(View.INVISIBLE);
-                right.setVisibility(View.INVISIBLE);
-                title.setText(ResourceUtil.resToStr(this, R.string.train));
+                title.setText(ResourceUtil.resToStr(this, R.string.expert));
                 break;
             case 3:
-                left.setVisibility(View.INVISIBLE);
-                right.setVisibility(View.VISIBLE);
-                right.setBackgroundResource(R.mipmap.ic_publish);
-                title.setText(ResourceUtil.resToStr(this, R.string.train));
-                right.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ToastUtils.show(MainActivity.this, "发帖");
-                    }
-                });
+                title.setText(ResourceUtil.resToStr(this, R.string.product));
                 break;
             case 4:
-                left.setVisibility(View.INVISIBLE);
-                right.setVisibility(View.INVISIBLE);
                 title.setText(ResourceUtil.resToStr(this, R.string.personal));
                 break;
         }

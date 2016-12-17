@@ -1,22 +1,20 @@
 package com.zty.therapist.ui.fragment.main;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zty.therapist.MainActivity;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.TaskAdapter;
-import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.manager.LayoutManager;
 import com.zty.therapist.model.TaskModel;
 import com.zty.therapist.recycler.OnItemClickListener;
 import com.zty.therapist.recycler.ViewHolder;
+import com.zty.therapist.ui.activity.task.TaskDetailsActivity;
 import com.zty.therapist.utils.ImageLoader;
-import com.zty.therapist.utils.ResourceUtil;
 import com.zty.therapist.widget.CircleImageView;
 
 import java.util.ArrayList;
@@ -89,7 +87,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ta
 
     @Override
     public void onCommonItemClick(ViewHolder viewHolder, TaskModel taskModel, int position) {
-
+        startActivity(new Intent(context, TaskDetailsActivity.class).putExtra("model", taskModel));
     }
 
     @Override

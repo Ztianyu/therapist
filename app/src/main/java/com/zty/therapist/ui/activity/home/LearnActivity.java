@@ -1,9 +1,11 @@
-package com.zty.therapist.ui.fragment.main;
+package com.zty.therapist.ui.activity.home;
 
 import android.support.design.widget.TabLayout;
+import android.view.View;
 
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.ViewPagerAdapter;
+import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.ui.fragment.learn.BaseLearnFragment;
 import com.zty.therapist.widget.MyViewPager;
@@ -14,10 +16,10 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * Created by zty on 2016/11/25.
+ * Created by zty on 2016/12/16.
  */
 
-public class TrainFragment extends BaseFragment {
+public class LearnActivity extends BaseActivity {
     @BindView(R.id.tabLayoutTrain)
     TabLayout tabLayoutTrain;
     @BindView(R.id.viewPagerTrain)
@@ -29,38 +31,43 @@ public class TrainFragment extends BaseFragment {
 
     private ViewPagerAdapter adapter;
 
-
     @Override
-    public int getContentVew() {
+    protected int getContentView() {
         return R.layout.fragment_train;
     }
 
     @Override
-    public void initData() {
+    protected void initData() {
+
+        title.setText("技能学习");
+        left.setBackgroundResource(R.mipmap.ic_back);
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        right.setVisibility(View.INVISIBLE);
+
         tabLayoutTrain.setTabMode(TabLayout.MODE_FIXED);
         tabLayoutTrain.setTabTextColors(getResources().getColor(R.color.gray), getResources().getColor(R.color.colorAccent));
         titles.clear();
-        titles.add("理论");
-        titles.add("试题");
-        titles.add("讲座");
-        titles.add("案例");
-        titles.add("指南");
+        titles.add("神经类");
+        titles.add("心血管类");
+        titles.add("骨科类");
 
         fragments.clear();
 
         fragments.add(BaseLearnFragment.newInstance(0));
         fragments.add(BaseLearnFragment.newInstance(1));
         fragments.add(BaseLearnFragment.newInstance(2));
-        fragments.add(BaseLearnFragment.newInstance(3));
-        fragments.add(BaseLearnFragment.newInstance(4));
 
-        adapter = new ViewPagerAdapter(getFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.setFragments(fragments);
         adapter.setTitles(titles);
         viewPagerTrain.setAdapter(adapter);
 
         tabLayoutTrain.setupWithViewPager(viewPagerTrain);
-
     }
 
     @Override

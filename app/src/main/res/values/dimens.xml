@@ -6,6 +6,8 @@
     <dimen name="mainMenuHeight">48dp</dimen>
     <dimen name="homeAccountSize">72dp</dimen>
 
+    <dimen name="dividerHeight">0.5dp</dimen>
+
     <dimen name="homeMargin">16dp</dimen>
     <dimen name="editHeight">48dp</dimen>
 

@@ -16,11 +16,6 @@
     <RadioButton
         android:id="@+id/radioButtonTrain2"
         style="@style/TrainRadioButton"
-        android:layout_marginLeft="16dp" />
-
-    <RadioButton
-        android:id="@+id/radioButtonTrain3"
-        style="@style/TrainRadioButton"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="32dp" />
 
 </RadioGroup>

@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">首席康复官</string>
+    <string name="app_name">app</string>
 
-    <string name="train">技能培训</string>
-    <string name="communication">交流圈</string>
+    <string name="Housekeeping">家政帮</string>
+    <string name="expert">名医专家</string>
+    <string name="product">保健品</string>
     <string name="personal">个人中心</string>
 
     <string name="personalTip1">个人中心</string>
