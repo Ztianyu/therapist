@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MyBaseAdapter<T, Q> extends BaseAdapter {
@@ -16,18 +17,12 @@ public abstract class MyBaseAdapter<T, Q> extends BaseAdapter {
     public List<T> mData;
 
 
-    public MyBaseAdapter(Context context, List<T> mData) {
+    public MyBaseAdapter(Context context) {
         super();
         this.context = context;
-        this.mData = mData;
+        this.mData = new ArrayList<>();
     }
 
-    public MyBaseAdapter(Context context, View q, List<T> mData) {
-        super();
-        this.context = context;
-        this.q = q;
-        this.mData = mData;
-    }
 
     public MyBaseAdapter() {
         super();
@@ -46,6 +41,27 @@ public abstract class MyBaseAdapter<T, Q> extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    /**
+     * 设置数据源
+     *
+     * @param data
+     */
+    public void setData(List<T> data) {
+        this.mData.clear();
+        if (data != null) {
+            this.mData.addAll(data);
+        }
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 添加数据列表到列表尾部
+     */
+    public void addListAtEnd(List<T> list) {
+        this.mData.addAll(list);
+        notifyDataSetChanged();
     }
 
 

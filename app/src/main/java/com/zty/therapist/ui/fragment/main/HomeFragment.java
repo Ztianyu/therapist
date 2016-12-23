@@ -56,7 +56,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ta
         for (int i = 0; i < 10; i++) {
             models.add(new TaskModel());
         }
-        adapter = new TaskAdapter(context, models);
+        adapter = new TaskAdapter(context);
 
         listCurrentTask.setAdapter(adapter);
 

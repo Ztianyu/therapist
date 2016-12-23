@@ -17,8 +17,8 @@ import java.util.List;
 
 public class TaskAdapter extends FooterRefreshAdapter<TaskModel> {
 
-    public TaskAdapter(Context context, List<TaskModel> data) {
-        super(context, data);
+    public TaskAdapter(Context context) {
+        super(context);
     }
 
     @Override

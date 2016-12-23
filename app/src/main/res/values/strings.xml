@@ -16,4 +16,12 @@
     <string name="personalTip8">收入明细</string>
     <string name="personalTip9">账号管理</string>
 
+    <string name="add">add</string>
+
+    <string name="headerScrollingBehavior">com.zty.therapist.widget.coordinator.HeaderScrollingBehavior</string>
+    <string name="headerFloatBehavior">com.zty.therapist.widget.coordinator.HeaderFloatBehavior</string>
+
+    <string name="productPrise"></string>
+
+
 </resources>

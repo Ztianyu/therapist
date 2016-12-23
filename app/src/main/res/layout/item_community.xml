@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imgCommunity"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@mipmap/ic_personal1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textCommunityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:text="赵颖"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textCommunityContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:maxLines="10"
+            android:text="生活里，有很多转瞬即逝，像在车站的告别，刚刚还相互拥抱，转眼已各自天涯。很多时候，你不懂，我也不懂，就这样，说着说着就变了，听着听着就倦了，看着看着就厌了，跟着跟着就慢了，走着走着就散了，爱着爱着就淡了，想着想着就算了。"
+            android:textColor="@color/black" />
+
+        <com.zty.therapist.widget.MyRecyclerView
+            android:id="@+id/gridCommunity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.zty.therapist.widget.MyRecyclerView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="1小时前"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imgCommunityHandler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/ic_current_task" />
+        </RelativeLayout>
+
+        <com.zty.therapist.widget.MyRecyclerView
+            android:id="@+id/recyclerCommunity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.zty.therapist.widget.MyRecyclerView>
+
+    </LinearLayout>
+
+</LinearLayout>

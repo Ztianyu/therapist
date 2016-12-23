@@ -24,4 +24,9 @@
         <attr name="lab_text" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ExpandableTextViewAttr">
+        <!-- 允许显示最大行数 -->
+        <attr name="maxExpandLines" format="integer"></attr>
+    </declare-styleable>
+
 </resources>

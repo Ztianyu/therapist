@@ -7,7 +7,7 @@ import com.zty.therapist.R;
 import com.zty.therapist.adapter.ViewPagerAdapter;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
-import com.zty.therapist.ui.fragment.learn.BaseLearnFragment;
+import com.zty.therapist.manager.LearnFragmentManager;
 import com.zty.therapist.widget.MyViewPager;
 
 import java.util.ArrayList;
@@ -49,6 +49,8 @@ public class LearnActivity extends BaseActivity {
         });
         right.setVisibility(View.INVISIBLE);
 
+        viewPagerTrain.setOffscreenPageLimit(2);
+
         tabLayoutTrain.setTabMode(TabLayout.MODE_FIXED);
         tabLayoutTrain.setTabTextColors(getResources().getColor(R.color.gray), getResources().getColor(R.color.colorAccent));
         titles.clear();
@@ -58,9 +60,9 @@ public class LearnActivity extends BaseActivity {
 
         fragments.clear();
 
-        fragments.add(BaseLearnFragment.newInstance(0));
-        fragments.add(BaseLearnFragment.newInstance(1));
-        fragments.add(BaseLearnFragment.newInstance(2));
+        fragments.add(LearnFragmentManager.getFragment(0));
+        fragments.add(LearnFragmentManager.getFragment(1));
+        fragments.add(LearnFragmentManager.getFragment(2));
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.setFragments(fragments);

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/btn_select_pic"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标 题："
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/editSendHelpTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="160dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editSendHelpContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_shape"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:textSize="12sp"
+        android:minHeight="150dp"
+        android:padding="4dp"
+        android:textCursorDrawable="@null" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="联系人："
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editSendHelpName"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:minWidth="160dp"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="联系电话："
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editSendHelpPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textCursorDrawable="@null"
+                android:minWidth="160dp"
+                android:textSize="14sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btnSendHelp"
+        android:layout_width="72dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:text="发 布"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>
+

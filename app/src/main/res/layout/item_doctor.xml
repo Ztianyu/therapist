@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imgDoctor"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/bg_header"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textDoctorName"
+                android:layout_width="72dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="王志飞"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textDoctorPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="心血管科  主任医师  博士生导师"
+                android:textSize="@dimen/listContent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="@dimen/listContent"
+                android:text="擅长：" />
+
+            <TextView
+                android:id="@+id/textDoctorBeGood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="@dimen/listContent"
+                android:text="冠心病搭桥手术、心脏病治疗" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="@dimen/listContent"
+                android:text="所在医院：" />
+
+            <TextView
+                android:id="@+id/textHospital"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/listContent"
+                android:layout_marginLeft="8dp"
+                android:text="北京协和医院" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="@dimen/listContent"
+                android:text="健康币：" />
+
+            <TextView
+                android:id="@+id/textIntegral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="@dimen/listContent"
+                android:text="2000健康币" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

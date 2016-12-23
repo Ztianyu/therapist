@@ -7,9 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- AppCompatEditText默认状态状态设置底线颜色 -->
-        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlNormal">@color/gray</item>
+
         <!-- AppCompatEditText选择的底线颜色 -->
-        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlActivated">@color/gray</item>
     </style>
 
     <style name="TrainRadioButton">
@@ -47,6 +48,13 @@
     <style name="HomeLab">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="BottomDialog" parent="@style/AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
 </resources>

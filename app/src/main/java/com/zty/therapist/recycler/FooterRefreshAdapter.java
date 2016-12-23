@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.zty.therapist.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,10 +44,10 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
         this.mOnItemClickListener = onItemClickListener;
     }
 
-    public FooterRefreshAdapter(Context context, List<T> data) {
+    public FooterRefreshAdapter(Context context) {
         mContext = context;
         mLayoutId = getItemLayoutId();
-        mData = data;
+        mData = new ArrayList<>();
     }
 
     @Override
@@ -216,8 +217,7 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
     }
 
     /**
-     * 更新底部加载更多
-     *
+     * 刷新数据
      */
     public void notifyTopRefresh(List<T> data) {
         mData.clear();

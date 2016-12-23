@@ -5,7 +5,7 @@ import android.support.design.widget.TabLayout;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.ViewPagerAdapter;
 import com.zty.therapist.base.BaseFragment;
-import com.zty.therapist.ui.fragment.learn.BaseLearnFragment;
+import com.zty.therapist.ui.fragment.home.LearnFragment;
 import com.zty.therapist.widget.MyViewPager;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import butterknife.BindView;
  * Created by zty on 2016/11/25.
  */
 
-public class TrainFragment extends BaseFragment {
+public class DoctorFragment extends BaseFragment {
     @BindView(R.id.tabLayoutTrain)
     TabLayout tabLayoutTrain;
     @BindView(R.id.viewPagerTrain)
@@ -48,11 +48,11 @@ public class TrainFragment extends BaseFragment {
 
         fragments.clear();
 
-        fragments.add(BaseLearnFragment.newInstance(0));
-        fragments.add(BaseLearnFragment.newInstance(1));
-        fragments.add(BaseLearnFragment.newInstance(2));
-        fragments.add(BaseLearnFragment.newInstance(3));
-        fragments.add(BaseLearnFragment.newInstance(4));
+        fragments.add(LearnFragment.newInstance(0));
+        fragments.add(LearnFragment.newInstance(1));
+        fragments.add(LearnFragment.newInstance(2));
+        fragments.add(LearnFragment.newInstance(3));
+        fragments.add(LearnFragment.newInstance(4));
 
         adapter = new ViewPagerAdapter(getFragmentManager());
         adapter.setFragments(fragments);

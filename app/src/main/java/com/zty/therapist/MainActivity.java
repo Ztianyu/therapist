@@ -6,10 +6,10 @@ import android.widget.RadioGroup;
 
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
-import com.zty.therapist.ui.fragment.main.CommunicationFragment;
+import com.zty.therapist.ui.fragment.main.ScrollingFragment;
+import com.zty.therapist.ui.fragment.main.DoctorFragment;
 import com.zty.therapist.ui.fragment.main.HomeFragment2;
 import com.zty.therapist.ui.fragment.main.PersonalFragment;
-import com.zty.therapist.ui.fragment.main.TrainFragment;
 import com.zty.therapist.utils.ResourceUtil;
 
 import butterknife.BindView;
@@ -22,8 +22,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     RadioGroup radioGroup;
 
     HomeFragment2 homeFragment;
-    TrainFragment trainFragment;
-    CommunicationFragment communicationFragment;
+    ScrollingFragment doctorFragment;
+    ScrollingFragment productFragment;
     PersonalFragment personalFragment;
 
     BaseFragment currentFragment;
@@ -73,17 +73,17 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             case R.id.radioButton2:
                 currentPage = 1;
-                if (trainFragment == null) {
-                    trainFragment = new TrainFragment();
+                if (doctorFragment == null) {
+                    doctorFragment = ScrollingFragment.newInstance(0);
                 }
-                addOrShowFragment(getSupportFragmentManager().beginTransaction(), trainFragment);
+                addOrShowFragment(getSupportFragmentManager().beginTransaction(), doctorFragment);
                 break;
             case R.id.radioButton3:
                 currentPage = 3;
-                if (communicationFragment == null) {
-                    communicationFragment = new CommunicationFragment();
+                if (productFragment == null) {
+                    productFragment = ScrollingFragment.newInstance(1);
                 }
-                addOrShowFragment(getSupportFragmentManager().beginTransaction(), communicationFragment);
+                addOrShowFragment(getSupportFragmentManager().beginTransaction(), productFragment);
                 break;
             case R.id.radioButton4:
                 currentPage = 4;

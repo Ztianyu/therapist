@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textInfoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="香山公园游玩"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider"></View>
+
+        <TextView
+            android:id="@+id/textInfoContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="香山公园位于北京西郊，地势险峻，苍翠连绵，占地188公顷，是一座具有山林特色的皇家园林。景区内主峰香炉峰俗称“鬼见愁”，海拔575米。
+    香山公园始建于金大定二十六年，距今已有近900年的历史。早在元、明、清时，皇家就在香山营建离宫别院，每逢夏秋时节皇帝都要到此狩猎纳凉。香山寺曾为京西寺庙之冠，清乾隆十年（1745年）曾大兴土木建成名噪京城的二十八景，乾隆皇帝赐名静宜园。京西著名的“三山五园”中，香山公园就占其中的一山（香山）一园（静宜园）。咸丰十年（1860年）和光绪二十六年（1900年）先后两次被英法联军、八国联军焚毁，1956年开辟为人民公园。 "/>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

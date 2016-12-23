@@ -1,4 +1,4 @@
-package com.zty.therapist.ui.fragment.learn;
+package com.zty.therapist.ui.fragment.home;
 
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +24,7 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
  * Created by zty on 2016/12/3.
  */
 
-public class BaseLearnFragment extends BaseFragment implements RadioGroup.OnCheckedChangeListener {
+public class LearnFragment extends BaseFragment implements RadioGroup.OnCheckedChangeListener {
 
     @BindView(R.id.recyclerView)
     XRecyclerView recyclerView;
@@ -42,12 +42,12 @@ public class BaseLearnFragment extends BaseFragment implements RadioGroup.OnChec
     private int index = 0;//0：理论知识；1：案例分析
 
 
-    public static BaseLearnFragment newInstance(int type) {
-        BaseLearnFragment baseLearnFragment = new BaseLearnFragment();
+    public static LearnFragment newInstance(int type) {
+        LearnFragment learnFragment = new LearnFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type", type);
-        baseLearnFragment.setArguments(bundle);
-        return baseLearnFragment;
+        learnFragment.setArguments(bundle);
+        return learnFragment;
     }
 
     @Override
@@ -144,6 +144,7 @@ public class BaseLearnFragment extends BaseFragment implements RadioGroup.OnChec
             recyclerView.horizontalDivider(R.color.colorDivider, R.dimen.dividerHeight);
         } else if (index == 1) {
             adapter = new CaseAdapter(context);
+            recyclerView.horizontalDivider(R.color.transparent, R.dimen.dividerHeight);
         }
 
         recyclerView.setAdapter(adapter);

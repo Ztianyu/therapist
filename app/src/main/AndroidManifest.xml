@@ -37,6 +37,36 @@
         <activity
             android:name=".ui.activity.home.LearnActivity"
             android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.ClassRoomActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.CommunityActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.GroupActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.HelpActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.InfoActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.PublishActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.doctor.OrderDoctorActivity"
+            android:screenOrientation="portrait"></activity>
+
+
     </application>
 
 </manifest>
