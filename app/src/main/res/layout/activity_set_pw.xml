@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MiWhite"
+    android:orientation="vertical"
+    android:padding="@dimen/homeMargin">
+
+    <EditText
+        android:id="@+id/editPassWord"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/editHeight"
+        android:background="@color/white"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/gray" />
+
+
+    <EditText
+        android:id="@+id/editSurePassWord"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/editHeight"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:hint="请确认密码"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/gray" />
+
+
+    <Button
+        android:id="@+id/btnSetPassWord"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnHeight"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@mipmap/ic_btn_login"
+        android:text="确    定"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.personal.LoginActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -63,7 +63,39 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".ui.activity.doctor.OrderDoctorActivity"
+            android:name=".ui.activity.order.OrderDoctorActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.UserMessageActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.MyOrderActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.AccountActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.MessageActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.order.BuyProductActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.ConfirmPhoneActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.SetPassWordActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.ApplyActivity"
             android:screenOrientation="portrait"></activity>
 
 

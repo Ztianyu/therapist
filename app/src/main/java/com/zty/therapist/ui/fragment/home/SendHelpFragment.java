@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.zty.therapist.R;
-import com.zty.therapist.inter.onSendHelp;
+import com.zty.therapist.inter.OnSendHelp;
 import com.zty.therapist.model.SendHelpModel;
 
 import butterknife.BindView;
@@ -38,7 +38,7 @@ public class SendHelpFragment extends DialogFragment {
     @BindView(R.id.btnSendHelp)
     Button btnSendHelp;
 
-    private onSendHelp onSendHelp;
+    private OnSendHelp OnSendHelp;
 
     @NonNull
     @Override
@@ -60,7 +60,7 @@ public class SendHelpFragment extends DialogFragment {
         btnSendHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onSendHelp.onSend(SendHelpFragment.this, getHelpModel());
+                OnSendHelp.onSend(SendHelpFragment.this, getHelpModel());
             }
         });
 
@@ -79,7 +79,7 @@ public class SendHelpFragment extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            onSendHelp = (onSendHelp) context;
+            OnSendHelp = (OnSendHelp) context;
         } catch (ClassCastException e) {
             dismiss();
         }

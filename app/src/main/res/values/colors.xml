@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e81e63</color>
-    <color name="colorPrimaryDark">#e81e63</color>
-    <color name="colorAccent">#e81e63</color>
+    <color name="colorPrimary">#ec343c</color>
+    <color name="colorPrimaryDark">#ec343c</color>
+    <color name="colorAccent">#ec343c</color>
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
-    <color name="black">#333333</color>
+    <color name="black1">#333333</color>
+    <color name="black">#666666</color>
     <color name="gray">#999999</color>
-    <color name="MiWhite">#f5f5f5</color>
+    <color name="MiWhite">#f7ebeb</color>
     <color name="colorDivider">#999999</color>
     <color name="colorTab">#E8E7E5</color>
+    <color name="colorForgetPw">#f1373f</color>
 
     <color name="colorContent1">#7e4755</color>
 
     <color name="colorState1">#dd5113</color>
-    <color name="colorState2">#e81e63</color>
+    <color name="colorState2">#ec343c</color>
 
     <color name="refresh1">#3F51B5</color>
     <color name="refresh2">#303F9F</color>

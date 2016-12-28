@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MiWhite"
+    android:orientation="vertical"
+    tools:context=".ui.activity.personal.MyOrderActivity">
+
+    <FrameLayout
+        android:id="@+id/fragmentOrder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorDivider"></View>
+
+    <RadioGroup
+        android:id="@+id/radioGroupOrder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mainMenuHeight"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonOrder1"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:checked="true"
+            android:paddingTop="4dp"
+            android:drawableTop="@drawable/tab_health_order_selector"
+            android:text="保健品订单"
+            android:textColor="@drawable/tab_order_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOrder2"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:drawableTop="@drawable/tab_doctor_order_selector"
+            android:paddingTop="4dp"
+            android:text="医生订单"
+            android:textColor="@drawable/tab_order_text_color" />
+
+    </RadioGroup>
+
+</LinearLayout>

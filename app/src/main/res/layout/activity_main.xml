@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/MiWhite"
+    android:orientation="vertical"
     tools:context="com.zty.therapist.MainActivity">
 
     <FrameLayout
@@ -22,8 +22,8 @@
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mainMenuHeight"
-        android:paddingTop="4dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="4dp">
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -35,14 +35,14 @@
         <RadioButton
             android:id="@+id/radioButton2"
             style="@style/MyRadioButton"
-            android:drawableTop="@drawable/tab_train_selector"
-            android:text="培训" />
+            android:drawableTop="@drawable/tab_doctor_selector"
+            android:text="名医专家" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             style="@style/MyRadioButton"
-            android:drawableTop="@drawable/tab_community_selector"
-            android:text="交流" />
+            android:drawableTop="@drawable/tab_health_selector"
+            android:text="保健品" />
 
         <RadioButton
             android:id="@+id/radioButton4"

@@ -169,6 +169,7 @@ public class ScrollingFragment extends BaseFragment implements AdapterView.OnIte
         if (mTempPageCount <= 5)
             if (isLoadMore) {
                 adapter.notifyBottomRefresh(models);
+                adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
                 mTempPageCount++;
             } else {
                 adapter.notifyTopRefresh(models);

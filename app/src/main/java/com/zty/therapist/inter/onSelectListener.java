@@ -4,7 +4,7 @@ package com.zty.therapist.inter;
  * Created by zty on 2016/12/19.
  */
 
-public interface onSelectListener {
+public interface OnSelectListener {
 
     void onTakePhoto();
 

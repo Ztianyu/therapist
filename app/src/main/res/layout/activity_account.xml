@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MiWhite"
+    android:orientation="vertical"
+    tools:context=".ui.activity.personal.AccountActivity">
+
+    <FrameLayout
+        android:id="@+id/fragmentAccount"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorDivider"></View>
+
+    <RadioGroup
+        android:id="@+id/radioGroupAccount"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mainMenuHeight"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonAccount1"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:checked="true"
+            android:paddingTop="4dp"
+            android:drawableTop="@drawable/tab_account_selector"
+            android:text="账户明细"
+            android:textColor="@drawable/tab_order_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAccount2"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:drawableTop="@drawable/tab_account_control_selector"
+            android:paddingTop="4dp"
+            android:text="账户管理"
+            android:textColor="@drawable/tab_order_text_color" />
+
+    </RadioGroup>
+
+</LinearLayout>

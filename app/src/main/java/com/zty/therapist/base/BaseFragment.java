@@ -43,19 +43,4 @@ public abstract class BaseFragment extends Fragment implements RequestCallback {
         super.onCreate(savedInstanceState);
         this.context = getActivity();
     }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if (isVisibleToUser) {
-            lazyLoadData();
-        }
-    }
-
-    public void setTitle() {
-    }
-
-    protected void lazyLoadData() {
-    }
 }

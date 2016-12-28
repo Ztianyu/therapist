@@ -1,13 +1,11 @@
 package com.zty.therapist;
 
 import android.support.v4.app.FragmentTransaction;
-import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.ui.fragment.main.ScrollingFragment;
-import com.zty.therapist.ui.fragment.main.DoctorFragment;
 import com.zty.therapist.ui.fragment.main.HomeFragment2;
 import com.zty.therapist.ui.fragment.main.PersonalFragment;
 import com.zty.therapist.utils.ResourceUtil;
@@ -16,8 +14,6 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-    @BindView(R.id.fragmentHome)
-    FrameLayout fragmentHome;
     @BindView(R.id.radioGroup)
     RadioGroup radioGroup;
 
@@ -45,7 +41,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         if (!homeFragment.isAdded()) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentHome, homeFragment).commit();
             currentFragment = homeFragment;
-            currentFragment.setUserVisibleHint(true);
             currentPage = 1;
             setTitle();
         }
@@ -72,7 +67,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), homeFragment);
                 break;
             case R.id.radioButton2:
-                currentPage = 1;
+                currentPage = 2;
                 if (doctorFragment == null) {
                     doctorFragment = ScrollingFragment.newInstance(0);
                 }
@@ -109,9 +104,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         } else {
             transaction.hide(currentFragment).show(fragment).commit();
         }
-        currentFragment.setUserVisibleHint(false);
         currentFragment = fragment;
-        currentFragment.setUserVisibleHint(true);
     }
 
     private void setTitle() {

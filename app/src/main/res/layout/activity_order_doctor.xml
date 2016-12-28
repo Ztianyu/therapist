@@ -55,7 +55,9 @@
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
+            android:background="@mipmap/ic_btn_buy"
             android:text="预 定"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <View

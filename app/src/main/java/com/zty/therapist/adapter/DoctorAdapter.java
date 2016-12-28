@@ -9,7 +9,7 @@ import com.zty.therapist.R;
 import com.zty.therapist.model.DoctorModel;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
-import com.zty.therapist.ui.activity.doctor.OrderDoctorActivity;
+import com.zty.therapist.ui.activity.order.OrderDoctorActivity;
 
 /**
  * Created by zty on 2016/12/23.

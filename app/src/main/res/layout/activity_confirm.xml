@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MiWhite"
+    android:orientation="vertical"
+    android:padding="@dimen/homeMargin">
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/editHeight"
+        android:background="@color/white"
+        android:hint="请输入手机号"
+        android:inputType="phone"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/gray" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/editCode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editHeight"
+            android:background="@color/white"
+            android:hint="请输入短信验证码"
+            android:inputType="number"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/gray" />
+
+        <Button
+            android:id="@+id/btnGetCode"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="8dp"
+            android:textSize="13sp"
+            android:textColor="@color/gray"
+            android:background="@mipmap/ic_btn_get_code"
+            android:text="获取验证码" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnConfirmPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnHeight"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@mipmap/ic_btn_login"
+        android:text="确    定"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

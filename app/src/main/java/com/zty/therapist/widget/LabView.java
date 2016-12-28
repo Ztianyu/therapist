@@ -18,6 +18,7 @@ import com.zty.therapist.R;
  */
 
 public class LabView extends RelativeLayout {
+    RelativeLayout layoutLab;
     ImageView imgLab;
     TextView textLab;
 
@@ -33,11 +34,13 @@ public class LabView extends RelativeLayout {
     private void init(Context context, AttributeSet attrs) {
         View view = View.inflate(context, R.layout.view_lab, this);
 
+        layoutLab = (RelativeLayout) view.findViewById(R.id.layoutLab);
         imgLab = (ImageView) view.findViewById(R.id.imgLab);
         textLab = (TextView) view.findViewById(R.id.textLab);
 
         TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.LabView);
 
+        layoutLab.setBackground(arr.getDrawable(R.styleable.LabView_lab_back));
         imgLab.setImageDrawable(arr.getDrawable(R.styleable.LabView_lab_img));
         textLab.setText(arr.getString(R.styleable.LabView_lab_text));
         textLab.setTextSize(TypedValue.COMPLEX_UNIT_SP, arr.getInt(R.styleable.LabView_lab_size, 15));

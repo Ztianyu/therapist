@@ -6,15 +6,12 @@
     <string name="product">保健品</string>
     <string name="personal">个人中心</string>
 
-    <string name="personalTip1">个人中心</string>
-    <string name="personalTip2">服务记录</string>
-    <string name="personalTip3">班组管理</string>
-    <string name="personalTip4">班组聊天</string>
-    <string name="personalTip5">在线请假</string>
-    <string name="personalTip6">公告通知</string>
-    <string name="personalTip7">缴纳会费</string>
-    <string name="personalTip8">收入明细</string>
-    <string name="personalTip9">账号管理</string>
+    <string name="personalTip1">账号管理</string>
+    <string name="personalTip2">基本信息</string>
+    <string name="personalTip3">我的订单</string>
+    <string name="personalTip4">我的账户</string>
+    <string name="personalTip5">消息中心</string>
+    <string name="personalTip6">组长申请</string>
 
     <string name="add">add</string>
 
@@ -22,6 +19,8 @@
     <string name="headerFloatBehavior">com.zty.therapist.widget.coordinator.HeaderFloatBehavior</string>
 
     <string name="productPrise"></string>
+
+    <string name="integralCount">合计：%1$s健康币</string>
 
 
 </resources>

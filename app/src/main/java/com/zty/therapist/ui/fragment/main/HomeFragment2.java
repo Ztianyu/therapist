@@ -3,6 +3,7 @@ package com.zty.therapist.ui.fragment.main;
 import android.content.Intent;
 import android.view.View;
 
+import com.youth.banner.Banner;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.ui.activity.home.ClassRoomActivity;
@@ -11,7 +12,12 @@ import com.zty.therapist.ui.activity.home.GroupActivity;
 import com.zty.therapist.ui.activity.home.HelpActivity;
 import com.zty.therapist.ui.activity.home.InfoActivity;
 import com.zty.therapist.ui.activity.home.LearnActivity;
+import com.zty.therapist.utils.BannerUtils;
+import com.zty.therapist.utils.ViewAdaptionUtils;
 import com.zty.therapist.widget.LabView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,6 +39,8 @@ public class HomeFragment2 extends BaseFragment {
     LabView homeLab5;
     @BindView(R.id.homeLab6)
     LabView homeLab6;
+    @BindView(R.id.bannerHome)
+    Banner bannerHome;
 
     @Override
     public int getContentVew() {
@@ -41,6 +49,15 @@ public class HomeFragment2 extends BaseFragment {
 
     @Override
     public void initData() {
+
+        ViewAdaptionUtils.LinearLayoutAdaptation(bannerHome, 300);
+
+        List<String> images = new ArrayList<>();
+
+        for (int i = 0; i < 8; i++) {
+            images.add("http://img03.tooopen.com/images/20131102/sy_45238929299.jpg");
+        }
+        BannerUtils.initBanner(bannerHome, images, 1, 1);
 
     }
 
@@ -77,4 +94,5 @@ public class HomeFragment2 extends BaseFragment {
                 break;
         }
     }
+
 }

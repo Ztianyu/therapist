@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zty.therapist.R;
-import com.zty.therapist.inter.onSelectListener;
+import com.zty.therapist.inter.OnSelectListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +27,7 @@ public class SelectPicFragment extends DialogFragment {
     @BindView(R.id.textTakePhoto)
     TextView textTakePhoto;
 
-    private onSelectListener listener;
+    private OnSelectListener listener;
 
 
     @Nullable
@@ -56,7 +56,7 @@ public class SelectPicFragment extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (onSelectListener) context;
+            listener = (OnSelectListener) context;
         } catch (ClassCastException e) {
             dismiss();
         }

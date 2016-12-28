@@ -32,7 +32,7 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
     protected int mLayoutId;
     protected List<T> mData;
 
-    private ViewHolder mFooterViewHolder;
+    public ViewHolder mFooterViewHolder;
 
     private OnItemClickListener<T> mOnItemClickListener;
 

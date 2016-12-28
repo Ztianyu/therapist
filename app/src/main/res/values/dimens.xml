@@ -28,4 +28,6 @@
 
     <dimen name="detailSize">14sp</dimen>
 
+    <dimen name="userMessageMarginTop">4dp</dimen>
+
 </resources>

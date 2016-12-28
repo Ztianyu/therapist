@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.youth.banner.Banner
+            android:id="@+id/bannerProduct"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"></com.youth.banner.Banner>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/textProductDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="澳洲老年奶粉"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textProductDetailNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:maxLines="3"
+                android:text="澳洲原生进口奶粉，对老年高血压、高血糖、骨质疏松等有良好的预防效果"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="价格：" />
+
+                <TextView
+                    android:id="@+id/textProductDetailPrise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="350"
+                    android:textColor="@color/colorContent1"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="元" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="健康币：" />
+
+                <TextView
+                    android:id="@+id/textProductDetailIntegral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="350"
+                    android:textColor="@color/colorContent1"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="币" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="数量" />
+
+                <com.zty.therapist.widget.AddAndSubtractView
+                    android:id="@+id/countView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"></com.zty.therapist.widget.AddAndSubtractView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合计："
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textTotalPrise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="360元"
+                    android:textColor="@color/colorContent1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorTab"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付方式" />
+        </RelativeLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroupPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonPay1"
+                style="@style/PayRadioButton"
+                android:drawableLeft="@mipmap/ic_pay_ali"
+                android:paddingLeft="4dp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonPay2"
+                style="@style/PayRadioButton"
+                android:layout_marginTop="8dp"
+                android:drawableLeft="@mipmap/ic_pay_we_chat"
+                android:paddingLeft="4dp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonPay3"
+                style="@style/PayRadioButton"
+                android:layout_marginTop="8dp"
+                android:drawableLeft="@mipmap/ic_pay_union" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnPayProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="购买"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@mipmap/ic_btn_buy" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"></View>
+
+    </LinearLayout>
+</ScrollView>

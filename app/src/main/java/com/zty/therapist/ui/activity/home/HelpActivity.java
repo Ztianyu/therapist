@@ -9,7 +9,7 @@ import android.view.View;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.HelpAdapter;
 import com.zty.therapist.base.BaseActivity;
-import com.zty.therapist.inter.onSendHelp;
+import com.zty.therapist.inter.OnSendHelp;
 import com.zty.therapist.model.HelpModel;
 import com.zty.therapist.model.SendHelpModel;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
@@ -24,7 +24,7 @@ import butterknife.BindView;
  * Created by zty on 2016/12/17.
  */
 
-public class HelpActivity extends BaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, onSendHelp {
+public class HelpActivity extends BaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, OnSendHelp {
 
     @BindView(R.id.recyclerViewRefresh)
     RecyclerView recyclerViewRefresh;
@@ -54,14 +54,6 @@ public class HelpActivity extends BaseActivity implements View.OnClickListener, 
 
         swipeRefreshLayout.setColorSchemeResources(R.color.refresh1, R.color.refresh2, R.color.refresh3);
         swipeRefreshLayout.setOnRefreshListener(this);
-//        //实现首次自动显示加载提示
-//        swipeRefreshLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                swipeRefreshLayout.setRefreshing(true);
-//                swipeRefreshLayout.setRefreshing(false);
-//            }
-//        });
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

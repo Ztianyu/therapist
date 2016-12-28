@@ -1,100 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none">
+    android:orientation="vertical">
+
+   <com.youth.banner.Banner
+       android:id="@+id/bannerHome"
+       android:layout_width="match_parent"
+       android:layout_height="150dp"></com.youth.banner.Banner>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@mipmap/bg_home_user" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <com.zty.therapist.widget.LabView
                 android:id="@+id/homeLab1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_centerInParent="true"
                 app:lab_color="@color/black"
-                app:lab_img="@mipmap/ic_personal1"
+                app:lab_img="@mipmap/ic_lab_content1"
+                app:lab_back="@mipmap/ic_lab_back1"
                 app:lab_text="技能学习" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <com.zty.therapist.widget.LabView
                 android:id="@+id/homeLab2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="48dp"
+                android:layout_centerInParent="true"
                 app:lab_color="@color/black"
-                app:lab_img="@mipmap/ic_personal1"
+                app:lab_img="@mipmap/ic_lab_content2"
+                app:lab_back="@mipmap/ic_lab_back2"
                 app:lab_text="微课堂" />
+        </RelativeLayout>
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <com.zty.therapist.widget.LabView
                 android:id="@+id/homeLab3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_centerInParent="true"
                 app:lab_color="@color/black"
-                app:lab_img="@mipmap/ic_personal1"
+                app:lab_img="@mipmap/ic_lab_content3"
+                app:lab_back="@mipmap/ic_lab_back3"
                 app:lab_text="班组管理" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <com.zty.therapist.widget.LabView
                 android:id="@+id/homeLab4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="48dp"
+                android:layout_centerInParent="true"
                 app:lab_color="@color/black"
-                app:lab_img="@mipmap/ic_personal1"
+                app:lab_img="@mipmap/ic_lab_content4"
+                app:lab_back="@mipmap/ic_lab_back4"
                 app:lab_text="感情天地" />
+        </RelativeLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <com.zty.therapist.widget.LabView
                 android:id="@+id/homeLab5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_centerInParent="true"
                 app:lab_color="@color/black"
-                app:lab_img="@mipmap/ic_personal1"
+                app:lab_img="@mipmap/ic_lab_content5"
+                app:lab_back="@mipmap/ic_lab_back5"
                 app:lab_text="同城活动" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <com.zty.therapist.widget.LabView
                 android:id="@+id/homeLab6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="48dp"
+                android:layout_centerInParent="true"
                 app:lab_color="@color/black"
-                app:lab_img="@mipmap/ic_personal1"
+                app:lab_img="@mipmap/ic_lab_content6"
+                app:lab_back="@mipmap/ic_lab_back6"
                 app:lab_text="互帮互助" />
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

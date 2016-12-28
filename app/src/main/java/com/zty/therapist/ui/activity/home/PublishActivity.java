@@ -6,7 +6,7 @@ import android.widget.EditText;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.PublishImageAdapter;
 import com.zty.therapist.base.BaseActivity;
-import com.zty.therapist.inter.onSelectListener;
+import com.zty.therapist.inter.OnSelectListener;
 import com.zty.therapist.utils.ResourceUtil;
 import com.zty.therapist.utils.ToastUtils;
 import com.zty.therapist.widget.MyRecyclerView;
@@ -18,7 +18,7 @@ import butterknife.BindView;
  * Created by zty on 2016/12/19.
  */
 
-public class PublishActivity extends BaseActivity implements View.OnClickListener, onSelectListener {
+public class PublishActivity extends BaseActivity implements View.OnClickListener, OnSelectListener {
     @BindView(R.id.editPublish)
     EditText editPublish;
     @BindView(R.id.gridPublish)
