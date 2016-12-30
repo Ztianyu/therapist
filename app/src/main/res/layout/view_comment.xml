@@ -20,26 +20,23 @@
         <EditText
             android:id="@+id/editComment"
             android:layout_width="0dp"
-            android:layout_marginLeft="8dp"
             android:layout_height="36dp"
-            android:textSize="14sp"
-            android:background="@drawable/edit_shape"
-            android:layout_weight="1"
-            android:paddingLeft="8dp" />
-
-        <ImageView
-            android:id="@+id/btnCommentExpression"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:background="@mipmap/ic_personal1" />
+            android:layout_weight="1"
+            android:background="@drawable/edit_shape"
+            android:paddingLeft="8dp"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp" />
 
         <Button
-            android:layout_width="72dp"
-            android:layout_height="40dp"
+            android:layout_width="54dp"
+            android:layout_height="32dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="发 送" />
+            android:background="@drawable/btn_can_send"
+            android:text="发 送"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </RelativeLayout>

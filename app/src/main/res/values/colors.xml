@@ -10,6 +10,7 @@
     <color name="gray">#999999</color>
     <color name="MiWhite">#f7ebeb</color>
     <color name="colorDivider">#999999</color>
+    <color name="colorDivider2">#BBBBBB</color>
     <color name="colorTab">#E8E7E5</color>
     <color name="colorForgetPw">#f1373f</color>
 

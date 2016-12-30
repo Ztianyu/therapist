@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/MiWhite"
     android:scrollbars="none">
 
     <LinearLayout
@@ -13,12 +13,14 @@
         <com.youth.banner.Banner
             android:id="@+id/bannerProduct"
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="150dp"></com.youth.banner.Banner>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
@@ -49,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="价格：" />
+                    android:text="¥" />
 
                 <TextView
                     android:id="@+id/textProductDetailPrise"
@@ -59,48 +61,44 @@
                     android:textColor="@color/colorContent1"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="元" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:text="健康币：" />
+                    android:text="数量：" />
 
                 <TextView
-                    android:id="@+id/textProductDetailIntegral"
+                    android:id="@+id/textProductDetailCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="350"
+                    android:text="1"
                     android:textColor="@color/colorContent1"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="币" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="数量" />
+                    android:text="订单状态：" />
 
-                <com.zty.therapist.widget.AddAndSubtractView
-                    android:id="@+id/countView"
+                <TextView
+                    android:id="@+id/textDoctorProductState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"></com.zty.therapist.widget.AddAndSubtractView>
+                    android:layout_alignParentRight="true"
+                    android:text="已完成"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -126,65 +124,37 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="8dp"
             android:background="@color/colorDivider"></View>
 
         <include layout="@layout/view_address"></include>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorTab"
-            android:paddingBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="8dp">
+            android:paddingRight="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="支付方式" />
-        </RelativeLayout>
+                android:text="该订单您获得获得：" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupPay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            <TextView
+                android:id="@+id/textOrderIntegral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="300"
+                android:textColor="@color/colorState2"
+                android:textSize="16sp" />
 
-            <RadioButton
-                android:id="@+id/radioButtonPay1"
-                style="@style/PayRadioButton"
-                android:drawableLeft="@mipmap/ic_pay_ali"
-                android:paddingLeft="4dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 健康币" />
+        </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/radioButtonPay2"
-                style="@style/PayRadioButton"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@mipmap/ic_pay_we_chat"
-                android:paddingLeft="4dp" />
-
-            <RadioButton
-                android:id="@+id/radioButtonPay3"
-                style="@style/PayRadioButton"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@mipmap/ic_pay_union" />
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/btnPayProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:background="@mipmap/ic_btn_buy"
-            android:text="购买"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
 
         <View
             android:layout_width="wrap_content"

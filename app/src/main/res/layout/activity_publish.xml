@@ -9,16 +9,26 @@
         android:id="@+id/editPublish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minLines="5"
+        android:gravity="top"
         android:background="@null"
         android:hint="请输入文字..."
         android:minHeight="36dp"
         android:textColorHint="@color/gray"
+        android:textCursorDrawable="@null"
         android:textSize="14sp" />
 
-    <com.zty.therapist.widget.MyRecyclerView
+
+    <GridView
         android:id="@+id/gridPublish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"></com.zty.therapist.widget.MyRecyclerView>
+        android:numColumns="4"
+        android:scrollbars="none"
+        android:verticalSpacing="2dip"
+        android:horizontalSpacing="2dip"
+        android:stretchMode="columnWidth"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"></GridView>
 
 </LinearLayout>

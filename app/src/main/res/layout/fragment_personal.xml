@@ -70,7 +70,7 @@
             android:id="@+id/textStrip6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imgSrc="@mipmap/ic_personal5"
+            app:imgSrc="@mipmap/ic_personal6"
             app:isHasBottomLine="true"
             app:isHasTopLine="false"
             app:lineMargin="16"

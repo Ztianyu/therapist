@@ -1,15 +1,15 @@
 package com.zty.therapist.widget;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import cn.droidlover.xrecyclerview.XRecyclerView;
 
 /**
  * Created by zty on 2016/12/19.
  */
 
-public class MyRecyclerView extends XRecyclerView {
+public class MyRecyclerView extends RecyclerView {
     public MyRecyclerView(Context context) {
         super(context);
     }

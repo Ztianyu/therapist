@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.DoctorOrderAdapter;
 import com.zty.therapist.adapter.HealthOrderAdapter;
-import com.zty.therapist.adapter.MessageAdapter;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.model.DoctorOrderModel;
 import com.zty.therapist.model.ProductOrderModel;

@@ -3,46 +3,43 @@ package com.zty.therapist.adapter;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.zty.therapist.R;
 import com.zty.therapist.model.CommunityModel;
+import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
 import com.zty.therapist.ui.fragment.home.CommentFragment;
 import com.zty.therapist.widget.MyRecyclerView;
+import com.zty.therapist.widget.SpacesItemDecoration;
 
 import java.util.List;
 
-import cn.droidlover.xrecyclerview.RecyclerAdapter;
 
 /**
  * Created by zty on 2016/12/19.
  */
 
-public class CommunityAdapter extends RecyclerAdapter<CommunityModel, ViewHolder> {
+public class CommunityAdapter extends FooterRefreshAdapter<CommunityModel> {
 
     private FragmentManager fm;
+
+    private SpacesItemDecoration itemDecoration;
 
     public CommunityAdapter(Context context, FragmentManager fm) {
         super(context);
         this.fm = fm;
+        itemDecoration = new SpacesItemDecoration(8);
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewHolder viewHolder = ViewHolder.create(context, R.layout.item_community, parent);
-        return viewHolder;
-    }
+    protected void convert(RecyclerView.ViewHolder holder, CommunityModel communityModel) {
+        ViewHolder viewHolder = (ViewHolder) holder;
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        convert(holder, data.get(position));
-    }
-
-    private void convert(ViewHolder holder, CommunityModel communityModel) {
-
-        holder.setOnClick(R.id.imgCommunityHandler, new View.OnClickListener() {
+        viewHolder.setImage(mContext, R.id.imgCommunity, "http://p1.qqyou.com/touxiang/uploadpic/2013-3/10/2013031010000358494.jpg");
+        viewHolder.setOnClick(R.id.imgCommunityHandler, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -51,21 +48,30 @@ public class CommunityAdapter extends RecyclerAdapter<CommunityModel, ViewHolder
                 if (fragment != null)
                     fm.beginTransaction().remove(fragment);
 
-                CommentFragment commentFragment = new CommentFragment(context);
+                CommentFragment commentFragment = new CommentFragment(mContext);
                 commentFragment.show(fm.beginTransaction(), "dialogComment");
             }
         });
 
-        setGrid(holder, communityModel.getUrls());
+        setGrid(viewHolder, communityModel.getUrls());
+
+    }
+
+    @Override
+    protected int getItemLayoutId() {
+        return R.layout.item_community;
     }
 
     private void setGrid(ViewHolder holder, List<String> urls) {
         MyRecyclerView gridCommunity = holder.getView(R.id.gridCommunity);
 
-        gridCommunity.gridLayoutManager(context, 3);
-        gridCommunity.horizontalDivider(R.color.transparent, R.dimen.gridSpace);
+        GridLayoutManager manager = new GridLayoutManager(mContext, 3);
+        gridCommunity.setLayoutManager(manager);
 
-        GridViewAdapter adapter = new GridViewAdapter(context);
+        gridCommunity.removeItemDecoration(itemDecoration);
+        gridCommunity.addItemDecoration(itemDecoration);
+
+        GridViewAdapter adapter = new GridViewAdapter(mContext);
         gridCommunity.setAdapter(adapter);
 
         adapter.setData(urls);

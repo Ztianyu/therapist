@@ -15,7 +15,7 @@
             android:id="@+id/imgDoctor"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            android:background="@drawable/bg_header"
+            android:background="@drawable/pic1"
             android:scaleType="centerCrop" />
 
         <LinearLayout
@@ -153,7 +153,7 @@
         android:layout_height="0.5dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@color/colorDivider"></View>
+        android:background="@color/colorDivider2"></View>
 
     <RelativeLayout
         android:layout_width="match_parent"

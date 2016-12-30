@@ -98,6 +98,18 @@
             android:name=".ui.activity.personal.ApplyActivity"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".ui.activity.personal.DoctorOrderDetailActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.ProductOrderDetailActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.SendInfoActivity"
+            android:screenOrientation="portrait"></activity>
+
 
     </application>
 

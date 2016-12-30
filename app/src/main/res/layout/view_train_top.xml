@@ -11,11 +11,15 @@
     <RadioButton
         android:id="@+id/radioButtonTrain1"
         style="@style/TrainRadioButton"
-        android:checked="true" />
+        android:checked="true"
+        android:drawableLeft="@drawable/tab_case_selector"
+        android:text="理论知识" />
 
     <RadioButton
         android:id="@+id/radioButtonTrain2"
         style="@style/TrainRadioButton"
-        android:layout_marginLeft="32dp" />
+        android:layout_marginLeft="32dp"
+        android:drawableLeft="@drawable/tab_theory_selector"
+        android:text="案例分析" />
 
 </RadioGroup>

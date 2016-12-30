@@ -64,5 +64,13 @@ public abstract class MyBaseAdapter<T, Q> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * 添加数据列表到列表尾部
+     */
+    public void addListAtEnd(T data) {
+        this.mData.add(data);
+        notifyDataSetChanged();
+    }
+
 
 }

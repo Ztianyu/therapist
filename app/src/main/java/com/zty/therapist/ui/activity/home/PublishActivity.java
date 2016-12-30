@@ -1,15 +1,21 @@
 package com.zty.therapist.ui.activity.home;
 
+import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 
+import com.lling.photopicker.PhotoPickerActivity;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.PublishImageAdapter;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.inter.OnSelectListener;
 import com.zty.therapist.utils.ResourceUtil;
 import com.zty.therapist.utils.ToastUtils;
-import com.zty.therapist.widget.MyRecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -19,12 +25,19 @@ import butterknife.BindView;
  */
 
 public class PublishActivity extends BaseActivity implements View.OnClickListener, OnSelectListener {
+
+    private static int PICK_PHOTO = 1;
+
     @BindView(R.id.editPublish)
     EditText editPublish;
     @BindView(R.id.gridPublish)
-    MyRecyclerView gridPublish;
+    GridView gridPublish;
 
     private PublishImageAdapter adapter;
+
+    private List<String> mResults;
+
+    private int picCount = 0;
 
     @Override
     protected int getContentView() {
@@ -37,12 +50,10 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         title.setText("发 帖");
         left.setBackgroundResource(R.mipmap.ic_back);
         left.setOnClickListener(this);
-        right.setBackgroundResource(R.mipmap.ic_publish);
+        right.setBackgroundResource(R.mipmap.ic_setting);
         right.setOnClickListener(this);
 
         adapter = new PublishImageAdapter(this, getSupportFragmentManager());
-        gridPublish.gridLayoutManager(this, 4);
-        gridPublish.horizontalDivider(R.color.transparent, R.dimen.gridSpace);
 
         gridPublish.setAdapter(adapter);
 
@@ -50,9 +61,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void setData() {
-
-        adapter.addElement(ResourceUtil.resToStr(this, R.string.add));
-
+        adapter.addListAtEnd(ResourceUtil.resToStr(this, R.string.add));
     }
 
     @Override
@@ -72,7 +81,21 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onPickPic() {
-        ToastUtils.show(this, "pickPic");
+
+        DialogFragment fragment = (DialogFragment) getSupportFragmentManager().findFragmentByTag("selectPicFragment");
+
+        if (fragment != null)
+            fragment.dismiss();
+
+        if (picCount == 9) {
+            ToastUtils.show(this, "最多只能选择9张照片");
+        } else {
+            Intent intent = new Intent(this, PhotoPickerActivity.class);
+            intent.putExtra(PhotoPickerActivity.EXTRA_SHOW_CAMERA, false);
+            intent.putExtra(PhotoPickerActivity.EXTRA_SELECT_MODE, PhotoPickerActivity.MODE_MULTI);
+            intent.putExtra(PhotoPickerActivity.EXTRA_MAX_MUN, PhotoPickerActivity.DEFAULT_NUM - picCount);
+            startActivityForResult(intent, PICK_PHOTO);
+        }
     }
 
     @Override
@@ -84,5 +107,33 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
             case R.id.titleRight:
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_PHOTO) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<String> result = data.getStringArrayListExtra(PhotoPickerActivity.KEY_RESULT);
+                showResult(result);
+            }
+        }
+    }
+
+    private void showResult(ArrayList<String> result) {
+        if (mResults == null) {
+            mResults = new ArrayList<>();
+        }
+        mResults.remove(ResourceUtil.resToStr(this, R.string.add));
+        mResults.addAll(result);
+
+        if (mResults.size() < 9) {
+            mResults.add(ResourceUtil.resToStr(this, R.string.add));
+            picCount = mResults.size() - 1;
+        } else {
+            picCount = mResults.size();
+        }
+
+        adapter.setData(mResults);
     }
 }
