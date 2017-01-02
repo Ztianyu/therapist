@@ -22,8 +22,7 @@
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mainMenuHeight"
-        android:orientation="horizontal"
-        android:paddingTop="4dp">
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioButton1"

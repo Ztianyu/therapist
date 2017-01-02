@@ -22,5 +22,20 @@
 
     <string name="integralCount">合计：%1$s健康币</string>
 
+    <string name="memberTip1">成员</string>
+    <string name="memberTip2">替班</string>
+    <string name="memberTip3">房屋</string>
+    <string name="memberTip4">聊天</string>
+
+    <string name="monitorTip1">组长列表</string>
+    <string name="monitorTip2">医生对接</string>
+    <string name="monitorTip3">通知公告</string>
+    <string name="monitorTip4">聊天</string>
+
+    <string name="administratorTip1">班长列表</string>
+    <string name="administratorTip2">医生订单</string>
+    <string name="administratorTip3">班组分配</string>
+    <string name="administratorTip4">通知公告</string>
+
 
 </resources>

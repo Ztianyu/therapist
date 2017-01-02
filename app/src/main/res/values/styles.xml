@@ -25,9 +25,11 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">6dp</item>
         <item name="android:background">@color/MiWhite</item>
         <item name="android:textColor">@drawable/home_text_select</item>
         <item name="android:button">@null</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:gravity">center</item>
     </style>
 

@@ -6,22 +6,22 @@ import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 
 /**
- * 发布活动
- * Created by zty on 2016/12/29.
+ * 发布替班申请
+ * Created by tianyu on 2017/1/2.
  */
 
-public class SendInfoActivity extends BaseActivity implements View.OnClickListener {
+public class SendReplaceActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected int getContentView() {
-        return R.layout.activity_send_info;
+        return R.layout.activity_send_replace;
     }
 
     @Override
     protected void initData() {
-        title.setText("同城活动");
+        title.setText("替班申请");
         left.setBackgroundResource(R.mipmap.ic_back);
         left.setOnClickListener(this);
-        right.setText("发布");
+        right.setText("申请");
         right.setOnClickListener(this);
 
     }
@@ -45,5 +45,6 @@ public class SendInfoActivity extends BaseActivity implements View.OnClickListen
             case R.id.titleRight:
                 break;
         }
+
     }
 }

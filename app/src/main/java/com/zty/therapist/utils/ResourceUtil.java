@@ -1,6 +1,7 @@
 package com.zty.therapist.utils;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,5 +39,9 @@ public class ResourceUtil {
 
     public static int resToColor(Context context, int colorId) {
         return context.getResources().getColor(colorId);
+    }
+
+    public static Drawable resToDrawable(Context context, int drawableId) {
+        return context.getResources().getDrawable(drawableId);
     }
 }

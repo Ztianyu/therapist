@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MiWhite"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnApplyReplace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@mipmap/ic_btn_buy"
+        android:text="替班申请"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@mipmap/ic_replace_record"
+        android:drawablePadding="6dp"
+        android:text="替班记录"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/colorDivider"></View>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerReplaceRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"></android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

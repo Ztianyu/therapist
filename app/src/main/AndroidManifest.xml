@@ -110,6 +110,14 @@
             android:name=".ui.activity.home.SendInfoActivity"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".ui.activity.home.SendReplaceActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.SendHouseRentActivity"
+            android:screenOrientation="portrait"></activity>
+
 
     </application>
 

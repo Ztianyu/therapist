@@ -24,7 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
     private View actionBarView;
     public TextView title;
     public TextView left;
-    public ImageView right;
+    public TextView right;
 
     public static boolean isGetSize = false;
     public static int screenHeight = 0;
@@ -51,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
             actionBarView = LayoutInflater.from(this).inflate(R.layout.view_title, null);
             title = (TextView) actionBarView.findViewById(R.id.title);
             left = (TextView) actionBarView.findViewById(R.id.titleLeft);
-            right = (ImageView) actionBarView.findViewById(R.id.titleRight);
+            right = (TextView) actionBarView.findViewById(R.id.titleRight);
         }
         if (getSupportActionBar() != null) {
             //去除阴影

@@ -6,19 +6,18 @@ import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 
 /**
- * 发布活动
- * Created by zty on 2016/12/29.
+ * Created by tianyu on 2017/1/2.
  */
 
-public class SendInfoActivity extends BaseActivity implements View.OnClickListener {
+public class SendHouseRentActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected int getContentView() {
-        return R.layout.activity_send_info;
+        return R.layout.activity_send_house_rent;
     }
 
     @Override
     protected void initData() {
-        title.setText("同城活动");
+        title.setText("房屋租赁");
         left.setBackgroundResource(R.mipmap.ic_back);
         left.setOnClickListener(this);
         right.setText("发布");

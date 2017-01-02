@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MiWhite"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fragmentMemberGroup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorDivider"></View>
+
+    <RadioGroup
+        android:id="@+id/radioGroupMember"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mainMenuHeight"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonMember1"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:checked="true"
+            android:drawableTop="@drawable/tab_member_selector"
+            android:text="@string/memberTip1"
+            android:textColor="@drawable/tab_order_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMember2"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:drawableTop="@drawable/tab_replace_work_selector"
+            android:text="@string/memberTip2"
+            android:textColor="@drawable/tab_order_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMember3"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:drawableTop="@drawable/tab_house_selector"
+            android:text="@string/memberTip3"
+            android:textColor="@drawable/tab_order_text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMember4"
+            style="@style/MyRadioButton"
+            android:background="@drawable/tab_order_back"
+            android:drawableTop="@drawable/tab_communication_selector"
+            android:text="@string/memberTip4"
+            android:textColor="@drawable/tab_order_text_color" />
+
+    </RadioGroup>
+
+</LinearLayout>
