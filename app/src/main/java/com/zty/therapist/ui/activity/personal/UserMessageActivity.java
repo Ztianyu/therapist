@@ -5,7 +5,7 @@ import android.widget.EditText;
 
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
-import com.zty.therapist.utils.ImageLoader;
+import com.zty.therapist.utils.MyImageLoader;
 import com.zty.therapist.widget.CircleImageView;
 
 import butterknife.BindView;
@@ -91,7 +91,7 @@ public class UserMessageActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void setText() {
-        ImageLoader.load(this, "http://img3.imgtn.bdimg.com/it/u=4066817619,1880978772&fm=214&gp=0.jpg", imgUserHeader);
+        MyImageLoader.load(this, "http://img3.imgtn.bdimg.com/it/u=4066817619,1880978772&fm=214&gp=0.jpg", imgUserHeader);
         editUserName.setText("王丽");
         editUserSex.setText("女");
         editUserAge.setText("35");

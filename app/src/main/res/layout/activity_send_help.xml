@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/btn_select_pic"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="8dp">
 
@@ -21,13 +20,13 @@
 
         <EditText
             android:id="@+id/editSendHelpTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:minWidth="160dp"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textCursorDrawable="@null"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <EditText
@@ -36,69 +35,62 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_shape"
-        android:inputType="textMultiLine"
         android:gravity="top"
-        android:textSize="12sp"
+        android:inputType="textMultiLine"
         android:minHeight="150dp"
         android:padding="4dp"
-        android:textCursorDrawable="@null" />
+        android:textCursorDrawable="@null"
+        android:textSize="12sp" />
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:layout_marginTop="8dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="联系人："
+            android:textSize="15sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="联系人："
-                android:textSize="15sp" />
+        <EditText
+            android:id="@+id/editSendHelpName"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-            <EditText
-                android:id="@+id/editSendHelpName"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:minWidth="160dp"
-                android:textCursorDrawable="@null"
-                android:textSize="14sp" />
-        </TableRow>
-
-        <TableRow android:layout_marginTop="4dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="联系电话："
-                android:textSize="15sp" />
-
-            <EditText
-                android:id="@+id/editSendHelpPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:textCursorDrawable="@null"
-                android:minWidth="160dp"
-                android:textSize="14sp" />
-        </TableRow>
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/btnSendHelp"
-        android:layout_width="72dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:layout_marginTop="8dp"
-        android:text="发 布"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="联系电话："
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/editSendHelpPhone"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp" />
+    </LinearLayout>
+
 </LinearLayout>
 

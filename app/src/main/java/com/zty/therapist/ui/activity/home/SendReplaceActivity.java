@@ -1,16 +1,40 @@
 package com.zty.therapist.ui.activity.home;
 
-import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
+
+import butterknife.BindView;
 
 /**
  * 发布替班申请
  * Created by tianyu on 2017/1/2.
  */
 
-public class SendReplaceActivity extends BaseActivity implements View.OnClickListener {
+public class SendReplaceActivity extends BaseActivity {
+    @BindView(R.id.editReplacerName)
+    EditText editReplacerName;
+    @BindView(R.id.editReplacerSex)
+    EditText editReplacerSex;
+    @BindView(R.id.editReplacerPhone)
+    EditText editReplacerPhone;
+    @BindView(R.id.editReplacerAge)
+    EditText editReplacerAge;
+    @BindView(R.id.editReplacerPro)
+    EditText editReplacerPro;
+    @BindView(R.id.editReplacerTime)
+    EditText editReplacerTime;
+    @BindView(R.id.editReplacerAddress)
+    EditText editReplacerAddress;
+    @BindView(R.id.editReplacerNote)
+    EditText editReplacerNote;
+    @BindView(R.id.editReplacerIntegral)
+    EditText editReplacerIntegral;
+    @BindView(R.id.textReplaceNote)
+    TextView textReplaceNote;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_send_replace;
@@ -19,11 +43,7 @@ public class SendReplaceActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initData() {
         title.setText("替班申请");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
         right.setText("申请");
-        right.setOnClickListener(this);
-
     }
 
     @Override
@@ -37,14 +57,7 @@ public class SendReplaceActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.titleLeft:
-                finish();
-                break;
-            case R.id.titleRight:
-                break;
-        }
-
+    public void rightClick() {
+        super.rightClick();
     }
 }

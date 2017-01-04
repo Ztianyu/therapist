@@ -1,12 +1,14 @@
 package com.zty.therapist.ui.fragment.group;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.RadioGroup;
 
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.ui.activity.home.AddMemberActivity;
 import com.zty.therapist.ui.activity.home.GroupActivity;
 import com.zty.therapist.ui.activity.home.SendHouseRentActivity;
 import com.zty.therapist.ui.activity.home.SendReplaceActivity;
@@ -30,6 +32,16 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
 
     private int currentPage = 1;
 
+    private int type;//0:普通成员；1：组长；
+
+    public static MemberGroupFragment newInstance(int type) {
+        MemberGroupFragment fragment = new MemberGroupFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("type", type);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
     public int getContentVew() {
         return R.layout.fragment_member_group;
@@ -37,6 +49,7 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
 
     @Override
     public void initData() {
+        type = getArguments().getInt("type");
         radioGroupMember.setOnCheckedChangeListener(this);
 
         if (memberFragment == null)
@@ -112,7 +125,12 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
         ((GroupActivity) context).right.setOnClickListener(this);
         switch (currentPage) {
             case 1:
-                ((GroupActivity) context).right.setVisibility(View.VISIBLE);
+                if (type == 0) {
+                    ((GroupActivity) context).right.setVisibility(View.INVISIBLE);
+                } else {
+                    ((GroupActivity) context).right.setVisibility(View.VISIBLE);
+                }
+
                 ((GroupActivity) context).title.setText("成员列表");
                 ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_add);
                 break;
@@ -138,6 +156,7 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
         if (view.getId() == R.id.titleRight) {
             switch (currentPage) {
                 case 1:
+                    startActivity(new Intent(context, AddMemberActivity.class));
                     break;
                 case 2:
                     startActivity(new Intent(context, SendReplaceActivity.class));

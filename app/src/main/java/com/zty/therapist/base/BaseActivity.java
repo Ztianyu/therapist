@@ -19,11 +19,11 @@ import butterknife.ButterKnife;
 /**
  * Created by zty on 2016/8/16.
  */
-public abstract class BaseActivity extends AppCompatActivity implements RequestCallback {
+public abstract class BaseActivity extends AppCompatActivity implements RequestCallback, View.OnClickListener {
 
     private View actionBarView;
     public TextView title;
-    public TextView left;
+    public ImageView left;
     public TextView right;
 
     public static boolean isGetSize = false;
@@ -50,8 +50,10 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
         if (actionBarView == null) {
             actionBarView = LayoutInflater.from(this).inflate(R.layout.view_title, null);
             title = (TextView) actionBarView.findViewById(R.id.title);
-            left = (TextView) actionBarView.findViewById(R.id.titleLeft);
+            left = (ImageView) actionBarView.findViewById(R.id.titleLeft);
+            left.setOnClickListener(this);
             right = (TextView) actionBarView.findViewById(R.id.titleRight);
+            right.setOnClickListener(this);
         }
         if (getSupportActionBar() != null) {
             //去除阴影
@@ -83,5 +85,18 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
 
             isGetSize = true;
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.titleLeft) {
+            finish();
+        } else if (view.getId() == R.id.titleRight) {
+            rightClick();
+        }
+    }
+
+    public void rightClick() {
+
     }
 }

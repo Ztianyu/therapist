@@ -8,7 +8,7 @@
     <color name="black1">#333333</color>
     <color name="black">#666666</color>
     <color name="gray">#999999</color>
-    <color name="MiWhite">#f7ebeb</color>
+    <color name="MiWhite">#F5F4F9</color>
     <color name="colorDivider">#999999</color>
     <color name="colorDivider2">#BBBBBB</color>
     <color name="colorTab">#E8E7E5</color>
@@ -22,6 +22,8 @@
     <color name="refresh1">#3F51B5</color>
     <color name="refresh2">#303F9F</color>
     <color name="refresh3">#FF4081</color>
+
+    <color name="checkSelect">#22afff</color>
 
     <color name="colorInitFloatBackground">#b0ffffff</color>
     <color name="colorCollapsedFloatBackground">#f4f4f4</color>

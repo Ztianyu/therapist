@@ -14,7 +14,7 @@ import com.zty.therapist.model.TaskModel;
 import com.zty.therapist.recycler.OnItemClickListener;
 import com.zty.therapist.recycler.ViewHolder;
 import com.zty.therapist.ui.activity.task.TaskDetailsActivity;
-import com.zty.therapist.utils.ImageLoader;
+import com.zty.therapist.utils.MyImageLoader;
 import com.zty.therapist.widget.CircleImageView;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ta
 
         adapter.setOnItemClickListener(this);
 
-        ImageLoader.load(context, "http://img03.tooopen.com/images/20131102/sy_45238929299.jpg", imgHomeUser);
+        MyImageLoader.load(context, "http://img03.tooopen.com/images/20131102/sy_45238929299.jpg", imgHomeUser);
     }
 
     @Override

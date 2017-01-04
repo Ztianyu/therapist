@@ -1,7 +1,6 @@
 package com.zty.therapist.adapter;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,8 @@ import com.lling.photopicker.utils.ImageLoader;
 import com.lling.photopicker.utils.OtherUtils;
 import com.zty.therapist.R;
 import com.zty.therapist.base.MyBaseAdapter;
-import com.zty.therapist.ui.fragment.SelectPicFragment;
 import com.zty.therapist.utils.ResourceUtil;
+import com.zty.therapist.utils.SelectPicUtils;
 
 /**
  * Created by zty on 2016/12/19.
@@ -37,39 +36,44 @@ public class PublishImageAdapter extends MyBaseAdapter<String, GridView> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        Holder holder = null;
         if (convertView == null) {
+            holder = new Holder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_image_small, null);
-            imageView = (ImageView) convertView.findViewById(R.id.imageViewSmall);
-            convertView.setTag(imageView);
+            holder.layoutAddImg = (LinearLayout) convertView.findViewById(R.id.layoutAddImg);
+            holder.imageView = (ImageView) convertView.findViewById(R.id.imageViewSmall);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mColumnWidth, mColumnWidth);
-            imageView.setLayoutParams(params);
+            holder.layoutAddImg.setLayoutParams(params);
+            holder.imageView.setLayoutParams(params);
+
+            convertView.setTag(holder);
         } else {
-            imageView = (ImageView) convertView.getTag();
+            holder = (Holder) convertView.getTag();
         }
 
         final String path = mData.get(position);
 
-        if (path.equals(ResourceUtil.resToStr(context, R.string.add))) {
-            imageView.setBackgroundResource(R.mipmap.ic_add_image);
+        if (!path.equals(ResourceUtil.resToStr(context, R.string.add))) {
+            holder.imageView.setVisibility(View.VISIBLE);
+            ImageLoader.getInstance().display(path, holder.imageView, mColumnWidth, mColumnWidth);
         } else {
-            ImageLoader.getInstance().display(path, imageView, mColumnWidth, mColumnWidth);
+            holder.imageView.setVisibility(View.INVISIBLE);
+            holder.imageView.setBackground(ResourceUtil.resToDrawable(context, R.mipmap.ic_add_image));
         }
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        holder.layoutAddImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (path.equals(ResourceUtil.resToStr(context, R.string.add))) {
-                    Fragment fragment = fm.findFragmentByTag("selectPicFragment");
-
-                    if (fragment != null)
-                        fm.beginTransaction().remove(fragment);
-
-                    SelectPicFragment commentFragment = new SelectPicFragment();
-                    commentFragment.show(fm.beginTransaction(), "selectPicFragment");
+                    SelectPicUtils.showDialog(fm);
                 }
             }
         });
         return convertView;
+    }
+
+    static class Holder {
+        LinearLayout layoutAddImg;
+        ImageView imageView;
     }
 }

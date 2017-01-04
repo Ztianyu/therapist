@@ -7,9 +7,6 @@ import com.zty.therapist.R;
 import com.zty.therapist.model.TaskModel;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
-import com.zty.therapist.utils.ImageLoader;
-
-import java.util.List;
 
 /**
  * Created by zty on 2016/11/25.

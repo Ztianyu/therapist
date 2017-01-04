@@ -1,6 +1,7 @@
 package com.zty.therapist;
 
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.RadioGroup;
 
 import com.zty.therapist.base.BaseActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initData() {
+        left.setVisibility(View.INVISIBLE);
         radioGroup.setOnCheckedChangeListener(this);
 
         if (homeFragment == null) {

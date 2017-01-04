@@ -9,8 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zty.therapist.R;
-import com.zty.therapist.utils.ImageLoader;
+import com.zty.therapist.utils.MyImageLoader;
 import com.zty.therapist.utils.ResourceUtil;
 
 
@@ -78,7 +77,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder setImage(Context context, int viewId, String url) {
         ImageView view = getView(viewId);
-        ImageLoader.load(context, url, view);
+        MyImageLoader.load(context, url, view);
         return this;
     }
 

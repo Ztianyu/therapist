@@ -11,7 +11,7 @@ import com.bumptech.glide.request.target.Target;
 /**
  * 加载图片
  */
-public class ImageLoader {
+public class MyImageLoader {
     //加载网络图片
     public static void load(Context context, String url, ImageView iv) {
         Glide.with(context)

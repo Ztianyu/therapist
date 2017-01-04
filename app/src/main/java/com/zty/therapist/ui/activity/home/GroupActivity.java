@@ -15,7 +15,7 @@ import com.zty.therapist.ui.fragment.monitor.MonitorGroupFragment;
 
 public class GroupActivity extends BaseActivity implements View.OnClickListener {
 
-    private int type = 0;//0:普通成员；1：组长；2：班长；3：管理员
+    private int type = 1;//0:普通成员；1：组长；2：班长；3：管理员
 
     private BaseFragment fragment;
 
@@ -36,7 +36,7 @@ public class GroupActivity extends BaseActivity implements View.OnClickListener 
     private void setFragment() {
 
         if (type == 0 || type == 1) {
-            fragment = new MemberGroupFragment();
+            fragment = MemberGroupFragment.newInstance(type);
         } else if (type == 2) {
             fragment = new MonitorGroupFragment();
         } else if (type == 3) {

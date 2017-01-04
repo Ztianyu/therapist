@@ -1,7 +1,6 @@
 package com.zty.therapist.ui.activity.home;
 
 import android.content.Intent;
-import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -11,7 +10,9 @@ import com.zty.therapist.R;
 import com.zty.therapist.adapter.PublishImageAdapter;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.inter.OnSelectListener;
+import com.zty.therapist.utils.PicUtils;
 import com.zty.therapist.utils.ResourceUtil;
+import com.zty.therapist.utils.SelectPicUtils;
 import com.zty.therapist.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -25,8 +26,6 @@ import butterknife.BindView;
  */
 
 public class PublishActivity extends BaseActivity implements View.OnClickListener, OnSelectListener {
-
-    private static int PICK_PHOTO = 1;
 
     @BindView(R.id.editPublish)
     EditText editPublish;
@@ -76,25 +75,18 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onTakePhoto() {
-        ToastUtils.show(this, "takePhoto");
+        SelectPicUtils.hidePicFragment(getSupportFragmentManager());
+        SelectPicUtils.takePhoto(this);
     }
 
     @Override
     public void onPickPic() {
-
-        DialogFragment fragment = (DialogFragment) getSupportFragmentManager().findFragmentByTag("selectPicFragment");
-
-        if (fragment != null)
-            fragment.dismiss();
+        SelectPicUtils.hidePicFragment(getSupportFragmentManager());
 
         if (picCount == 9) {
             ToastUtils.show(this, "最多只能选择9张照片");
         } else {
-            Intent intent = new Intent(this, PhotoPickerActivity.class);
-            intent.putExtra(PhotoPickerActivity.EXTRA_SHOW_CAMERA, false);
-            intent.putExtra(PhotoPickerActivity.EXTRA_SELECT_MODE, PhotoPickerActivity.MODE_MULTI);
-            intent.putExtra(PhotoPickerActivity.EXTRA_MAX_MUN, PhotoPickerActivity.DEFAULT_NUM - picCount);
-            startActivityForResult(intent, PICK_PHOTO);
+            SelectPicUtils.pickPic(this, PhotoPickerActivity.DEFAULT_NUM - picCount);
         }
     }
 
@@ -112,9 +104,15 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_PHOTO) {
+        if (requestCode == SelectPicUtils.PICK_PHOTO) {
             if (resultCode == RESULT_OK) {
                 ArrayList<String> result = data.getStringArrayListExtra(PhotoPickerActivity.KEY_RESULT);
+                showResult(result);
+            }
+        } else if (requestCode == SelectPicUtils.TAKE_PHOTO) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<String> result = new ArrayList<>();
+                result.add(PicUtils.photoPath.getPath());
                 showResult(result);
             }
         }

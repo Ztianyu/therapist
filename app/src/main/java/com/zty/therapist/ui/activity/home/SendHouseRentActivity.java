@@ -1,7 +1,5 @@
 package com.zty.therapist.ui.activity.home;
 
-import android.view.View;
-
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 
@@ -9,7 +7,7 @@ import com.zty.therapist.base.BaseActivity;
  * Created by tianyu on 2017/1/2.
  */
 
-public class SendHouseRentActivity extends BaseActivity implements View.OnClickListener {
+public class SendHouseRentActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         return R.layout.activity_send_house_rent;
@@ -18,10 +16,7 @@ public class SendHouseRentActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void initData() {
         title.setText("房屋租赁");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
         right.setText("发布");
-        right.setOnClickListener(this);
 
     }
 
@@ -36,13 +31,7 @@ public class SendHouseRentActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.titleLeft:
-                finish();
-                break;
-            case R.id.titleRight:
-                break;
-        }
+    public void rightClick() {
+        super.rightClick();
     }
 }
