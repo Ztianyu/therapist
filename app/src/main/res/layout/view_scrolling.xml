@@ -16,8 +16,11 @@
             android:id="@+id/textNote"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:textSize="12sp"/>
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:textSize="12sp" />
     </RelativeLayout>
 
 

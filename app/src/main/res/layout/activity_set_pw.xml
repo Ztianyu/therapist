@@ -16,7 +16,8 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textColor="@color/gray"
-        android:textColorHint="@color/gray" />
+        android:textColorHint="@color/gray"
+        android:textSize="14sp" />
 
 
     <EditText
@@ -30,7 +31,8 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textColor="@color/gray"
-        android:textColorHint="@color/gray" />
+        android:textColorHint="@color/gray"
+        android:textSize="14sp" />
 
 
     <Button

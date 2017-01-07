@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.zty.therapist.R;
 import com.zty.therapist.model.GuideModel;
-import com.zty.therapist.model.TheoryModel;
 import com.zty.therapist.recycler.ViewHolder;
 import com.zty.therapist.utils.MyTextUtils;
 

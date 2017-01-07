@@ -1,6 +1,5 @@
 package com.zty.therapist.ui.activity.order;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -9,6 +8,7 @@ import com.youth.banner.Banner;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.inter.OnAddAndSubtract;
+import com.zty.therapist.model.HealthProductModel;
 import com.zty.therapist.utils.BannerUtils;
 import com.zty.therapist.utils.ViewAdaptionUtils;
 import com.zty.therapist.widget.AddAndSubtractView;
@@ -45,6 +45,8 @@ public class BuyProductActivity extends BaseActivity implements RadioGroup.OnChe
 
     private int count = 1;
 
+    private HealthProductModel model;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_buy_product;
@@ -54,19 +56,23 @@ public class BuyProductActivity extends BaseActivity implements RadioGroup.OnChe
     protected void initData() {
 
         title.setText("购 买");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        right.setVisibility(View.INVISIBLE);
+
+        setText();
 
         radioGroupPay.setOnCheckedChangeListener(this);
         countView.setListener(this);
 
         initBanner();
+    }
+
+    private void setText(){
+        model = (HealthProductModel) getIntent().getSerializableExtra("model");
+        textProductDetailName.setText(model.getProductNm());
+        textProductDetailNote.setMaxLines(100);
+        textProductDetailNote.setText(model.getRemarks());
+        textProductDetailPrise.setText(model.getPrice());
+        textProductDetailIntegral.setText(model.getHealthCurrency()+"");
+        textTotalPrise.setText(Double.parseDouble(model.getPrice())*count+"");
     }
 
     @Override
@@ -98,20 +104,29 @@ public class BuyProductActivity extends BaseActivity implements RadioGroup.OnChe
 
     private void initBanner() {
 
-        ViewAdaptionUtils.LinearLayoutAdaptation(bannerProduct, 300);
+        ViewAdaptionUtils.LinearLayoutAdaptation(bannerProduct, 400);
 
-        List<String> images = new ArrayList<>();
+        List<Integer> images = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
-            images.add("http://img03.tooopen.com/images/20131102/sy_45238929299.jpg");
-        }
-        BannerUtils.initBanner(bannerProduct, images, 0, 0);
+        images.add(R.drawable.product1);
+        images.add(R.drawable.product2);
+        images.add(R.drawable.product3);
+        images.add(R.drawable.product4);
+        images.add(R.drawable.product5);
+        images.add(R.drawable.product6);
+        images.add(R.drawable.product7);
+        images.add(R.drawable.product8);
+        images.add(R.drawable.product9);
+
+        BannerUtils.initBanner1(bannerProduct, images, 0, 0);
     }
 
     @Override
     public void onAdd(TextView textView) {
         count++;
         textView.setText(count + "");
+
+        textTotalPrise.setText(Double.parseDouble(model.getPrice())*count+"");
 
     }
 
@@ -121,6 +136,8 @@ public class BuyProductActivity extends BaseActivity implements RadioGroup.OnChe
         if (count < 0)
             count = 0;
         textView.setText(count + "");
+
+        textTotalPrise.setText(Double.parseDouble(model.getPrice())*count+"");
 
     }
 }

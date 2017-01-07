@@ -1,15 +1,25 @@
 package com.zty.therapist.ui.activity.order;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.loopj.android.http.RequestParams;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
+import com.zty.therapist.model.DoctorModel;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.MyImageLoader;
+import com.zty.therapist.utils.ResultUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,6 +30,10 @@ import butterknife.OnClick;
  */
 
 public class OrderDoctorActivity extends BaseActivity {
+
+    private static final int CODE_GET_DOCTOR_DETAIL = 0;
+    private static final int CODE_SUBMIT = 1;
+
     @BindView(R.id.imgDoctorDetail)
     ImageView imgDoctorDetail;
     @BindView(R.id.textDoctorName)
@@ -49,6 +63,8 @@ public class OrderDoctorActivity extends BaseActivity {
     @BindView(R.id.btnBookDoctor)
     Button btnBookDoctor;
 
+    private String doctorId;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_order_doctor;
@@ -57,23 +73,16 @@ public class OrderDoctorActivity extends BaseActivity {
     @Override
     protected void initData() {
         title.setText("专家预约");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        right.setVisibility(View.INVISIBLE);
 
-        expandText.setText("\u3000\u3000" + "以下城市的医生为与我方合作的全过知名专家，通过我们平台预定的医生可提供如下服务：\n" +
-                "1、由指定医生门诊服务\n" +
-                "2、由指定医生主刀手术\n" +
-                "3、手术费大概只有大医院的1/2\n" +
-                "4、手术医院为与我方合作的医院\n" +
-                "5、由您介绍的患者，术后可获得健康币\n" +
-                "6、健康币可以兑换提现（比率1:1）");
+        doctorId = getIntent().getStringExtra("doctorId");
 
+        fetchData();
+    }
+
+    private void fetchData() {
+        RequestParams params = new RequestParams();
+        params.put("doctorId", doctorId);
+        RequestManager.get(CODE_GET_DOCTOR_DETAIL, Urls.getDoctorDetail, params, this);
     }
 
     @Override
@@ -83,7 +92,36 @@ public class OrderDoctorActivity extends BaseActivity {
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            switch (requestCode) {
+                case CODE_GET_DOCTOR_DETAIL:
+                    try {
+                        JSONObject object = new JSONObject(resultBean.getResult());
+                        if (object.has("doctor")) {
+                            DoctorModel model = new Gson().fromJson(object.getString("doctor"), DoctorModel.class);
+                            if (model != null)
+                                setData(model);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
+                    break;
+                case CODE_SUBMIT:
+                    break;
+            }
+        }
+    }
+
+    private void setData(DoctorModel model) {
+        MyImageLoader.load(this, model.getImgUrl(), imgDoctorDetail);
+        textDoctorName.setText(model.getDoctorNm());
+        textDoctorPosition.setText(model.getTypeNm());
+        textHospital.setText(model.getHospital());
+        textDoctorBeGood.setText(model.getExpert());
+        expandText.setText(model.getRemarks());
+        textOrderIntegral.setText(model.getMemberHealthCurrency() + "");
     }
 
     @OnClick(R.id.btnBookDoctor)

@@ -23,13 +23,20 @@ public class DoctorAdapter extends FooterRefreshAdapter<DoctorModel> {
     }
 
     @Override
-    protected void convert(RecyclerView.ViewHolder holder, DoctorModel doctorModel) {
+    protected void convert(RecyclerView.ViewHolder holder, final DoctorModel doctorModel) {
         ViewHolder viewHolder = (ViewHolder) holder;
+
+        viewHolder.setImage(mContext, R.id.imgDoctor, doctorModel.getImgUrl());
+        viewHolder.setText(R.id.textDoctorName, doctorModel.getDoctorNm());
+        viewHolder.setText(R.id.textDoctorPosition, doctorModel.getTypeNm());
+        viewHolder.setText(R.id.textDoctorBeGood, doctorModel.getExpert());
+        viewHolder.setText(R.id.textHospital, doctorModel.getHospital());
+        viewHolder.setText(R.id.textIntegral, doctorModel.getMemberHealthCurrency() + "健康币");
 
         viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startActivity(new Intent(mContext, OrderDoctorActivity.class));
+                mContext.startActivity(new Intent(mContext, OrderDoctorActivity.class).putExtra("doctorId", doctorModel.getId()));
             }
         });
 

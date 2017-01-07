@@ -33,7 +33,6 @@
                 android:maxLength="18"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:text="张淳"
                 android:textCursorDrawable="@null"
                 android:textSize="14sp" />
 
@@ -58,7 +57,6 @@
                 android:inputType="phone"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:text="15679542146"
                 android:textCursorDrawable="@null"
                 android:textSize="14sp" />
 
@@ -81,7 +79,6 @@
             android:layout_height="wrap_content"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="河北省保定市原阳县石坡镇东营村"
             android:textCursorDrawable="@null"
             android:textSize="14sp" />
 
@@ -102,7 +99,6 @@
             android:layout_height="wrap_content"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="2017-05-20~2017-05-30"
             android:textCursorDrawable="@null"
             android:textSize="14sp" />
     </LinearLayout>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/colorDivider"></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorDivider"></View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:text="头像"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <com.zty.therapist.widget.CircleImageView
+                android:id="@+id/imgUserHeader"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@mipmap/icon_user"
+                app:border_color="@color/gray"
+                app:border_width="0.5dp"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorDivider"></View>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="姓名"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserSex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="性别"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="年龄"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="电话"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="籍贯"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserIdCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="身份证"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider"></View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorDivider"></View>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserSpecialty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="擅长"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserSkill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="服务技能"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="现住址"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserWorkSpaceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="工作单位"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserWorkSpaceAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="单位地址"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserWorkSpacePhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="单位电话"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider"></View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="32dp"></View>
+
+    </LinearLayout>
+</ScrollView>

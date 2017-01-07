@@ -50,13 +50,16 @@ public class HomeFragment2 extends BaseFragment {
     @Override
     public void initData() {
 
-        ViewAdaptionUtils.LinearLayoutAdaptation(bannerHome, 300);
+        ViewAdaptionUtils.LinearLayoutAdaptation(bannerHome, 400);
 
         List<String> images = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
-            images.add("http://img03.tooopen.com/images/20131102/sy_45238929299.jpg");
-        }
+        images.add("http://seseco.cn/upLoad/news/month_1203/201203212327441972.jpg");
+        images.add("http://img.gmw.cn/imgeconomy/attachement/jpg/site2/20160426/002564966e001889136c45.jpg");
+        images.add("http://img1.youzy.cn/uploadfiles/2016/1/6/image/20160106/20160106120555_2469.jpg");
+        images.add("http://e.hiphotos.baidu.com/nuomi/wh=470,285/sign=6d5f9f6eb019ebc4c02d7e9db516e3ce/cdbf6c81800a19d8a850240e30fa828ba61e466d.jpg");
+        images.add("http://images.9191zx.com/hospital/images/2014/07/03/163343159_21.jpg");
+
         BannerUtils.initBanner(bannerHome, images, 1, 1);
 
     }

@@ -11,11 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <include layout="@layout/view_user_header" />
+
         <com.zty.therapist.widget.MyStripMenuView
             android:id="@+id/textStrip1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imgSrc="@mipmap/ic_personal1"
+            app:imgSrc="@mipmap/ic_message"
             app:isHasBottomLine="true"
             app:isHasTopLine="false"
             app:lineMargin="16"
@@ -26,19 +28,30 @@
             android:id="@+id/textStrip2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imgSrc="@mipmap/ic_personal2"
+            app:imgSrc="@mipmap/ic_apply_group"
             app:isHasBottomLine="false"
             app:isHasTopLine="true"
             app:lineMargin="16"
             app:textName="@string/personalTip2"
             app:textNameColor="@color/gray" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorDivider" />
+
         <com.zty.therapist.widget.MyStripMenuView
             android:id="@+id/textStrip3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imgSrc="@mipmap/ic_personal3"
-            app:isHasBottomLine="true"
+            app:imgSrc="@mipmap/ic_home_order"
+            app:isHasBottomLine="false"
             app:isHasTopLine="false"
             app:lineMargin="16"
             app:textName="@string/personalTip3"
@@ -48,7 +61,7 @@
             android:id="@+id/textStrip4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imgSrc="@mipmap/ic_personal4"
+            app:imgSrc="@mipmap/ic_count"
             app:isHasBottomLine="false"
             app:isHasTopLine="true"
             app:lineMargin="16"
@@ -59,23 +72,13 @@
             android:id="@+id/textStrip5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imgSrc="@mipmap/ic_personal5"
-            app:isHasBottomLine="true"
-            app:isHasTopLine="false"
+            app:imgSrc="@mipmap/ic_home_setting"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="true"
             app:lineMargin="16"
             app:textName="@string/personalTip5"
             app:textNameColor="@color/gray" />
 
-        <com.zty.therapist.widget.MyStripMenuView
-            android:id="@+id/textStrip6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:imgSrc="@mipmap/ic_personal6"
-            app:isHasBottomLine="true"
-            app:isHasTopLine="false"
-            app:lineMargin="16"
-            app:textName="@string/personalTip6"
-            app:textNameColor="@color/gray" />
 
         <View
             android:layout_width="match_parent"

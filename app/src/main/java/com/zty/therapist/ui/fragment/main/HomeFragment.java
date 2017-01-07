@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * Created by zty on 2016/11/25.
  */
 
-public class HomeFragment extends BaseFragment implements OnItemClickListener<TaskModel> {
+public class HomeFragment extends BaseFragment {
     @BindView(R.id.imgHomeUser)
     CircleImageView imgHomeUser;
     @BindView(R.id.textHomeName)
@@ -60,8 +60,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ta
 
         listCurrentTask.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(this);
-
         MyImageLoader.load(context, "http://img03.tooopen.com/images/20131102/sy_45238929299.jpg", imgHomeUser);
     }
 
@@ -85,13 +83,4 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ta
 
     }
 
-    @Override
-    public void onCommonItemClick(ViewHolder viewHolder, TaskModel taskModel, int position) {
-        startActivity(new Intent(context, TaskDetailsActivity.class).putExtra("model", taskModel));
-    }
-
-    @Override
-    public void onLoadItemClick() {
-
-    }
 }

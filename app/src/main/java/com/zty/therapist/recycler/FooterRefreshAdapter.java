@@ -224,4 +224,9 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
         mData = data;
         notifyDataSetChanged();
     }
+
+    public void clearData(){
+        mData.clear();
+        notifyDataSetChanged();
+    }
 }

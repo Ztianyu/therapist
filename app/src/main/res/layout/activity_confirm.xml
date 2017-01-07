@@ -16,7 +16,8 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textColor="@color/gray"
-        android:textColorHint="@color/gray" />
+        android:textColorHint="@color/gray"
+        android:textSize="14sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -33,7 +34,8 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textColor="@color/gray"
-            android:textColorHint="@color/gray" />
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnGetCode"
@@ -41,10 +43,10 @@
             android:layout_height="32dp"
             android:layout_gravity="right|center_vertical"
             android:layout_marginRight="8dp"
-            android:textSize="13sp"
-            android:textColor="@color/gray"
             android:background="@mipmap/ic_btn_get_code"
-            android:text="获取验证码" />
+            android:text="获取验证码"
+            android:textColor="@color/gray"
+            android:textSize="13sp" />
     </FrameLayout>
 
     <Button

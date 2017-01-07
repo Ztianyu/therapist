@@ -55,4 +55,8 @@ dependencies {
     compile 'com.ms-square:expandableTextView:0.1.4'
     compile 'com.youth.banner:banner:1.4.5'
     compile project(':photopicker')
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    compile 'com.lzy.net:okhttputils:1.6.5'
+    compile project(path: ':jcvideoplayer-lib')
 }

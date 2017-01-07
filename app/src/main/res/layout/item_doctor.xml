@@ -27,8 +27,8 @@
             <TextView
                 android:id="@+id/textDoctorName"
                 android:layout_width="72dp"
-                android:gravity="center"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="王志飞"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -38,7 +38,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="心血管科  主任医师  博士生导师"
                 android:textSize="@dimen/listContent" />
         </LinearLayout>
 
@@ -52,16 +51,16 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:textSize="@dimen/listContent"
-                android:text="擅长：" />
+                android:text="擅长："
+                android:textSize="@dimen/listContent" />
 
             <TextView
                 android:id="@+id/textDoctorBeGood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:textSize="@dimen/listContent"
-                android:text="冠心病搭桥手术、心脏病治疗" />
+                android:maxLines="3"
+                android:textSize="@dimen/listContent" />
         </LinearLayout>
 
         <LinearLayout
@@ -74,16 +73,16 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:textSize="@dimen/listContent"
-                android:text="所在医院：" />
+                android:text="所在医院："
+                android:textSize="@dimen/listContent" />
 
             <TextView
                 android:id="@+id/textHospital"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/listContent"
                 android:layout_marginLeft="8dp"
-                android:text="北京协和医院" />
+                android:text="北京协和医院"
+                android:textSize="@dimen/listContent" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,16 +95,16 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:textSize="@dimen/listContent"
-                android:text="健康币：" />
+                android:text="健康币："
+                android:textSize="@dimen/listContent" />
 
             <TextView
                 android:id="@+id/textIntegral"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:textSize="@dimen/listContent"
-                android:text="2000健康币" />
+                android:text="2000健康币"
+                android:textSize="@dimen/listContent" />
         </LinearLayout>
 
 

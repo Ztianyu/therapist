@@ -22,14 +22,20 @@ public class HealthProductsAdapter extends FooterRefreshAdapter<HealthProductMod
     }
 
     @Override
-    protected void convert(RecyclerView.ViewHolder holder, HealthProductModel healthProductModel) {
+    protected void convert(RecyclerView.ViewHolder holder, final HealthProductModel healthProductModel) {
 
         ViewHolder viewHolder = (ViewHolder) holder;
+
+        viewHolder.setImage(mContext, R.id.imgProduct, healthProductModel.getImgUrl());
+        viewHolder.setText(R.id.textProductName, healthProductModel.getProductNm());
+        viewHolder.setText(R.id.textProductNote, healthProductModel.getRemarks());
+        viewHolder.setText(R.id.textProductPrise, "价格：" + healthProductModel.getPrice() + "元");
+        viewHolder.setText(R.id.textProductIntegral, "健康币：" + healthProductModel.getHealthCurrency());
 
         viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startActivity(new Intent(mContext, BuyProductActivity.class));
+                mContext.startActivity(new Intent(mContext, BuyProductActivity.class).putExtra("model", healthProductModel));
             }
         });
 

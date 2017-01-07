@@ -1,6 +1,7 @@
 package com.zty.therapist.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.zty.therapist.R;
@@ -9,6 +10,7 @@ import com.zty.therapist.recycler.ViewHolder;
 import com.zty.therapist.utils.MyTextUtils;
 
 import cn.droidlover.xrecyclerview.RecyclerAdapter;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * Created by zty on 2016/12/3.
@@ -30,10 +32,15 @@ public class LectureAdapter extends RecyclerAdapter<LectureModel, ViewHolder> {
         convert(holder, data.get(position));
     }
 
-    private void convert(ViewHolder holder, LectureModel lectureModel) {
+    private void convert(ViewHolder holder, final LectureModel lectureModel) {
 
         holder.setText(R.id.textLectureName, MyTextUtils.isEmpty(lectureModel.getTitle()));
+        holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JCVideoPlayerStandard.startFullscreen(context, JCVideoPlayerStandard.class, lectureModel.getVideoUrl(), lectureModel.getTitle());
+            }
+        });
 
-        holder.setText(R.id.textLectureDoc, MyTextUtils.isEmpty(lectureModel.getDoctorNm()));
     }
 }

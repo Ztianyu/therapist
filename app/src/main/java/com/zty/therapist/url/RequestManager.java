@@ -5,6 +5,7 @@ import android.util.Log;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.zty.therapist.base.TherapistApplication;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -34,6 +35,10 @@ public class RequestManager {
             params = new RequestParams();
         }
 
+        if (!params.has("userId"))
+            params.put("userId", TherapistApplication.getInstance().getUserId());
+        params.put("tokenId", TherapistApplication.getInstance().getTokenId());
+
         Log.i("http--get", url + "?" + (params != null ? params.toString() : ""));
 
         getClient().get(url, params, new TextHttpResponseHandler() {
@@ -57,6 +62,9 @@ public class RequestManager {
         if (params == null) {
             params = new RequestParams();
         }
+        if (!params.has("userId"))
+            params.put("userId", TherapistApplication.getInstance().getUserId());
+        params.put("tokenId", TherapistApplication.getInstance().getTokenId());
 
         Log.i("http--post", url + "?" + (params != null ? params.toString() : ""));
 

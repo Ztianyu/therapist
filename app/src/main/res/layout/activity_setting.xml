@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="账号管理"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorDivider"></View>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserMessageSet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="false"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="个人资料"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserSetPw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="修改密码"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorDivider"></View>
+
+        <Button
+            android:id="@+id/btnExitLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@mipmap/ic_btn_register"
+            android:text="退出登录"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+</ScrollView>

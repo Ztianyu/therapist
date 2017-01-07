@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-   <com.youth.banner.Banner
-       android:id="@+id/bannerHome"
-       android:layout_width="match_parent"
-       android:layout_height="150dp"></com.youth.banner.Banner>
+    <com.youth.banner.Banner
+        android:id="@+id/bannerHome"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"></com.youth.banner.Banner>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24dp"></View>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e5e5e5"></View>
 
 
     <LinearLayout
@@ -17,6 +25,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -31,9 +40,13 @@
                 android:layout_centerInParent="true"
                 app:lab_color="@color/black"
                 app:lab_img="@mipmap/ic_lab_content1"
-                app:lab_back="@mipmap/ic_lab_back1"
-                app:lab_text="技能学习" />
+                app:lab_text="康复培训" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#efefef"></View>
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -47,9 +60,13 @@
                 android:layout_centerInParent="true"
                 app:lab_color="@color/black"
                 app:lab_img="@mipmap/ic_lab_content2"
-                app:lab_back="@mipmap/ic_lab_back2"
                 app:lab_text="微课堂" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#efefef"></View>
 
 
         <RelativeLayout
@@ -64,18 +81,21 @@
                 android:layout_centerInParent="true"
                 app:lab_color="@color/black"
                 app:lab_img="@mipmap/ic_lab_content3"
-                app:lab_back="@mipmap/ic_lab_back3"
                 app:lab_text="班组管理" />
         </RelativeLayout>
-
-
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#efefef"></View>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -90,9 +110,13 @@
                 android:layout_centerInParent="true"
                 app:lab_color="@color/black"
                 app:lab_img="@mipmap/ic_lab_content4"
-                app:lab_back="@mipmap/ic_lab_back4"
                 app:lab_text="感情天地" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#efefef"></View>
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -106,9 +130,13 @@
                 android:layout_centerInParent="true"
                 app:lab_color="@color/black"
                 app:lab_img="@mipmap/ic_lab_content5"
-                app:lab_back="@mipmap/ic_lab_back5"
                 app:lab_text="同城活动" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#efefef"></View>
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -122,10 +150,18 @@
                 android:layout_centerInParent="true"
                 app:lab_color="@color/black"
                 app:lab_img="@mipmap/ic_lab_content6"
-                app:lab_back="@mipmap/ic_lab_back6"
                 app:lab_text="互帮互助" />
         </RelativeLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e5e5e5"></View>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24dp"></View>
 
 </LinearLayout>

@@ -10,7 +10,6 @@
         android:id="@+id/imgProduct"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="@drawable/bg_header"
         android:scaleType="centerCrop" />
 
     <LinearLayout
@@ -23,31 +22,32 @@
             android:id="@+id/textProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:text=""
             android:textColor="@color/black"
-            android:text="澳洲老年奶粉" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/textProductNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
             android:layout_marginTop="6dp"
             android:maxLines="3"
-            android:text="澳洲原生进口奶粉，对老年高血压、高血糖、骨质疏松等有良好的预防效果"/>
+            android:text=""
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textProductPrise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="价格：380元"/>
+            android:text="" />
+
         <TextView
             android:id="@+id/textProductIntegral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="健康币：50"/>
+            android:text="" />
 
     </LinearLayout>
 

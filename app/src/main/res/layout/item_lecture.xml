@@ -7,38 +7,47 @@
     android:padding="16dp">
 
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgTrainLecture"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:background="@mipmap/pic_default" />
+            android:layout_width="match_parent"
+            android:layout_height="96dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@mipmap/ic_radio" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#99000000"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textLectureName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textLectureDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textLectureName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="脑中风康复讲解"
-        android:maxLines="1"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/textLectureDoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="刘天华主任"
-        android:maxLines="1"
-        android:textColor="@color/black" />
 
 </LinearLayout>

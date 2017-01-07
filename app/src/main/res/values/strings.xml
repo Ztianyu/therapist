@@ -1,17 +1,16 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">家政帮</string>
 
     <string name="Housekeeping">家政帮</string>
     <string name="expert">名医专家</string>
     <string name="product">保健品</string>
     <string name="personal">个人中心</string>
 
-    <string name="personalTip1">账号管理</string>
-    <string name="personalTip2">基本信息</string>
+    <string name="personalTip1">我的消息</string>
+    <string name="personalTip2">组长申请</string>
     <string name="personalTip3">我的订单</string>
     <string name="personalTip4">我的账户</string>
-    <string name="personalTip5">消息中心</string>
-    <string name="personalTip6">组长申请</string>
+    <string name="personalTip5">设置</string>
 
     <string name="add">add</string>
 

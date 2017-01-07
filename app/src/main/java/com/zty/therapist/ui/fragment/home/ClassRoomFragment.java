@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.LectureAdapter;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.manager.LayoutManager;
 import com.zty.therapist.model.LectureModel;
 
 import java.util.ArrayList;
@@ -20,8 +21,6 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
 public class ClassRoomFragment extends BaseFragment {
     @BindView(R.id.recyclerView)
     XRecyclerView recyclerView;
-
-    private int type;//0：神经类；1：心血管类；2：骨科类；
 
     private LectureAdapter adapter;
 
@@ -40,8 +39,6 @@ public class ClassRoomFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        type = getArguments().getInt("type");
-
         adapter = new LectureAdapter(context);
 
         recyclerView.gridLayoutManager(context, 3);
@@ -53,16 +50,6 @@ public class ClassRoomFragment extends BaseFragment {
 
     private void getData() {
 
-        List<LectureModel> models = new ArrayList<>();
-        LectureModel model = new LectureModel();
-        model.setDoctorNm("张毅主任");
-        model.setTitle("心脑血管康复指南");
-        models.add(model);
-        models.add(model);
-        models.add(model);
-        models.add(model);
-        models.add(model);
-        adapter.setData(models);
     }
 
     @Override

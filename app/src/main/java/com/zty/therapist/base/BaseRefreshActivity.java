@@ -27,6 +27,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements SwipeR
     public int pageNo = 1;
     public int mTempPageCount = 2;
     public boolean isLoadMore;
+    public boolean isRefresh = true;
 
     @Override
     protected int getContentView() {
@@ -63,7 +64,11 @@ public abstract class BaseRefreshActivity extends BaseActivity implements SwipeR
                     if (mLastVisibleItemPosition > 0 && mLastVisibleItemPosition + 1 == adapter.getItemCount()) {
                         //已到达底部，开始加载更多
                         isLoadMore = true;
-                        adapter.updateRefreshState(FooterRefreshAdapter.STATE_START);
+                        if (isRefresh) {
+                            adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
+                        } else {
+                            adapter.updateRefreshState(FooterRefreshAdapter.STATE_START);
+                        }
                         pageNo = mTempPageCount;
                         fetchData();
                     }
@@ -83,6 +88,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements SwipeR
     @Override
     public void onRefresh() {
         isLoadMore = false;
+        isRefresh = true;
         pageNo = 1;
         fetchData();
     }
