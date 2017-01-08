@@ -1,17 +1,21 @@
 package com.zty.therapist.ui.activity.home;
 
 import android.content.Intent;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
 
 import com.lling.photopicker.PhotoPickerActivity;
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.PublishImageAdapter;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.inter.OnSelectListener;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.PicUtils;
 import com.zty.therapist.utils.ResourceUtil;
+import com.zty.therapist.utils.ResultUtil;
 import com.zty.therapist.utils.SelectPicUtils;
 import com.zty.therapist.utils.ToastUtils;
 
@@ -25,7 +29,10 @@ import butterknife.BindView;
  * Created by zty on 2016/12/19.
  */
 
-public class PublishActivity extends BaseActivity implements View.OnClickListener, OnSelectListener {
+public class PublishActivity extends BaseActivity implements OnSelectListener {
+
+    private static final int CODE_SEND_SUBMIT = 0;
+
 
     @BindView(R.id.editPublish)
     EditText editPublish;
@@ -47,10 +54,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     protected void initData() {
 
         title.setText("发 帖");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
-        right.setBackgroundResource(R.mipmap.ic_setting);
-        right.setOnClickListener(this);
+        right.setBackgroundResource(R.mipmap.ic_send_info);
 
         adapter = new PublishImageAdapter(this, getSupportFragmentManager());
 
@@ -63,6 +67,12 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         adapter.addListAtEnd(ResourceUtil.resToStr(this, R.string.add));
     }
 
+    private void submitCard() {
+        RequestParams params = new RequestParams();
+        params.put("content", editPublish.getText().toString());
+        RequestManager.get(CODE_SEND_SUBMIT, Urls.submitForum, params, this);
+    }
+
     @Override
     public void onFailureCallback(int requestCode, String errorMsg) {
 
@@ -70,6 +80,16 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            switch (requestCode) {
+                case CODE_SEND_SUBMIT:
+                    ToastUtils.show(this, "发布成功");
+                    break;
+            }
+        } else {
+            ToastUtils.show(this, resultBean.getResult());
+        }
 
     }
 
@@ -91,14 +111,8 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.titleLeft:
-                finish();
-                break;
-            case R.id.titleRight:
-                break;
-        }
+    public void rightClick() {
+        submitCard();
     }
 
     @Override

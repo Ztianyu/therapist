@@ -2,10 +2,13 @@ package com.zty.therapist.ui.activity.home;
 
 import android.content.Intent;
 
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.InfoAdapter;
 import com.zty.therapist.base.BaseRefreshActivity;
 import com.zty.therapist.model.InfoModel;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +38,10 @@ public class InfoActivity extends BaseRefreshActivity {
 
     @Override
     protected void fetchData() {
+
+
+
         List<InfoModel> models = new ArrayList<>();
-        InfoModel model = new InfoModel();
-        models.add(model);
-        models.add(model);
-        models.add(model);
-        models.add(model);
 
         if (isLoadMore) {
             adapter.notifyBottomRefresh(models);

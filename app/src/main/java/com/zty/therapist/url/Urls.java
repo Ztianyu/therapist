@@ -32,6 +32,8 @@ public class Urls {
 
     public static String getRehabilitationTeacher = HOST + "/rehabilitationTeacher/getRehabilitationTeacher";
 
-    public static String updatePwd   = HOST + "/user/updatePwd";
+    public static String updatePwd = HOST + "/user/updatePwd";
+
+    public static String submitForum = HOST + "/healthForum/submitForum";
 
 }
