@@ -8,13 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zty.therapist.R;
+import com.zty.therapist.inter.SendReplayListener;
 import com.zty.therapist.model.CommunityModel;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
 import com.zty.therapist.ui.fragment.home.CommentFragment;
+import com.zty.therapist.utils.TimeUtils;
 import com.zty.therapist.widget.MyRecyclerView;
 import com.zty.therapist.widget.SpacesItemDecoration;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -28,17 +32,32 @@ public class CommunityAdapter extends FooterRefreshAdapter<CommunityModel> {
 
     private SpacesItemDecoration itemDecoration;
 
-    public CommunityAdapter(Context context, FragmentManager fm) {
+    SendReplayListener listener;
+
+    SimpleDateFormat simple;
+
+    public CommunityAdapter(Context context, FragmentManager fm, SendReplayListener listener) {
         super(context);
         this.fm = fm;
+        this.listener = listener;
         itemDecoration = new SpacesItemDecoration(8);
+
+        simple = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     }
 
     @Override
-    protected void convert(RecyclerView.ViewHolder holder, CommunityModel communityModel) {
-        ViewHolder viewHolder = (ViewHolder) holder;
+    protected void convert(RecyclerView.ViewHolder holder, final CommunityModel communityModel) {
+        final ViewHolder viewHolder = (ViewHolder) holder;
 
-        viewHolder.setImage(mContext, R.id.imgCommunity, "http://p1.qqyou.com/touxiang/uploadpic/2013-3/10/2013031010000358494.jpg");
+        viewHolder.setImage(mContext, R.id.imgCommunity, communityModel.getPostedPhoto());
+        viewHolder.setText(R.id.textCommunityName, communityModel.getNickName() + "");
+        viewHolder.setText(R.id.textCommunityContent, communityModel.getContent() + "");
+        try {
+            viewHolder.setText(R.id.textCommunityTime, TimeUtils.fromToday(simple.parse(communityModel.getCreateDate())) + "");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         viewHolder.setOnClick(R.id.imgCommunityHandler, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,12 +67,12 @@ public class CommunityAdapter extends FooterRefreshAdapter<CommunityModel> {
                 if (fragment != null)
                     fm.beginTransaction().remove(fragment);
 
-                CommentFragment commentFragment = new CommentFragment(mContext);
+                CommentFragment commentFragment = new CommentFragment(mContext, communityModel.getId(), communityModel.getUserId(), viewHolder.getLayoutPosition(), listener);
                 commentFragment.show(fm.beginTransaction(), "dialogComment");
             }
         });
 
-        setGrid(viewHolder, communityModel.getUrls());
+        setGrid(viewHolder, communityModel.getPictures());
 
     }
 
@@ -62,7 +81,7 @@ public class CommunityAdapter extends FooterRefreshAdapter<CommunityModel> {
         return R.layout.item_community;
     }
 
-    private void setGrid(ViewHolder holder, List<String> urls) {
+    private void setGrid(ViewHolder holder, List<CommunityModel.PicturesBean> urls) {
         MyRecyclerView gridCommunity = holder.getView(R.id.gridCommunity);
 
         GridLayoutManager manager = new GridLayoutManager(mContext, 3);

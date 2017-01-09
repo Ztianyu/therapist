@@ -23,6 +23,8 @@ public class SettingActivity extends BaseActivity {
     StripViewNoImg textUserSetPw;
     @BindView(R.id.btnExitLogin)
     Button btnExitLogin;
+    @BindView(R.id.textUserNickSet)
+    StripViewNoImg textUserNickSet;
 
     @Override
     protected int getContentView() {
@@ -32,7 +34,6 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void initData() {
         title.setText("设 置");
-
     }
 
     @Override
@@ -45,14 +46,20 @@ public class SettingActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.textUserMessageSet, R.id.textUserSetPw, R.id.btnExitLogin})
+    @OnClick({R.id.textUserMessageSet, R.id.textUserSetPw, R.id.textUserNickSet, R.id.btnExitLogin})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.titleLeft:
+                finish();
+                break;
             case R.id.textUserMessageSet:
                 startActivity(new Intent(this, UserMessageActivity.class));
                 break;
             case R.id.textUserSetPw:
                 startActivity(new Intent(this, ResetPwActivity.class));
+                break;
+            case R.id.textUserNickSet:
+                startActivity(new Intent(this, NickActivity.class));
                 break;
             case R.id.btnExitLogin:
                 UserUtils.clearUser(this);
@@ -60,4 +67,5 @@ public class SettingActivity extends BaseActivity {
                 break;
         }
     }
+
 }

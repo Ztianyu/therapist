@@ -25,6 +25,8 @@
 
     <color name="checkSelect">#22afff</color>
 
+    <color name="canSend">#339933</color>
+
     <color name="colorInitFloatBackground">#b0ffffff</color>
     <color name="colorCollapsedFloatBackground">#f4f4f4</color>
 </resources>

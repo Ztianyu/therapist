@@ -29,11 +29,12 @@
             android:textSize="14sp" />
 
         <Button
+            android:id="@+id/btnSend"
             android:layout_width="54dp"
             android:layout_height="32dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/btn_can_send"
+            android:background="@drawable/btn_can_not_send"
             android:text="发 送"
             android:textColor="@color/gray"
             android:textSize="15sp" />

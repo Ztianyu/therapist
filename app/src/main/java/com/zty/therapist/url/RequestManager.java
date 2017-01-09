@@ -39,7 +39,7 @@ public class RequestManager {
             params.put("userId", TherapistApplication.getInstance().getUserId());
         params.put("tokenId", TherapistApplication.getInstance().getTokenId());
 
-        Log.i("http--get", url + "?" + (params != null ? params.toString() : ""));
+        Log.i("TherapistHttp--get", url + "?" + (params != null ? params.toString() : ""));
 
         getClient().get(url, params, new TextHttpResponseHandler() {
             @Override
@@ -66,7 +66,7 @@ public class RequestManager {
             params.put("userId", TherapistApplication.getInstance().getUserId());
         params.put("tokenId", TherapistApplication.getInstance().getTokenId());
 
-        Log.i("http--post", url + "?" + (params != null ? params.toString() : ""));
+        Log.i("TherapistHttp--post", url + "?" + (params != null ? params.toString() : ""));
 
         getClient().post(url, params, new TextHttpResponseHandler() {
             @Override

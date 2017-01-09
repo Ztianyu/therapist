@@ -1,7 +1,10 @@
 package com.zty.therapist.base;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -43,6 +46,8 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
 
         initTitleBar();
         initData();
+
+        setPermissions();
     }
 
     private void initTitleBar() {
@@ -85,6 +90,19 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
 
             isGetSize = true;
         }
+    }
+
+    private void setPermissions() {
+        PackageManager pm = getPackageManager();
+        boolean hasCamera = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.CAMERA", "com.zty.therapist"));
+        boolean hasStorage = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.WRITE_EXTERNAL_STORAGE", "com.zty.therapist"));
+
+        if (!hasCamera)
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+
+        if (!hasStorage)
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
     }
 
     @Override

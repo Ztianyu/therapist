@@ -10,6 +10,11 @@ import com.zty.therapist.ui.fragment.main.ScrollingFragment;
 import com.zty.therapist.ui.fragment.main.HomeFragment2;
 import com.zty.therapist.ui.fragment.main.PersonalFragment;
 import com.zty.therapist.utils.ResourceUtil;
+import com.zty.therapist.utils.TimeUtils;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 

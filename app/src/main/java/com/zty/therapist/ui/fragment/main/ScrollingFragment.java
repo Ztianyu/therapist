@@ -204,7 +204,6 @@ public class ScrollingFragment extends BaseFragment implements AdapterView.OnIte
                             adapter.clearData();
                         }
                         adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
-
                     }
                     break;
                 case CODE_GET_PRODUCT:

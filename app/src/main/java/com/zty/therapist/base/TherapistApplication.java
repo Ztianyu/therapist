@@ -3,10 +3,12 @@ package com.zty.therapist.base;
 import android.app.Application;
 import android.text.TextUtils;
 
+import com.bumptech.glide.request.target.ViewTarget;
 import com.google.gson.Gson;
 import com.lzy.okhttputils.OkHttpUtils;
 import com.lzy.okhttputils.cookie.store.PersistentCookieStore;
 import com.lzy.okhttputils.model.HttpParams;
+import com.zty.therapist.R;
 import com.zty.therapist.model.UserModel;
 import com.zty.therapist.utils.SharedPrefUtils;
 
@@ -30,6 +32,7 @@ public class TherapistApplication extends Application {
         instance = this;
         setCurrentUser();
         initHttpUtils();
+        ViewTarget.setTagId(R.id.glide_tag);
     }
 
     public static synchronized TherapistApplication getInstance() {

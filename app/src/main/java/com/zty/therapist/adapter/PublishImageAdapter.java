@@ -55,7 +55,7 @@ public class PublishImageAdapter extends MyBaseAdapter<String, GridView> {
 
         if (!path.equals(ResourceUtil.resToStr(context, R.string.add))) {
             holder.imageView.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().display(path, holder.imageView, mColumnWidth, mColumnWidth);
+            ImageLoader.getInstance(context).display(path, holder.imageView, mColumnWidth, mColumnWidth);
         } else {
             holder.imageView.setVisibility(View.INVISIBLE);
             holder.imageView.setBackground(ResourceUtil.resToDrawable(context, R.mipmap.ic_add_image));

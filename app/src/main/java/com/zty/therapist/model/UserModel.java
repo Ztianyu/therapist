@@ -28,6 +28,9 @@ public class UserModel {
      * updateDate : 2017-01-07 10:32
      * userId : 8face7638cad473e9df48b592b01bd01
      * workingLife : 9
+     * nickName:昵称
+     * postedPhoto:发帖头像
+     * postedPhotoThumb:发帖头像略缩图
      */
 
     private String address;
@@ -51,6 +54,10 @@ public class UserModel {
     private String updateDate;
     private String userId;
     private String workingLife;
+    private String nickName;
+    private String postedPhoto;
+    private String postedPhotoThumb;
+
 
     public String getAddress() {
         return address;
@@ -218,5 +225,29 @@ public class UserModel {
 
     public void setWorkingLife(String workingLife) {
         this.workingLife = workingLife;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getPostedPhoto() {
+        return postedPhoto;
+    }
+
+    public void setPostedPhoto(String postedPhoto) {
+        this.postedPhoto = postedPhoto;
+    }
+
+    public String getPostedPhotoThumb() {
+        return postedPhotoThumb;
+    }
+
+    public void setPostedPhotoThumb(String postedPhotoThumb) {
+        this.postedPhotoThumb = postedPhotoThumb;
     }
 }

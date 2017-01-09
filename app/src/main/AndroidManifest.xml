@@ -40,6 +40,7 @@
 
         <activity
             android:name=".ui.activity.personal.LoginActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
 
         <activity
@@ -50,106 +51,132 @@
 
         <activity
             android:name=".ui.activity.task.TaskDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.LearnActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.ClassRoomActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.CommunityActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.GroupActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.HelpActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.InfoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.PublishActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.order.OrderDoctorActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.UserMessageActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.MyOrderActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.AccountActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.MessageActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.order.BuyProductActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.ConfirmPhoneActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.SetPassWordActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.ApplyActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.DoctorOrderDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.personal.ProductOrderDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.SendInfoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.SendReplaceActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.SendHouseRentActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.AddMemberActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.SendHelpActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.ReplaceDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.activity.home.TheoryListActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 
         <activity
@@ -169,6 +196,16 @@
 
         <activity
             android:name=".ui.activity.personal.ResetPwActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.NickActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.personal.SetTextActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 

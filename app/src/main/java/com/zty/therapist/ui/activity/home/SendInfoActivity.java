@@ -117,6 +117,6 @@ public class SendInfoActivity extends BaseActivity implements View.OnClickListen
 
     private void showResult(String path) {
         int mColumnWidth = screenWidth - 2 * OtherUtils.dip2px(this, 16) / 2;
-        ImageLoader.getInstance().display(path, imgUpload, mColumnWidth, mColumnWidth);
+        ImageLoader.getInstance(this).display(path, imgUpload, mColumnWidth, mColumnWidth);
     }
 }

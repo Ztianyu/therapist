@@ -207,10 +207,17 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
 
     /**
      * 更新顶部加载最新(一条)
-     *
-     * @param data
      */
     public void notifyBottomRefresh(T data) {
+        int size = mData.size();
+        mData.add(data);
+        notifyItemInserted(size);
+    }
+
+    /**
+     * 更新指定位置的数据
+     */
+    public void setData(T data, int position) {
         int size = mData.size();
         mData.add(data);
         notifyItemInserted(size);
@@ -225,7 +232,7 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
         notifyDataSetChanged();
     }
 
-    public void clearData(){
+    public void clearData() {
         mData.clear();
         notifyDataSetChanged();
     }

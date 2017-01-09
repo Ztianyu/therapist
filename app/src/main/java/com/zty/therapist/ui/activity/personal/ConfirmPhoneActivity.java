@@ -160,7 +160,7 @@ public class ConfirmPhoneActivity extends BaseActivity implements View.OnClickLi
                 //回调完成
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                     //提交验证码成功
-                    startActivity(new Intent(ConfirmPhoneActivity.this, SetPassWordActivity.class).putExtra("phone", strPhone));
+                    startActivity(new Intent(ConfirmPhoneActivity.this, SetPassWordActivity.class).putExtra("phone", strPhone).putExtra("type", type));
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                     //获取验证码成功
                     sendCode();

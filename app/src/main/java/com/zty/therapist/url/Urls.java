@@ -6,7 +6,8 @@ package com.zty.therapist.url;
 
 public class Urls {
 
-    public static String HOST = "http://14.29.68.166:8181/rehabilitationSystem" + "/admin/ws";
+    public static String HOST_PROJECT = "http://14.29.68.166:8181/rehabilitationSystem";
+    public static String HOST = HOST_PROJECT + "/admin/ws";
 
     public static String sysLogin = HOST + "/user/sysLogin";
 
@@ -34,6 +35,18 @@ public class Urls {
 
     public static String updatePwd = HOST + "/user/updatePwd";
 
+    public static String setNewPwd = HOST + "/user/setNewPwd";
+
+    public static String register = HOST + "/user/register";
+
     public static String submitForum = HOST + "/healthForum/submitForum";
+
+    public static String uploadAndroidServlet = HOST_PROJECT + "/uploadAndroidServlet";
+
+    public static String getHealthForumList = HOST + "/healthForum/getHealthForumList";
+
+    public static String submitForumReplay = HOST + "/forumReplay/submitForumReplay";
+
+    public static String setNickName = HOST + "/rehabilitationTeacher/setNickName";
 
 }

@@ -16,7 +16,7 @@ public class ResultUtil {
     /**
      */
     public static synchronized ResultBean getResult(String json) {
-        Log.i("result", json);
+        Log.i("TherapistHttp-result", json);
         ResultBean resultBean = new ResultBean();
         if (json == null) {
             return resultBean;

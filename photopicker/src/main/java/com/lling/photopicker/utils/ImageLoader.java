@@ -1,5 +1,6 @@
 package com.lling.photopicker.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -54,13 +55,13 @@ public class ImageLoader {
     private static ImageLoader mInstance;
     private int mWidth;
 
-    private ImageLoader() {
-        init();
+    private ImageLoader(Context context) {
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
         initMemoryCache();
-        initDiskCache();
+        initDiskCache(context);
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -105,9 +106,9 @@ public class ImageLoader {
         mPoolSemaphore = new Semaphore(THREAD_POOL_SIZE);
     }
 
-    public static synchronized ImageLoader getInstance() {
+    public static synchronized ImageLoader getInstance(Context context) {
         if(mInstance == null) {
-            mInstance = new ImageLoader();
+            mInstance = new ImageLoader(context);
         }
         return mInstance;
     }
@@ -140,13 +141,13 @@ public class ImageLoader {
     /**
      * 初始化磁盘缓存
      */
-    private void initDiskCache() {
+    private void initDiskCache(Context context) {
         try {
-            File cacheDir = OtherUtils.getDiskCacheDir(Application.getContext(), "images");
+            File cacheDir = OtherUtils.getDiskCacheDir(context, "images");
             if (!cacheDir.exists()) {
                 cacheDir.mkdirs();
             }
-            mDiskLruCache = DiskLruCache.open(cacheDir, OtherUtils.getAppVersion(Application.getContext()),
+            mDiskLruCache = DiskLruCache.open(cacheDir, OtherUtils.getAppVersion(context),
                     1, 15 * 1024 * 1024);
         } catch (IOException e) {
             e.printStackTrace();

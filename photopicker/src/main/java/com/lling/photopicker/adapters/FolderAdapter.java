@@ -85,7 +85,7 @@ public class FolderAdapter extends BaseAdapter {
         }
         holder.folderNameTV.setText(folder.getName());
         holder.photoNumTV.setText(folder.getPhotoList().size() + "张");
-        ImageLoader.getInstance().display(folder.getPhotoList().get(0).getPath(), holder.photoIV,
+        ImageLoader.getInstance(mContext).display(folder.getPhotoList().get(0).getPath(), holder.photoIV,
                 mWidth, mWidth);
         return convertView;
     }

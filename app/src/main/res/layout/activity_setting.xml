@@ -37,6 +37,17 @@
             app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
 
         <com.zty.therapist.widget.StripViewNoImg
+            android:id="@+id/textUserNickSet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHasBottomLine="true"
+            app:isHasTopLine="false"
+            app:lineMargin="16"
+            app:textAdditionColor="@color/gray"
+            app:textName="贴吧信息"
+            app:textNameColor="@color/black"></com.zty.therapist.widget.StripViewNoImg>
+
+        <com.zty.therapist.widget.StripViewNoImg
             android:id="@+id/textUserSetPw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

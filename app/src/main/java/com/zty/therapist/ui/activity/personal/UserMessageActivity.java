@@ -19,7 +19,6 @@ import butterknife.OnClick;
 
 public class UserMessageActivity extends BaseActivity implements View.OnClickListener {
 
-
     @BindView(R.id.imgUserHeader)
     CircleImageView imgUserHeader;
     @BindView(R.id.textUserName)

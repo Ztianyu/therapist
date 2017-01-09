@@ -1,24 +1,30 @@
 package com.zty.therapist.ui.activity.home;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.google.gson.Gson;
 import com.lling.photopicker.PhotoPickerActivity;
 import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.PublishImageAdapter;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.inter.OnSelectListener;
+import com.zty.therapist.model.ImageModel;
 import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.LoadImageUtils;
 import com.zty.therapist.utils.PicUtils;
 import com.zty.therapist.utils.ResourceUtil;
 import com.zty.therapist.utils.ResultUtil;
 import com.zty.therapist.utils.SelectPicUtils;
 import com.zty.therapist.utils.ToastUtils;
+import com.zty.therapist.utils.ValidateUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +38,7 @@ import butterknife.BindView;
 public class PublishActivity extends BaseActivity implements OnSelectListener {
 
     private static final int CODE_SEND_SUBMIT = 0;
-
+    private static final int CODE_LOAD_PIC = 1;
 
     @BindView(R.id.editPublish)
     EditText editPublish;
@@ -43,7 +49,12 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
 
     private List<String> mResults;
 
+    private List<String> picturePaths;
+    private List<String> thumbPaths;
+
     private int picCount = 0;
+
+    private int loadPosition = 0;
 
     @Override
     protected int getContentView() {
@@ -52,14 +63,11 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
 
     @Override
     protected void initData() {
-
         title.setText("发 帖");
-        right.setBackgroundResource(R.mipmap.ic_send_info);
+        right.setText("发表");
 
         adapter = new PublishImageAdapter(this, getSupportFragmentManager());
-
         gridPublish.setAdapter(adapter);
-
         setData();
     }
 
@@ -68,9 +76,22 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
     }
 
     private void submitCard() {
+        String content = editPublish.getText().toString();
+        if (TextUtils.isEmpty(content)) {
+            ToastUtils.show(this, "请输入文字");
+            return;
+        }
+
         RequestParams params = new RequestParams();
-        params.put("content", editPublish.getText().toString());
-        RequestManager.get(CODE_SEND_SUBMIT, Urls.submitForum, params, this);
+        params.put("content", content);
+        params.put("pictures", ValidateUtil.changeListToArray(picturePaths));
+        params.put("thumb", ValidateUtil.changeListToArray(thumbPaths));
+        RequestManager.post(CODE_SEND_SUBMIT, Urls.submitForum, params, this);
+    }
+
+    private void loadPic(String filePath) {
+        File file = new File(filePath);
+        LoadImageUtils.load(CODE_LOAD_PIC, LoadImageUtils.healthForum, file, this);
     }
 
     @Override
@@ -85,12 +106,31 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
             switch (requestCode) {
                 case CODE_SEND_SUBMIT:
                     ToastUtils.show(this, "发布成功");
+                    finish();
+                    break;
+                case CODE_LOAD_PIC:
+                    if (picturePaths == null)
+                        picturePaths = new ArrayList<>();
+                    if (thumbPaths == null)
+                        thumbPaths = new ArrayList<>();
+                    ImageModel model = new Gson().fromJson(resultBean.getResult(), ImageModel.class);
+
+                    if (model != null) {
+                        picturePaths.add(model.getAudioUrl());
+                        thumbPaths.add(model.getAudioThumbUrl());
+                    }
+
+                    if (loadPosition == picCount - 1) {
+                        submitCard();
+                    } else {
+                        loadPosition++;
+                        loadPic(mResults.get(loadPosition));
+                    }
                     break;
             }
         } else {
             ToastUtils.show(this, resultBean.getResult());
         }
-
     }
 
     @Override
@@ -112,7 +152,11 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
 
     @Override
     public void rightClick() {
-        submitCard();
+        if (mResults != null && mResults.size() > 0) {
+            loadPic(mResults.get(loadPosition));
+        } else {
+            submitCard();
+        }
     }
 
     @Override

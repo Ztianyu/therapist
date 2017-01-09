@@ -195,7 +195,7 @@ public class PhotoAdapter extends BaseAdapter {
             } else {
                 holder.selectView.setVisibility(View.GONE);
             }
-            ImageLoader.getInstance().display(photo.getPath(), holder.photoImageView,
+            ImageLoader.getInstance(mContext).display(photo.getPath(), holder.photoImageView,
                     mWidth, mWidth);
         }
         return convertView;

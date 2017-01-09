@@ -1,15 +1,22 @@
 package com.zty.therapist.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.model.LoginModel;
+import com.zty.therapist.url.RequestCallback;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
 
 /**
  * Created by zty on 2017/1/5.
  */
 
 public class UserUtils {
+
+    public static final int CODE_GET_MESSAGE = 101;
 
     public static void saveUser(Context context, LoginModel model, String loginName, String passWord) {
 
@@ -33,5 +40,12 @@ public class UserUtils {
         TherapistApplication.getInstance().setUserId("");
         TherapistApplication.getInstance().clearUser();
 
+    }
+
+    public static void getUserMessage(String userId, RequestCallback callback) {
+        RequestParams params = new RequestParams();
+        if (!TextUtils.isEmpty(userId))
+            params.put("userId", userId);
+        RequestManager.get(CODE_GET_MESSAGE, Urls.getRehabilitationTeacher, params, callback);
     }
 }

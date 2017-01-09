@@ -33,7 +33,6 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int CODE_LOGIN = 1;
-    private static final int CODE_GET_MESSAGE = 2;
 
     @BindView(R.id.editLoginName)
     EditText editLoginName;
@@ -75,9 +74,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 case CODE_LOGIN:
                     LoginModel model = GsonUtils.changeGsonToBean(resultBean.getResult(), LoginModel.class);
                     UserUtils.saveUser(this, model, editLoginName.getText().toString(), editLoginPassWord.getText().toString());
-                    getUserMessage(model.getUserId());
+                    UserUtils.getUserMessage(model.getUserId(), this);
                     break;
-                case CODE_GET_MESSAGE:
+                case UserUtils.CODE_GET_MESSAGE:
                     toMain();
                     TherapistApplication.getInstance().setCurrentUser(resultBean.getResult());
                     break;
@@ -108,12 +107,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         params.put("password", editLoginPassWord.getText().toString());
         params.put("userType", 3);
         RequestManager.post(CODE_LOGIN, Urls.sysLogin, params, this);
-    }
-
-    private void getUserMessage(String userId) {
-        RequestParams params = new RequestParams();
-        params.put("userId", userId);
-        RequestManager.get(CODE_GET_MESSAGE, Urls.getRehabilitationTeacher, params, this);
     }
 
     private void toMain() {

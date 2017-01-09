@@ -6,10 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.MainActivity;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.manager.AppManager;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.SharedPrefUtils;
 import com.zty.therapist.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -21,6 +27,9 @@ import butterknife.OnClick;
 
 public class SetPassWordActivity extends BaseActivity implements View.OnClickListener {
 
+    private static final int CODE_REGIST = 0;
+    private static final int CODE_SETPW = 1;
+
     @BindView(R.id.editPassWord)
     EditText editPassWord;
     @BindView(R.id.editSurePassWord)
@@ -29,6 +38,7 @@ public class SetPassWordActivity extends BaseActivity implements View.OnClickLis
     Button btnSetPassWord;
 
     private String phone;
+    private int type;
 
     @Override
     protected int getContentView() {
@@ -39,11 +49,9 @@ public class SetPassWordActivity extends BaseActivity implements View.OnClickLis
     protected void initData() {
 
         phone = getIntent().getStringExtra("phone");
+        type = getIntent().getIntExtra("type", 0);
 
         title.setText("设置密码");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
-        right.setVisibility(View.INVISIBLE);
 
     }
 
@@ -54,6 +62,17 @@ public class SetPassWordActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            if (requestCode == CODE_REGIST) {
+                ToastUtils.show(this, "注册成功");
+            } else {
+                ToastUtils.show(this, "密码设置成功");
+            }
+            toLogin();
+        } else {
+            ToastUtils.show(this, resultBean.getMsg());
+        }
 
     }
 
@@ -64,21 +83,42 @@ public class SetPassWordActivity extends BaseActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.btnSetPassWord:
-                toMain();
+                if (checkData()) {
+                    if (type == 0) {
+                        register();
+                    } else {
+                        setPw();
+                    }
+                }
                 break;
         }
     }
 
-    private void toMain() {
+    private void toLogin() {
         if (checkData()) {
-            AppManager.getInstance().finishAllActivity();
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            AppManager.getInstance().finishActivity(ConfirmPhoneActivity.class);
+            AppManager.getInstance().finishActivity(this);
         }
     }
 
-    private boolean checkData() {
+    private void setPw() {
+        RequestParams params = new RequestParams();
+        params.put("loginName", phone);
+        params.put("newPassword", editPassWord.getText().toString());
+        params.put("userType", 3);
+        RequestManager.post(CODE_SETPW, Urls.setNewPwd, params, this);
+    }
 
+    private void register() {
+        RequestParams params = new RequestParams();
+        params.put("mobile", phone);
+        params.put("password", editPassWord.getText().toString());
+        params.put("userType", 3);
+        params.put("officeId", 2);
+        RequestManager.post(CODE_REGIST, Urls.register, params, this);
+    }
+
+    private boolean checkData() {
         if (TextUtils.isEmpty(editPassWord.getText().toString())) {
             ToastUtils.show(this, "请输入密码");
             return false;
