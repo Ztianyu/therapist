@@ -218,9 +218,7 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
      * 更新指定位置的数据
      */
     public void setData(T data, int position) {
-        int size = mData.size();
-        mData.add(data);
-        notifyItemInserted(size);
+        notifyItemChanged(position, data);
     }
 
     /**
