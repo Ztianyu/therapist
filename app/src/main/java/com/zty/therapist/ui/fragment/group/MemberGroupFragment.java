@@ -122,7 +122,6 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
     }
 
     private void setTitle() {
-        ((GroupActivity) context).right.setOnClickListener(this);
         switch (currentPage) {
             case 1:
                 if (type == 0) {
@@ -132,17 +131,17 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
                 }
 
                 ((GroupActivity) context).title.setText("成员列表");
-                ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_add);
+                ((GroupActivity) context).setRight(R.mipmap.ic_add);
                 break;
             case 2:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
                 ((GroupActivity) context).title.setText("替班");
-                ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_publish);
+                ((GroupActivity) context).setRight(R.mipmap.ic_publish);
                 break;
             case 3:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
                 ((GroupActivity) context).title.setText("房屋信息");
-                ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_publish);
+                ((GroupActivity) context).setRight(R.mipmap.ic_publish);
                 break;
             case 4:
                 ((GroupActivity) context).right.setVisibility(View.INVISIBLE);

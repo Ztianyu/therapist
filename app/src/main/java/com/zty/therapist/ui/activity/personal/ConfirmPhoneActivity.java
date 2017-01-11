@@ -56,10 +56,6 @@ public class ConfirmPhoneActivity extends BaseActivity implements View.OnClickLi
             strTitle = "忘记密码";
         }
         title.setText(strTitle);
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
-        right.setVisibility(View.INVISIBLE);
-
         initMob();
     }
 

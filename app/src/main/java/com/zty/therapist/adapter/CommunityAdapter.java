@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.zty.therapist.R;
@@ -14,11 +15,14 @@ import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
 import com.zty.therapist.ui.fragment.home.CommentFragment;
 import com.zty.therapist.utils.TimeUtils;
+import com.zty.therapist.widget.MyGridView;
+import com.zty.therapist.widget.MyListView;
 import com.zty.therapist.widget.MyRecyclerView;
 import com.zty.therapist.widget.SpacesItemDecoration;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,6 +78,8 @@ public class CommunityAdapter extends FooterRefreshAdapter<CommunityModel> {
 
         setGrid(viewHolder, communityModel.getPictures());
 
+        setRemarks(viewHolder, communityModel.getReplays());
+
     }
 
     @Override
@@ -82,17 +88,20 @@ public class CommunityAdapter extends FooterRefreshAdapter<CommunityModel> {
     }
 
     private void setGrid(ViewHolder holder, List<CommunityModel.PicturesBean> urls) {
-        MyRecyclerView gridCommunity = holder.getView(R.id.gridCommunity);
-
-        GridLayoutManager manager = new GridLayoutManager(mContext, 3);
-        gridCommunity.setLayoutManager(manager);
-
-        gridCommunity.removeItemDecoration(itemDecoration);
-        gridCommunity.addItemDecoration(itemDecoration);
+        MyGridView gridCommunity = holder.getView(R.id.gridCommunity);
 
         GridViewAdapter adapter = new GridViewAdapter(mContext);
         gridCommunity.setAdapter(adapter);
 
         adapter.setData(urls);
+    }
+
+    private void setRemarks(ViewHolder holder, List<CommunityModel.ReplaysBean> replaysBeanList) {
+        MyListView recyclerView = holder.getView(R.id.recyclerCommunity);
+
+        RemarksAdapter adapter = new RemarksAdapter(mContext);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setData(replaysBeanList);
     }
 }

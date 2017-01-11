@@ -30,9 +30,6 @@ public class ApplyActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initData() {
         title.setText("组长申请");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
-        right.setVisibility(View.INVISIBLE);
 
     }
 

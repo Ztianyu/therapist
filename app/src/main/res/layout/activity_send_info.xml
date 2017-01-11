@@ -26,15 +26,33 @@
                     style="@style/EditSendInfo" />
             </TableRow>
 
-            <TableRow android:layout_marginTop="4dp">
+            <TableRow
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     style="@style/TextSendInfo"
                     android:text="活动时间：" />
 
-                <EditText
-                    android:id="@+id/editSendInfoTime"
-                    style="@style/EditSendInfo" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/editSendInfoTime"
+                        style="@style/EditSendInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false" />
+
+                    <Button
+                        android:id="@+id/btnSetSendBeginTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent" />
+                </FrameLayout>
+
             </TableRow>
 
             <TableRow android:layout_marginTop="4dp">
@@ -80,7 +98,9 @@
 
                 <EditText
                     android:id="@+id/editSendInfoNote"
-                    style="@style/EditSendInfo" />
+                    style="@style/EditSendInfo"
+                    android:gravity="top"
+                    android:minLines="3" />
             </TableRow>
 
             <TableRow android:layout_marginTop="4dp">
@@ -105,15 +125,32 @@
                     style="@style/EditSendInfo" />
             </TableRow>
 
-            <TableRow android:layout_marginTop="4dp">
+            <TableRow
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     style="@style/TextSendInfo"
                     android:text="截止时间：" />
 
-                <EditText
-                    android:id="@+id/editSendInfoEndTime"
-                    style="@style/EditSendInfo" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/editSendInfoEndTime"
+                        style="@style/EditSendInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false" />
+
+                    <Button
+                        android:id="@+id/btnSetSendEndTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent" />
+                </FrameLayout>
             </TableRow>
         </TableLayout>
 

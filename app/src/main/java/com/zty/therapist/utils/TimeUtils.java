@@ -1,7 +1,7 @@
 package com.zty.therapist.utils;
 
 
-import java.text.ParseException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -52,6 +52,15 @@ public class TimeUtils {
     public static String getFullDate() {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return simple.format(calendar.getTime());
+    }
+
+
+    public static String getAge(String date) {
+        int year = Integer.parseInt(date.substring(0, 4));
+        int nowYear = Integer.parseInt(getDateAndMinute().substring(0, 4));
+
+        return (nowYear - year) + "岁";
+
     }
 
     /**
@@ -156,7 +165,29 @@ public class TimeUtils {
             long day = ago % ONE_YEAR % ONE_MONTH / ONE_DAY;
             return year + "年前" + month + "月" + day + "天";
         }
+    }
 
+    /**
+     * 比较两个日期字符串日期大小
+     *
+     * @return >0 date1新于date2
+     * <0 date1旧于date2
+     * =0 date1等于date2
+     */
+    public static int compareDate(String date1, String date2, String format) {
+        DateFormat df = new SimpleDateFormat(format);
+        try {
+            Date dt1 = df.parse(date1);
+            Date dt2 = df.parse(date2);
+            if (dt1.getTime() > dt2.getTime()) {
+                return 1;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                return -1;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return 0;
     }
 
     public static String getYear() {

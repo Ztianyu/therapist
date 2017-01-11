@@ -33,13 +33,6 @@ public class MyOrderActivity extends BaseActivity implements RadioGroup.OnChecke
 
     @Override
     protected void initData() {
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         radioGroupOrder.setOnCheckedChangeListener(this);
 

@@ -50,9 +50,7 @@ public class ReplaceDetailActivity extends BaseActivity {
     @Override
     protected void initData() {
         model = (ReplaceRecordModel) getIntent().getSerializableExtra("model");
-
         title.setText("替班详情");
-
         right.setText("处理");
     }
 

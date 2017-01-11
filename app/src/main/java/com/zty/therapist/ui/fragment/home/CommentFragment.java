@@ -96,6 +96,7 @@ public class CommentFragment extends DialogFragment {
 
     @OnClick(R.id.btnSend)
     public void onClick() {
+        dismiss();
         listener.onSend(forumId, userId, position, editComment.getText().toString());
     }
 }

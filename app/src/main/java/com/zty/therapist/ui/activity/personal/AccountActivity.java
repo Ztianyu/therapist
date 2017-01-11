@@ -1,7 +1,6 @@
 package com.zty.therapist.ui.activity.personal;
 
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.widget.RadioGroup;
 
 import com.zty.therapist.R;
@@ -34,13 +33,6 @@ public class AccountActivity extends BaseActivity implements RadioGroup.OnChecke
 
     @Override
     protected void initData() {
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         radioGroupAccount.setOnCheckedChangeListener(this);
 

@@ -1,12 +1,15 @@
 package com.zty.therapist.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.zty.therapist.R;
 import com.zty.therapist.model.InfoModel;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
+import com.zty.therapist.ui.activity.home.InfoDetailActivity;
 
 /**
  * Created by zty on 2016/12/29.
@@ -18,11 +21,21 @@ public class InfoAdapter extends FooterRefreshAdapter<InfoModel> {
     }
 
     @Override
-    protected void convert(RecyclerView.ViewHolder holder, InfoModel infoModel) {
+    protected void convert(RecyclerView.ViewHolder holder, final InfoModel infoModel) {
 
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.setImage(mContext, R.id.imageViewInfo, "http://cdn.duitang.com/uploads/blog/201401/08/20140108163027_eQPQu.thumb.600_0.jpeg");
+        viewHolder.setImage(mContext, R.id.imageViewInfo, infoModel.getPictures().get(0).getPicture());
+        viewHolder.setText(R.id.textInfoTitle, infoModel.getActivityNm());
+        viewHolder.setText(R.id.textInfoTime, infoModel.getStartTime());
+        viewHolder.setText(R.id.textAddress, infoModel.getActiveSite());
+        viewHolder.setText(R.id.textSignUpEndTime, infoModel.getDeadlineTime());
 
+        viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mContext.startActivity(new Intent(mContext, InfoDetailActivity.class).putExtra("activityId", infoModel.getId()));
+            }
+        });
     }
 
     @Override

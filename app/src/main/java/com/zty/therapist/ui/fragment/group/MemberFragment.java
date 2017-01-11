@@ -1,10 +1,17 @@
 package com.zty.therapist.ui.fragment.group;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.adapter.MemberAdapter;
-import com.zty.therapist.base.BaseRefreshFragment;
+import com.zty.therapist.base.BaseNormalListFragment;
 import com.zty.therapist.model.MemberModel;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,11 +19,16 @@ import java.util.List;
  * Created by tianyu on 2016/12/31.
  */
 
-public class MemberFragment extends BaseRefreshFragment {
+public class MemberFragment extends BaseNormalListFragment {
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchData();
+    }
 
     @Override
     protected void initReadyData() {
-
     }
 
     @Override
@@ -31,19 +43,8 @@ public class MemberFragment extends BaseRefreshFragment {
 
     @Override
     protected void fetchData() {
-        List<MemberModel> models = new ArrayList<>();
-        MemberModel memberModel = new MemberModel();
-        for (int i = 0; i < 5; i++) {
-            models.add(memberModel);
-        }
-        if (isLoadMore) {
-            adapter.notifyBottomRefresh(models);
-            mTempPageCount++;
-        } else {
-            adapter.notifyTopRefresh(models);
-            swipeRefreshLayout.setRefreshing(false);
-        }
-
+        RequestParams params = new RequestParams();
+        RequestManager.get(-1, Urls.getGroupMemberList, params, this);
     }
 
     @Override
@@ -53,6 +54,16 @@ public class MemberFragment extends BaseRefreshFragment {
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            List<MemberModel> memberModels = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<MemberModel>>() {
+            }.getType());
+
+            if (memberModels != null)
+                adapter.notifyTopRefresh(memberModels);
+        } else {
+            ToastUtils.show(context, resultBean.getMsg());
+        }
 
     }
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.ui.fragment.administrator.AdministratorGroupFragment;
 import com.zty.therapist.ui.fragment.group.MemberGroupFragment;
 import com.zty.therapist.ui.fragment.monitor.MonitorGroupFragment;
@@ -15,7 +16,7 @@ import com.zty.therapist.ui.fragment.monitor.MonitorGroupFragment;
 
 public class GroupActivity extends BaseActivity implements View.OnClickListener {
 
-    private int type = 1;//0:普通成员；1：组长；2：班长；3：管理员
+    private int type = 0;//0:普通成员；1：组长；2：班长；3：管理员
 
     private BaseFragment fragment;
 
@@ -27,8 +28,8 @@ public class GroupActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initData() {
         title.setText("班组管理");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
+
+        type = TherapistApplication.getInstance().getRole();
 
         setFragment();
     }
@@ -43,7 +44,6 @@ public class GroupActivity extends BaseActivity implements View.OnClickListener 
             fragment = new AdministratorGroupFragment();
         }
 
-
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentGroup, fragment).commit();
 
     }
@@ -55,16 +55,6 @@ public class GroupActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.titleLeft:
-                finish();
-                break;
-        }
 
     }
 }

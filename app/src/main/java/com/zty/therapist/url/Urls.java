@@ -9,10 +9,13 @@ public class Urls {
     public static String HOST_PROJECT = "http://14.29.68.166:8181/rehabilitationSystem";
     public static String HOST = HOST_PROJECT + "/admin/ws";
 
+    //登录
     public static String sysLogin = HOST + "/user/sysLogin";
 
+    //医生列表
     public static String getDoctorList = HOST + "/doctor/getDoctorList";
 
+    //保健品列表
     public static String getHealthProductsList = HOST + "/healthProducts/getHealthProductsList";
 
     public static String getDissessOption = HOST + "/dict/getDissessOption";
@@ -45,8 +48,28 @@ public class Urls {
 
     public static String getHealthForumList = HOST + "/healthForum/getHealthForumList";
 
+    public static String getHealthForum = HOST + "/healthForum/getHealthForum";
+
     public static String submitForumReplay = HOST + "/forumReplay/submitForumReplay";
 
     public static String setNickName = HOST + "/rehabilitationTeacher/setNickName";
+
+    public static String getCityActivityList = HOST + "/cityActivity/getCityActivityList";
+
+    public static String submitCityActivity = HOST + "/cityActivity/submitCityActivity";
+
+    public static String getCityPhotoList = HOST + "/cityPhoto/getCityPhotoList";
+
+    public static String getCityActivity = HOST + "/cityActivity/getCityActivity";
+
+    public static String getCityEnrollList = HOST + "/cityEnroll/getCityEnrollList";
+
+    public static String submitCityEnroll = HOST + "/cityEnroll/submitCityEnroll";
+
+    public static String deleteCityEnroll = HOST + "/cityEnroll/deleteCityEnroll";
+
+    public static String submitCityPhoto = HOST + "/cityPhoto/submitCityPhoto";
+
+    public static String getGroupMemberList = HOST + "/rehabilitationGroup/getGroupMemberList";
 
 }

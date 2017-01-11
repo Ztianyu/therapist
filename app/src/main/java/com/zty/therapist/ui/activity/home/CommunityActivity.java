@@ -28,11 +28,12 @@ public class CommunityActivity extends BaseRefreshActivity implements SendReplay
 
     private static final int CODE_GET_LIST = 0;
     private static final int CODE_REPLAY = 1;
+    private static final int CODE_GET_FORM = 2;
 
     @Override
     protected void initReadyData() {
         title.setText("感情天地");
-        right.setBackgroundResource(R.mipmap.ic_publish);
+        setRight(R.mipmap.ic_publish);
     }
 
     @Override
@@ -92,6 +93,11 @@ public class CommunityActivity extends BaseRefreshActivity implements SendReplay
                     }
                     break;
                 case CODE_REPLAY:
+                    getHealthForum();
+                    break;
+                case CODE_GET_FORM:
+                    CommunityModel communityModel = new Gson().fromJson(resultBean.getResult(), CommunityModel.class);
+                    adapter.setData(communityModel, position);
                     break;
             }
         } else {
@@ -107,11 +113,22 @@ public class CommunityActivity extends BaseRefreshActivity implements SendReplay
 
     @Override
     public void onSend(String forumId, String userId, int position, String message) {
+        this.forumId = forumId;
+        this.position = position;
+
         RequestParams params = new RequestParams();
         params.put("forumId", forumId);
         params.put("commentObject", userId);
-        params.put("commentObject", userId);
         params.put("content", message);
-        RequestManager.get(CODE_REPLAY, Urls.submitForumReplay, params, this);
+        RequestManager.post(CODE_REPLAY, Urls.submitForumReplay, params, this);
+    }
+
+    private String forumId;
+    private int position;
+
+    private void getHealthForum() {
+        RequestParams params = new RequestParams();
+        params.put("forumId", forumId);
+        RequestManager.get(CODE_GET_FORM, Urls.getHealthForum, params, this);
     }
 }

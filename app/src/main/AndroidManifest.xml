@@ -147,7 +147,8 @@
         <activity
             android:name=".ui.activity.home.SendInfoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
 
         <activity
             android:name=".ui.activity.home.SendReplaceActivity"
@@ -206,6 +207,16 @@
 
         <activity
             android:name=".ui.activity.personal.SetTextActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.InfoDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".ui.activity.home.MemberDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
 

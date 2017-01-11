@@ -24,6 +24,7 @@ public class TherapistApplication extends Application {
 
     private String userId;
     private String tokenId;
+    private int role;
 
     @Override
     public void onCreate() {
@@ -43,6 +44,7 @@ public class TherapistApplication extends Application {
 
         userId = SharedPrefUtils.getString(this, SharedPrefUtils.USER_ID);
         tokenId = SharedPrefUtils.getString(this, SharedPrefUtils.TOKEN_ID);
+        role = SharedPrefUtils.getInt(this, SharedPrefUtils.ROLE);
 
         String userMessage = SharedPrefUtils.getString(this, SharedPrefUtils.USER_MESSAGE);
         if (!TextUtils.isEmpty(userMessage))
@@ -95,5 +97,13 @@ public class TherapistApplication extends Application {
 
     public void setTokenId(String tokenId) {
         this.tokenId = tokenId;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }

@@ -5,12 +5,25 @@ package com.zty.therapist.model;
  */
 
 public class LoginModel {
+
+
     /**
-     * tokenId : ccb004d39d1a4984ae898540b072708b
-     * userId : 830f2efc184942cda857b009e5c63479
+     * role : 1
+     * tokenId : 683718cd80634bc9b5f4f558a8b6a562
+     * userId : 7fff984d4892413c925ed2909e2a0b92
      */
+
+    private int role;
     private String tokenId;
     private String userId;
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public String getTokenId() {
         return tokenId;

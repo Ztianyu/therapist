@@ -4,30 +4,33 @@
     android:layout_height="@dimen/mainMenuHeight"
     android:background="@color/colorAccent">
 
-    <ImageView
+    <TextView
         android:id="@+id/titleLeft"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:background="@mipmap/ic_back"
-        android:gravity="center" />
+        android:drawableLeft="@mipmap/ic_back"
+        android:gravity="center"
+        android:minWidth="56dp" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:maxLength="15"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/titleRight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:gravity="center"
+        android:gravity="right|center_vertical"
+        android:minWidth="56dp"
         android:textColor="@color/white"
         android:textSize="16sp" />
 

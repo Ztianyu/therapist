@@ -31,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * 发帖
+ * 发帖、发送活动留影
  * Created by zty on 2016/12/19.
  */
 
@@ -44,6 +44,13 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
     EditText editPublish;
     @BindView(R.id.gridPublish)
     GridView gridPublish;
+
+    private int type;
+    private String activityId;
+
+    private String strTitle;
+    private String strSend;
+    private String strHint;
 
     private PublishImageAdapter adapter;
 
@@ -63,8 +70,22 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
 
     @Override
     protected void initData() {
-        title.setText("发 帖");
-        right.setText("发表");
+        type = getIntent().getIntExtra("type", 0);
+
+        if (type == 0) {
+            strTitle = "发帖";
+            strSend = "发表";
+            strHint = "请输入文字……";
+        } else {
+            strTitle = "活动留影";
+            strSend = "发送";
+            strHint = "请输入留言……";
+            activityId = getIntent().getStringExtra("activityId");
+        }
+
+        title.setText(strTitle);
+        right.setText(strSend);
+        editPublish.setHint(strHint);
 
         adapter = new PublishImageAdapter(this, getSupportFragmentManager());
         gridPublish.setAdapter(adapter);
@@ -81,12 +102,28 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
             ToastUtils.show(this, "请输入文字");
             return;
         }
+        if (type == 0) {
+            sendCommunity(content);
+        } else {
+            sendInfoPhoto(content);
+        }
+    }
 
+    private void sendCommunity(String content) {
         RequestParams params = new RequestParams();
         params.put("content", content);
         params.put("pictures", ValidateUtil.changeListToArray(picturePaths));
         params.put("thumb", ValidateUtil.changeListToArray(thumbPaths));
         RequestManager.post(CODE_SEND_SUBMIT, Urls.submitForum, params, this);
+    }
+
+    private void sendInfoPhoto(String content) {
+        RequestParams params = new RequestParams();
+        params.put("activityId", activityId);
+        params.put("remarks", content);
+        params.put("pictures", ValidateUtil.changeListToArray(picturePaths));
+        params.put("thumb", ValidateUtil.changeListToArray(thumbPaths));
+        RequestManager.post(CODE_SEND_SUBMIT, Urls.submitCityPhoto, params, this);
     }
 
     private void loadPic(String filePath) {

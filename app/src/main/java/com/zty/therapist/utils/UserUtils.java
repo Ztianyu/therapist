@@ -22,22 +22,26 @@ public class UserUtils {
 
         SharedPrefUtils.setString(context, SharedPrefUtils.USER_ID, model.getUserId());
         SharedPrefUtils.setString(context, SharedPrefUtils.TOKEN_ID, model.getTokenId());
+        SharedPrefUtils.setInt(context, SharedPrefUtils.ROLE, model.getRole());
         SharedPrefUtils.setString(context, SharedPrefUtils.LOGIN_NAME, loginName);
         SharedPrefUtils.setString(context, SharedPrefUtils.LOGIN_PASSWORD, passWord);
 
         TherapistApplication.getInstance().setUserId(model.getUserId());
         TherapistApplication.getInstance().setTokenId(model.getTokenId());
+        TherapistApplication.getInstance().setRole(model.getRole());
     }
 
     public static void clearUser(Context context) {
 
         SharedPrefUtils.setString(context, SharedPrefUtils.USER_ID, "");
         SharedPrefUtils.setString(context, SharedPrefUtils.TOKEN_ID, "");
+        SharedPrefUtils.setInt(context, SharedPrefUtils.ROLE, 0);
         SharedPrefUtils.setString(context, SharedPrefUtils.USER_MESSAGE, "");
         SharedPrefUtils.setString(context, SharedPrefUtils.LOGIN_PASSWORD, "");
 
         TherapistApplication.getInstance().setUserId("");
         TherapistApplication.getInstance().setUserId("");
+        TherapistApplication.getInstance().setRole(0);
         TherapistApplication.getInstance().clearUser();
 
     }

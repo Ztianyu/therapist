@@ -49,8 +49,6 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
     protected void initData() {
 
         title.setText("添加成员");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(this);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

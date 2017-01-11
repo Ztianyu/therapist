@@ -14,6 +14,7 @@ public class SharedPrefUtils {
 
     public static final String LOGIN_NAME = "loginName";
     public static final String LOGIN_PASSWORD = "passWord";
+    public static final String ROLE = "role";
 
     public static final String USER_MESSAGE = "userMessage";
 

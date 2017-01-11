@@ -2,9 +2,11 @@ package com.zty.therapist.base;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -26,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
 
     private View actionBarView;
     public TextView title;
-    public ImageView left;
+    public TextView left;
     public TextView right;
 
     public static boolean isGetSize = false;
@@ -55,7 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
         if (actionBarView == null) {
             actionBarView = LayoutInflater.from(this).inflate(R.layout.view_title, null);
             title = (TextView) actionBarView.findViewById(R.id.title);
-            left = (ImageView) actionBarView.findViewById(R.id.titleLeft);
+            left = (TextView) actionBarView.findViewById(R.id.titleLeft);
             left.setOnClickListener(this);
             right = (TextView) actionBarView.findViewById(R.id.titleRight);
             right.setOnClickListener(this);
@@ -115,6 +117,11 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
     }
 
     public void rightClick() {
+    }
 
+    public void setRight(int id) {
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), id, null);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        right.setCompoundDrawables(null, null, drawable, null);
     }
 }

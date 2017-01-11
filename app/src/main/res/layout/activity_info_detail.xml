@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/editSendInfoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imgInfoDetailLogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxHeight="300dp"
+            android:minHeight="150dp"
+            android:scaleType="centerCrop" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TableRow
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="活动时间：" />
+
+
+                <TextView
+                    android:id="@+id/editSendInfoTime"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginTop="4dp">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="活动地点：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoAddress"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginTop="4dp">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="活动内容：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoContent"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginTop="4dp">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="注意事项：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoNote"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginTop="4dp">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="集合地点：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoVenue"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+
+            <TableRow android:layout_marginTop="4dp">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="联系人：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoName"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginTop="4dp">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="联系电话：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoPhone"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="截止时间：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoEndTime"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="已报名：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoCount"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextSendInfo"
+                    android:text="报名人员：" />
+
+                <TextView
+                    android:id="@+id/editSendInfoNames"
+                    style="@style/TextSendInfo" />
+
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btnSubmitInfoPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@mipmap/ic_btn_buy"
+            android:text="活动留影"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="invisible" />
+
+        <com.zty.therapist.widget.MyListView
+            android:id="@+id/recyclerViewInfoPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:divider="@color/transparent"
+            android:dividerHeight="8dp" />
+
+    </LinearLayout>
+</ScrollView>

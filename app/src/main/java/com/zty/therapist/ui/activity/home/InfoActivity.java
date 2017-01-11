@@ -2,15 +2,20 @@ package com.zty.therapist.ui.activity.home;
 
 import android.content.Intent;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.InfoAdapter;
 import com.zty.therapist.base.BaseRefreshActivity;
 import com.zty.therapist.model.InfoModel;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +28,7 @@ public class InfoActivity extends BaseRefreshActivity {
     @Override
     protected void initReadyData() {
         title.setText("同城活动");
-        right.setBackgroundResource(R.mipmap.ic_send_info);
+        setRight(R.mipmap.ic_send_info);
     }
 
     @Override
@@ -37,19 +42,16 @@ public class InfoActivity extends BaseRefreshActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        onRefresh();
+    }
+
+    @Override
     protected void fetchData() {
-
-
-
-        List<InfoModel> models = new ArrayList<>();
-
-        if (isLoadMore) {
-            adapter.notifyBottomRefresh(models);
-            mTempPageCount++;
-        } else {
-            adapter.notifyTopRefresh(models);
-            swipeRefreshLayout.setRefreshing(false);
-        }
+        RequestParams params = new RequestParams();
+        params.put("pageNo", pageNo);
+        RequestManager.get(-1, Urls.getCityActivityList, params, this);
     }
 
     @Override
@@ -59,7 +61,33 @@ public class InfoActivity extends BaseRefreshActivity {
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            List<InfoModel> models = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<InfoModel>>() {
+            }.getType());
 
+            swipeRefreshLayout.setRefreshing(false);
+            if (models != null && models.size() > 0) {
+                if (isLoadMore) {
+                    if (models.size() == 0) {
+                        adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
+                    } else {
+                        adapter.notifyBottomRefresh(models);
+                        mTempPageCount++;
+                    }
+                } else {
+                    adapter.notifyTopRefresh(models);
+                }
+            } else {
+                if (pageNo == 1) {
+                    adapter.clearData();
+                }
+                adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
+            }
+
+        } else {
+            ToastUtils.show(this, resultBean.getMsg());
+        }
     }
 
     @Override

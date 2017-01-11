@@ -21,7 +21,7 @@ public class HelpActivity extends BaseRefreshActivity {
     @Override
     protected void initReadyData() {
         title.setText("互帮互助");
-        right.setBackgroundResource(R.mipmap.ic_publish);
+        setRight(R.mipmap.ic_publish);
 
     }
 

@@ -18,15 +18,6 @@ public class DoctorOrderDetailActivity extends BaseActivity {
     @Override
     protected void initData() {
         title.setText("订单详情");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        right.setVisibility(View.INVISIBLE);
-
     }
 
     @Override

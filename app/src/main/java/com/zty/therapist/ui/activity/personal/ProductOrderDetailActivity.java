@@ -49,14 +49,6 @@ public class ProductOrderDetailActivity extends BaseActivity {
     protected void initData() {
 
         title.setText("订单详情");
-        left.setBackgroundResource(R.mipmap.ic_back);
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        right.setVisibility(View.INVISIBLE);
 
         textAddAddress.setVisibility(View.GONE);
 

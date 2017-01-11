@@ -31,32 +31,26 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="王志飞"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textMemberSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/listContent" />
 
             <TextView
                 android:id="@+id/textMemberPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="16dp"
                 android:inputType="phone"
-                android:text="1567645676"
                 android:textSize="@dimen/listContent" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"></View>
 
-            <TextView
-                android:id="@+id/textMemberApply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="替班申请"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/listContent" />
         </LinearLayout>
 
         <LinearLayout
@@ -69,15 +63,14 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="服务项目："
+                android:text="年龄："
                 android:textSize="@dimen/listContent" />
 
             <TextView
-                android:id="@+id/textMemberJob"
+                android:id="@+id/textMemberAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="中风康复护理"
                 android:textSize="@dimen/listContent" />
         </LinearLayout>
 
@@ -91,7 +84,7 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="服务地址："
+                android:text="地址："
                 android:textSize="@dimen/listContent" />
 
             <TextView
@@ -99,7 +92,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="北京市东城区金山街道锦绣家园小区6栋3单元1502室"
                 android:textSize="@dimen/listContent" />
         </LinearLayout>
 
