@@ -6,13 +6,23 @@ package com.zty.therapist.model;
 
 public class AllotModel {
 
-    private boolean isCheck;
+    private String userId;
+    private String teacherNm;
 
-    public boolean isCheck() {
-        return isCheck;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCheck(boolean check) {
-        isCheck = check;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
+
+    public String getTeacherNm() {
+        return teacherNm;
+    }
+
+    public void setTeacherNm(String teacherNm) {
+        this.teacherNm = teacherNm;
+    }
+
 }

@@ -8,8 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingRight="32dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +21,22 @@
             android:id="@+id/textApplyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="李梅"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:text="替班人："
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textReplaceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -32,19 +46,11 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/textReplaceState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="替班人："
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/textReplaceName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="赵倩"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:text="审批中"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -99,12 +105,15 @@
         android:layout_marginTop="4dp">
 
         <TextView
-            android:id="@+id/textReplaceState"
+            android:id="@+id/btnCancelReplace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
-            android:text="审批中"
-            android:textSize="15sp" />
+            android:background="@mipmap/ic_btn_no_agree"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="取消"
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -112,23 +121,29 @@
             android:layout_gravity="right|center_vertical"
             android:orientation="horizontal">
 
-            <Button
+            <TextView
                 android:id="@+id/btnAgree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_btn_agree"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="同 意"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="invisible" />
 
 
-            <Button
+            <TextView
                 android:id="@+id/btnNoAgree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:background="@mipmap/ic_btn_no_agree"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="不同意"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="invisible" />
 
         </LinearLayout>
     </FrameLayout>

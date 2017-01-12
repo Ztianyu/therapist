@@ -71,8 +71,12 @@ public class InfoActivity extends BaseRefreshActivity {
                 if (isLoadMore) {
                     if (models.size() == 0) {
                         adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
+                    } else if (models.size() < 10) {
+                        adapter.notifyBottomRefresh(models);
+                        adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
                     } else {
                         adapter.notifyBottomRefresh(models);
+                        isRefresh = false;
                         mTempPageCount++;
                     }
                 } else {

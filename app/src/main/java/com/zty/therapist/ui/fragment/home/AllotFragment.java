@@ -1,23 +1,33 @@
 package com.zty.therapist.ui.fragment.home;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.AllotAdapter;
+import com.zty.therapist.inter.OnDistributeRelay;
 import com.zty.therapist.model.AllotModel;
+import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.url.RequestCallback;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,9 +45,13 @@ public class AllotFragment extends DialogFragment implements RequestCallback {
     @BindView(R.id.gridViewAllot)
     GridView gridViewAllot;
     @BindView(R.id.btnAllot)
-    Button btnAllot;
+    TextView btnAllot;
 
     AllotAdapter adapter;
+
+    private String lastUserId;
+
+    private OnDistributeRelay onDistributeRelay;
 
     @Nullable
     @Override
@@ -50,8 +64,12 @@ public class AllotFragment extends DialogFragment implements RequestCallback {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 adapter.setSelection(i);
+                lastUserId = adapter.getLastUserId(i);
             }
         });
+
+        adapter = new AllotAdapter(getActivity());
+        gridViewAllot.setAdapter(adapter);
 
         return view;
     }
@@ -69,21 +87,19 @@ public class AllotFragment extends DialogFragment implements RequestCallback {
                 dismiss();
                 break;
             case R.id.btnAllot:
-                dismiss();
+                if (!TextUtils.isEmpty(lastUserId)) {
+                    dismiss();
+                    onDistributeRelay.onDistribute(lastUserId);
+                } else {
+                    ToastUtils.show(getContext(), "请选择替班人员");
+                }
                 break;
         }
     }
 
     private void getMember() {
-        adapter = new AllotAdapter(getActivity());
-        gridViewAllot.setAdapter(adapter);
-
-        List<AllotModel> models = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            models.add(new AllotModel());
-        }
-        adapter.setData(models);
-
+        RequestParams params = new RequestParams();
+        RequestManager.get(-1, Urls.getGroupMemberList, params, this);
     }
 
     @Override
@@ -93,6 +109,24 @@ public class AllotFragment extends DialogFragment implements RequestCallback {
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            List<AllotModel> memberModels = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<AllotModel>>() {
+            }.getType());
+            if (memberModels != null && memberModels.size() > 0)
+                adapter.setData(memberModels);
+        } else {
+            ToastUtils.show(getActivity(), resultBean.getMsg());
+        }
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            onDistributeRelay = (OnDistributeRelay) context;
+        } catch (ClassCastException e) {
+            dismiss();
+        }
     }
 }

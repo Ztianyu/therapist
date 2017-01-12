@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minWidth="300dp"
     android:background="@color/white"
+    android:minWidth="300dp"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -33,16 +33,21 @@
         android:id="@+id/gridViewAllot"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:numColumns="2"></GridView>
+        android:horizontalSpacing="16dp"
+        android:numColumns="2"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:verticalSpacing="8dp"></GridView>
 
-    <Button
+    <TextView
         android:id="@+id/btnAllot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:background="@mipmap/ic_btn_buy"
+        android:gravity="center"
         android:text="替 班"
         android:textColor="@color/white"
         android:textSize="16sp" />

@@ -24,7 +24,7 @@ public class MemberFragment extends BaseNormalListFragment {
     @Override
     public void onResume() {
         super.onResume();
-        fetchData();
+        getGroupMemberList();
     }
 
     @Override
@@ -43,6 +43,9 @@ public class MemberFragment extends BaseNormalListFragment {
 
     @Override
     protected void fetchData() {
+    }
+
+    private void getGroupMemberList() {
         RequestParams params = new RequestParams();
         RequestManager.get(-1, Urls.getGroupMemberList, params, this);
     }

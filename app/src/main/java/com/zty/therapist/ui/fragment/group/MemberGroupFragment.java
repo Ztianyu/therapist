@@ -122,6 +122,7 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
     }
 
     private void setTitle() {
+        ((GroupActivity) context).right.setOnClickListener(this);
         switch (currentPage) {
             case 1:
                 if (type == 0) {

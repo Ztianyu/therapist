@@ -8,7 +8,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/view_user_message" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/view_user_message" />
+
+            <TextView
+                android:id="@+id/btnMemberHandle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_margin="8dp"
+                android:background="@mipmap/ic_btn_member_handle"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="取消组长"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+        </FrameLayout>
 
         <View
             android:layout_width="match_parent"

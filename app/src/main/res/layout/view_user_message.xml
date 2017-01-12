@@ -4,7 +4,10 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +26,6 @@
                 style="@style/TextSendInfo"
                 android:drawableLeft="@mipmap/ic_service_name"
                 android:drawablePadding="6dp"
-                android:text="宋建国"
                 android:textColor="@color/colorContent1" />
 
         </LinearLayout>
@@ -40,7 +42,6 @@
                 style="@style/TextSendInfo"
                 android:drawableLeft="@mipmap/ic_service_sex"
                 android:drawablePadding="6dp"
-                android:text="男"
                 android:textColor="@color/colorContent1" />
         </LinearLayout>
     </LinearLayout>
@@ -62,7 +63,6 @@
                 style="@style/TextSendInfo"
                 android:drawableLeft="@mipmap/ic_service_phone"
                 android:drawablePadding="6dp"
-                android:text="15697453214"
                 android:textColor="@color/colorContent1" />
         </LinearLayout>
 
@@ -78,7 +78,6 @@
                 style="@style/TextSendInfo"
                 android:drawableLeft="@mipmap/ic_service_age"
                 android:drawablePadding="6dp"
-                android:text="65岁"
                 android:textColor="@color/colorContent1" />
         </LinearLayout>
     </LinearLayout>
@@ -99,8 +98,7 @@
             <TextView
                 android:id="@+id/editUserWorkTime"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="工作时间" />
+                android:gravity="left" />
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
@@ -112,8 +110,7 @@
             <TextView
                 android:id="@+id/editUserIdCard"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="身份证号" />
+                android:gravity="left" />
 
         </TableRow>
 
@@ -126,8 +123,7 @@
             <TextView
                 android:id="@+id/editUserPlace"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="籍贯" />
+                android:gravity="left" />
 
         </TableRow>
 
@@ -141,8 +137,7 @@
             <TextView
                 android:id="@+id/editUserSpecialty"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="擅长" />
+                android:gravity="left" />
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
@@ -154,8 +149,7 @@
             <TextView
                 android:id="@+id/editUserSkill"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="服务技能" />
+                android:gravity="left" />
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
@@ -167,8 +161,7 @@
             <TextView
                 android:id="@+id/editUserAddress"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="现住地" />
+                android:gravity="left" />
 
         </TableRow>
 
@@ -181,8 +174,7 @@
             <TextView
                 android:id="@+id/editUserWorkSpaceName"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="工作单位" />
+                android:gravity="left" />
 
         </TableRow>
 
@@ -195,8 +187,7 @@
             <TextView
                 android:id="@+id/editUserWorkAddress"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="单位地址" />
+                android:gravity="left" />
 
         </TableRow>
 
@@ -209,8 +200,7 @@
             <TextView
                 android:id="@+id/editUserWorkPhone"
                 style="@style/TextUserMessageTip"
-                android:gravity="left"
-                android:text="单位电话" />
+                android:gravity="left" />
 
         </TableRow>
     </TableLayout>

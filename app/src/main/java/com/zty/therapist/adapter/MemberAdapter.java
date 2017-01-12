@@ -38,7 +38,7 @@ public class MemberAdapter extends NormalAdapter<MemberModel> {
         viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (role == 1)
+                if (role == 1 || role == 0)
                     mContext.startActivity(new Intent(mContext, MemberDetailActivity.class).putExtra("userId", memberModel.getUserId()));
             }
         });

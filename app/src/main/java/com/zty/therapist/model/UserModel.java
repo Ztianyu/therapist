@@ -57,6 +57,12 @@ public class UserModel {
     private String nickName;
     private String postedPhoto;
     private String postedPhotoThumb;
+    private String workUnit;
+    private String unitAddress;
+    private String unitTel;
+    private String groupLeader;
+    private String monitor;
+    private String teamNumber;
 
 
     public String getAddress() {
@@ -249,5 +255,53 @@ public class UserModel {
 
     public void setPostedPhotoThumb(String postedPhotoThumb) {
         this.postedPhotoThumb = postedPhotoThumb;
+    }
+
+    public String getWorkUnit() {
+        return workUnit;
+    }
+
+    public void setWorkUnit(String workUnit) {
+        this.workUnit = workUnit;
+    }
+
+    public String getUnitAddress() {
+        return unitAddress;
+    }
+
+    public void setUnitAddress(String unitAddress) {
+        this.unitAddress = unitAddress;
+    }
+
+    public String getUnitTel() {
+        return unitTel;
+    }
+
+    public void setUnitTel(String unitTel) {
+        this.unitTel = unitTel;
+    }
+
+    public String getGroupLeader() {
+        return groupLeader;
+    }
+
+    public void setGroupLeader(String groupLeader) {
+        this.groupLeader = groupLeader;
+    }
+
+    public String getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(String monitor) {
+        this.monitor = monitor;
+    }
+
+    public String getTeamNumber() {
+        return teamNumber;
+    }
+
+    public void setTeamNumber(String teamNumber) {
+        this.teamNumber = teamNumber;
     }
 }

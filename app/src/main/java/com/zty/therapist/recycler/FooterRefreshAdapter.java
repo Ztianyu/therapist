@@ -224,6 +224,14 @@ public abstract class FooterRefreshAdapter<T> extends RecyclerView.Adapter<Recyc
     }
 
     /**
+     * 移除指定位置的数据
+     */
+    public void remove(int position) {
+        mData.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    /**
      * 刷新数据
      */
     public void notifyTopRefresh(List<T> data) {

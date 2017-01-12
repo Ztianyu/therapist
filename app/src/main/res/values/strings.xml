@@ -36,5 +36,11 @@
     <string name="administratorTip3">班组分配</string>
     <string name="administratorTip4">通知公告</string>
 
+    <string name="ability1">工作能力</string>
+    <string name="ability2">组织能力</string>
+    <string name="ability3">沟通能力</string>
+    <string name="ability4">性&#160;&#160;&#160;&#160;&#160;&#160;&#160;情</string>
+    <string name="ability5">形&#160;&#160;&#160;&#160;&#160;&#160;&#160;象</string>
+
 
 </resources>

@@ -72,4 +72,22 @@ public class Urls {
 
     public static String getGroupMemberList = HOST + "/rehabilitationGroup/getGroupMemberList";
 
+    public static String submitShiftRecord = HOST + "/shiftRecord/submitShiftRecord";
+
+    public static String getShiftRecordList = HOST + "/shiftRecord/getShiftRecordList";
+
+    public static String getAuditShiftRecordList = HOST + "/shiftRecord/getAuditShiftRecordList";
+
+    public static String confirmOrder = HOST + "/shiftRecord/confirmOrder";
+
+    public static String cancelRelay = HOST + "/shiftRecord/cancelRelay";
+
+    public static String getShiftRecord = HOST + "/shiftRecord/getShiftRecord";
+
+    public static String distributeRelay = HOST + "/shiftRecord/distributeRelay";
+
+    public static String getAbilityOption = HOST + "/dict/getAbilityOption";
+
+    public static String setAbility = HOST + "/rehabilitationTeacher/setAbility";
+
 }
