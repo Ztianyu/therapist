@@ -6,64 +6,76 @@ package com.zty.therapist.model;
 
 public class UserModel {
 
+
     /**
      * address : 北京
-     * age : 37
-     * birthDate : 1979-02-01
-     * createDate : 2017-01-05 17:26
-     * expert : 脑血栓、脑梗塞、帕金森病的康复护理
-     * id : 0ade72643a8f47309c8eac67326c36eb
-     * idCard : 220523197902016226
-     * mobile : 13699658826
-     * nativePlace : 130000
-     * nativePlaceValue : 河北省
-     * number : CY-10011
+     * age : 33
+     * birthDate : 1983-03-20
+     * communicationAbility : 1
+     * createDate : 2017-01-07 10:53
+     * expert : 健康护理
+     * figure : 1
+     * id : 0662eaf999a4495cb640919e110ea305
+     * idCard : 130821198303200685
+     * mobile : 13877900762
+     * nativePlace : 210000
+     * nativePlaceValue : 辽宁省
+     * nickName : 小杯子拉
+     * number : CY-10021
      * officeId : 2
-     * photo : http://14.29.68.166:8862/rehabilitationTeacher/2017/01/af57847d2a3e46fd83598835972563b0.png
-     * photoThumb : http://14.29.68.166:8862/rehabilitationTeacher/2017/01/af57847d2a3e46fd83598835972563b0_small.png
-     * role : 2
-     * serviceSkill : 康复护理
+     * orgAbility : 1
+     * photo : http://14.29.68.166:8862/rehabilitationTeacher/2017/01/b8046ca350f942839bf7882163461cbf.png
+     * photoThumb : http://14.29.68.166:8862/rehabilitationTeacher/2017/01/b8046ca350f942839bf7882163461cbf_small.png
+     * postedPhoto : http://14.29.68.166:8862/healthArchives/2017/01/8066abadd6364869ae6218da31457ec5.jpg
+     * postedPhotoThumb : http://14.29.68.166:8862/healthArchives/2017/01/8066abadd6364869ae6218da31457ec5_small.jpg
+     * role : 0
+     * serviceSkill : 心脏搭桥手术的康复护理
      * sex : 女
-     * teacherNm : 张婷
-     * updateDate : 2017-01-07 10:32
-     * userId : 8face7638cad473e9df48b592b01bd01
-     * workingLife : 9
-     * nickName:昵称
-     * postedPhoto:发帖头像
-     * postedPhotoThumb:发帖头像略缩图
+     * teacherNm : 段景瑞
+     * teamNumber : ed3528e1ac8945e984483f6c4cdedf4b
+     * temper : 1
+     * unitAddress : 北京西城西直门桥 东南角 成铭大厦c座11层1106室
+     * unitTel : 010-66026500
+     * updateDate : 2017-01-13 11:15
+     * userId : 498731624dee40d89aae4aa0f8798204
+     * workAbility : 1
+     * workUnit : 北京及时特劳务服务有限责任公司
+     * workingLife : 6
      */
 
     private String address;
     private int age;
     private String birthDate;
+    private int communicationAbility;
     private String createDate;
     private String expert;
+    private int figure;
     private String id;
     private String idCard;
     private String mobile;
     private String nativePlace;
     private String nativePlaceValue;
+    private String nickName;
     private String number;
     private String officeId;
+    private int orgAbility;
     private String photo;
     private String photoThumb;
-    private String role;
+    private String postedPhoto;
+    private String postedPhotoThumb;
+    private int role;
     private String serviceSkill;
     private String sex;
     private String teacherNm;
-    private String updateDate;
-    private String userId;
-    private String workingLife;
-    private String nickName;
-    private String postedPhoto;
-    private String postedPhotoThumb;
-    private String workUnit;
+    private String teamNumber;
+    private int temper;
     private String unitAddress;
     private String unitTel;
-    private String groupLeader;
-    private String monitor;
-    private String teamNumber;
-
+    private String updateDate;
+    private String userId;
+    private int workAbility;
+    private String workUnit;
+    private int workingLife;
 
     public String getAddress() {
         return address;
@@ -89,6 +101,14 @@ public class UserModel {
         this.birthDate = birthDate;
     }
 
+    public int getCommunicationAbility() {
+        return communicationAbility;
+    }
+
+    public void setCommunicationAbility(int communicationAbility) {
+        this.communicationAbility = communicationAbility;
+    }
+
     public String getCreateDate() {
         return createDate;
     }
@@ -103,6 +123,14 @@ public class UserModel {
 
     public void setExpert(String expert) {
         this.expert = expert;
+    }
+
+    public int getFigure() {
+        return figure;
+    }
+
+    public void setFigure(int figure) {
+        this.figure = figure;
     }
 
     public String getId() {
@@ -145,6 +173,14 @@ public class UserModel {
         this.nativePlaceValue = nativePlaceValue;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
     public String getNumber() {
         return number;
     }
@@ -159,6 +195,14 @@ public class UserModel {
 
     public void setOfficeId(String officeId) {
         this.officeId = officeId;
+    }
+
+    public int getOrgAbility() {
+        return orgAbility;
+    }
+
+    public void setOrgAbility(int orgAbility) {
+        this.orgAbility = orgAbility;
     }
 
     public String getPhoto() {
@@ -177,11 +221,27 @@ public class UserModel {
         this.photoThumb = photoThumb;
     }
 
-    public String getRole() {
+    public String getPostedPhoto() {
+        return postedPhoto;
+    }
+
+    public void setPostedPhoto(String postedPhoto) {
+        this.postedPhoto = postedPhoto;
+    }
+
+    public String getPostedPhotoThumb() {
+        return postedPhotoThumb;
+    }
+
+    public void setPostedPhotoThumb(String postedPhotoThumb) {
+        this.postedPhotoThumb = postedPhotoThumb;
+    }
+
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
@@ -209,60 +269,20 @@ public class UserModel {
         this.teacherNm = teacherNm;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
+    public String getTeamNumber() {
+        return teamNumber;
     }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
+    public void setTeamNumber(String teamNumber) {
+        this.teamNumber = teamNumber;
     }
 
-    public String getUserId() {
-        return userId;
+    public int getTemper() {
+        return temper;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getWorkingLife() {
-        return workingLife;
-    }
-
-    public void setWorkingLife(String workingLife) {
-        this.workingLife = workingLife;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getPostedPhoto() {
-        return postedPhoto;
-    }
-
-    public void setPostedPhoto(String postedPhoto) {
-        this.postedPhoto = postedPhoto;
-    }
-
-    public String getPostedPhotoThumb() {
-        return postedPhotoThumb;
-    }
-
-    public void setPostedPhotoThumb(String postedPhotoThumb) {
-        this.postedPhotoThumb = postedPhotoThumb;
-    }
-
-    public String getWorkUnit() {
-        return workUnit;
-    }
-
-    public void setWorkUnit(String workUnit) {
-        this.workUnit = workUnit;
+    public void setTemper(int temper) {
+        this.temper = temper;
     }
 
     public String getUnitAddress() {
@@ -281,27 +301,43 @@ public class UserModel {
         this.unitTel = unitTel;
     }
 
-    public String getGroupLeader() {
-        return groupLeader;
+    public String getUpdateDate() {
+        return updateDate;
     }
 
-    public void setGroupLeader(String groupLeader) {
-        this.groupLeader = groupLeader;
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 
-    public String getMonitor() {
-        return monitor;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setMonitor(String monitor) {
-        this.monitor = monitor;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getTeamNumber() {
-        return teamNumber;
+    public int getWorkAbility() {
+        return workAbility;
     }
 
-    public void setTeamNumber(String teamNumber) {
-        this.teamNumber = teamNumber;
+    public void setWorkAbility(int workAbility) {
+        this.workAbility = workAbility;
+    }
+
+    public String getWorkUnit() {
+        return workUnit;
+    }
+
+    public void setWorkUnit(String workUnit) {
+        this.workUnit = workUnit;
+    }
+
+    public int getWorkingLife() {
+        return workingLife;
+    }
+
+    public void setWorkingLife(int workingLife) {
+        this.workingLife = workingLife;
     }
 }

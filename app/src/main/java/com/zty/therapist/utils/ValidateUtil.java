@@ -17,13 +17,19 @@ public class ValidateUtil {
         return "";
     }
 
+    // 验证输入信息是否全是数字
+    public static boolean isNum(String str) {
+        Pattern p = Pattern.compile("[0-9]*");
+        Matcher m = p.matcher(str);
+        return m.matches();
+    }
+
     // 验证输入信息是否为手机号
     public static boolean isPhone(String str) {
         Pattern p = Pattern
                 .compile("^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$");
         Matcher m = p.matcher(str);
         return m.matches();
-
     }
 
     // 验证输入是否为密码格式（必须包含数字和字母）

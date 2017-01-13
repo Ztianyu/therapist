@@ -90,4 +90,16 @@ public class Urls {
 
     public static String setAbility = HOST + "/rehabilitationTeacher/setAbility";
 
+    public static String getMemberList = HOST + "/rehabilitationTeacher/getMemberList";
+
+    public static String submitInviteInform = HOST + "/inviteInform/submitInviteInform";
+
+    public static String submitMutualHelp = HOST + "/mutualHelp/submitMutualHelp";
+
+    public static String getMutualHelpList = HOST + "/mutualHelp/getMutualHelpList";
+
+    public static String submitHouseRent = HOST + "/houseRent/submitHouseRent";
+
+    public static String getHouseRentList = HOST + "/houseRent/getHouseRentList";
+
 }

@@ -3,19 +3,32 @@ package com.zty.therapist.ui.activity.home;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.SearchMemberAdapter;
 import com.zty.therapist.base.BaseActivity;
+import com.zty.therapist.config.Config;
+import com.zty.therapist.inter.DialogListener;
+import com.zty.therapist.inter.OnAddToGroupListener;
 import com.zty.therapist.model.MemberModel;
-import com.zty.therapist.recycler.FooterRefreshAdapter;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.DialogUtils;
+import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.ToastUtils;
+import com.zty.therapist.utils.ValidateUtil;
 import com.zty.therapist.widget.RecyclerViewDivider;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,7 +38,11 @@ import butterknife.OnClick;
  * Created by zty on 2017/1/3.
  */
 
-public class AddMemberActivity extends BaseActivity implements View.OnClickListener {
+public class AddMemberActivity extends BaseActivity implements View.OnClickListener, OnAddToGroupListener, DialogListener {
+
+    private static final int CODE_GET_MEMBER_LIST = 0;
+    private static final int CODE_ADD_TO_GROUP = 1;
+
     @BindView(R.id.editSearch)
     EditText editSearch;
     @BindView(R.id.imgSearch)
@@ -35,10 +52,10 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
 
     SearchMemberAdapter adapter;
 
-    private int mLastVisibleItemPosition;
-    private int pageNo = 1;
-    private int mTempPageCount = 2;
-    private boolean isLoadMore;
+    private String strSearch = "";
+
+    private String operator;
+    private int position;
 
     @Override
     protected int getContentView() {
@@ -50,62 +67,39 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
 
         title.setText("添加成员");
 
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewSearchMember.setLayoutManager(layoutManager);
-
-        recyclerViewSearchMember.addItemDecoration(new RecyclerViewDivider(this, LinearLayoutManager.HORIZONTAL));
-        adapter = new SearchMemberAdapter(this);
-        recyclerViewSearchMember.setAdapter(adapter);
-
-        recyclerViewSearchMember.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        editSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    mLastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
-                    //防止重复请求
-                    if (pageNo == mTempPageCount) {
-                        return;
-                    }
-                    if (mLastVisibleItemPosition > 0 && mLastVisibleItemPosition + 1 == adapter.getItemCount()) {
-                        //已到达底部，开始加载更多
-                        isLoadMore = true;
-                        adapter.updateRefreshState(FooterRefreshAdapter.STATE_START);
-                        pageNo = mTempPageCount;
-                        fetchData();
-                    }
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                mLastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                strSearch = editable.toString();
             }
         });
 
-        fetchData();
-        hideInput();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerViewSearchMember.setLayoutManager(layoutManager);
+        recyclerViewSearchMember.addItemDecoration(new RecyclerViewDivider(this, LinearLayoutManager.HORIZONTAL));
+        adapter = new SearchMemberAdapter(this, this);
+        recyclerViewSearchMember.setAdapter(adapter);
 
+        fetchData();
     }
 
     private void fetchData() {
-
-        List<MemberModel> models = new ArrayList<>();
-        MemberModel model = new MemberModel();
-        models.add(model);
-        models.add(model);
-        models.add(model);
-        models.add(model);
-
-        if (isLoadMore) {
-            adapter.notifyBottomRefresh(models);
-            mTempPageCount++;
+        RequestParams params = new RequestParams();
+        if (ValidateUtil.isNum(strSearch)) {
+            params.put("mobile", strSearch);
         } else {
-            adapter.notifyTopRefresh(models);
+            params.put("teacherNm", strSearch);
         }
-
+        RequestManager.get(CODE_GET_MEMBER_LIST, Urls.getMemberList, params, this);
     }
 
     @Override
@@ -115,7 +109,23 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            switch (requestCode) {
+                case CODE_GET_MEMBER_LIST:
+                    List<MemberModel> memberModels = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<MemberModel>>() {
+                    }.getType());
 
+                    if (memberModels != null)
+                        adapter.notifyTopRefresh(memberModels);
+                    break;
+                case CODE_ADD_TO_GROUP:
+                    ToastUtils.show(this, "邀请添加成功");
+                    break;
+            }
+        } else {
+            ToastUtils.show(this, resultBean.getMsg());
+        }
     }
 
     @OnClick(R.id.imgSearch)
@@ -125,8 +135,8 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.imgSearch:
-                isLoadMore = false;
                 hideInput();
+                fetchData();
                 break;
         }
     }
@@ -136,5 +146,22 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
         if (imm.isActive()) {
             imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    @Override
+    public void onAdd(String operator, int position) {
+        this.position = position;
+        this.operator = operator;
+        DialogUtils.show(this, "是否添加该成员", this);
+    }
+
+    @Override
+    public void onSure() {
+        RequestParams params = new RequestParams();
+        params.put("type", Config.CODE_SUBMIT_INCITE_INFORM_1);
+        params.put("operator", operator);
+        params.put("operation", Config.ADD_TO_GROUP);
+        params.put("state", 0);
+        RequestManager.post(CODE_ADD_TO_GROUP, Urls.submitInviteInform, params, this);
     }
 }

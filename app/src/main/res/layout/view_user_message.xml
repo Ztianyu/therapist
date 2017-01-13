@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingBottom="8dp"
+    android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="8dp">
@@ -82,127 +82,148 @@
         </LinearLayout>
     </LinearLayout>
 
-
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TableRow>
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="工作时间：" />
 
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="工作时间：" />
+        <TextView
+            android:id="@+id/editUserWorkTime"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/editUserWorkTime"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
-        </TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="身份证号：" />
 
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="身份证号：" />
+        <TextView
+            android:id="@+id/editUserIdCard"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/editUserIdCard"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-        </TableRow>
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="籍贯：" />
 
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
+        <TextView
+            android:id="@+id/editUserPlace"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="籍贯：" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/editUserPlace"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="擅长：" />
 
-        </TableRow>
+        <TextView
+            android:id="@+id/editUserSpecialty"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="服务技能：" />
 
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="擅长：" />
+        <TextView
+            android:id="@+id/editUserSkill"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/editUserSpecialty"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
-        </TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="现住地：" />
 
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="服务技能：" />
+        <TextView
+            android:id="@+id/editUserAddress"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/editUserSkill"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
-        </TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="工作单位：" />
 
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="现住地：" />
+        <TextView
+            android:id="@+id/editUserWorkSpaceName"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/editUserAddress"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-        </TableRow>
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="单位地址：" />
 
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
+        <TextView
+            android:id="@+id/editUserWorkAddress"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="工作单位：" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/editUserWorkSpaceName"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
+        <TextView
+            style="@style/TextUserMessageTip"
+            android:text="单位电话：" />
 
-        </TableRow>
-
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
-
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="单位地址：" />
-
-            <TextView
-                android:id="@+id/editUserWorkAddress"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
-
-        </TableRow>
-
-        <TableRow android:layout_marginTop="@dimen/userMessageMarginTop">
-
-            <TextView
-                style="@style/TextUserMessageTip"
-                android:text="单位电话：" />
-
-            <TextView
-                android:id="@+id/editUserWorkPhone"
-                style="@style/TextUserMessageTip"
-                android:gravity="left" />
-
-        </TableRow>
-    </TableLayout>
+        <TextView
+            android:id="@+id/editUserWorkPhone"
+            style="@style/TextUserMessageTip"
+            android:gravity="left" />
+    </LinearLayout>
 
 </LinearLayout>

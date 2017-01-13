@@ -2,10 +2,20 @@ package com.zty.therapist.ui.activity.home;
 
 import android.content.Intent;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.HelpAdapter;
 import com.zty.therapist.base.BaseRefreshActivity;
 import com.zty.therapist.model.HelpModel;
+import com.zty.therapist.model.MemberModel;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.recycler.FooterRefreshAdapter;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +27,11 @@ import java.util.List;
 
 public class HelpActivity extends BaseRefreshActivity {
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        onRefresh();
+    }
 
     @Override
     protected void initReadyData() {
@@ -32,25 +47,14 @@ public class HelpActivity extends BaseRefreshActivity {
 
     @Override
     protected boolean isHaveDivider() {
-        return true;
+        return false;
     }
 
     @Override
     protected void fetchData() {
-        List<HelpModel> models = new ArrayList<>();
-        HelpModel model = new HelpModel();
-        models.add(model);
-        models.add(model);
-        models.add(model);
-        models.add(model);
-
-        if (isLoadMore) {
-            adapter.notifyBottomRefresh(models);
-            mTempPageCount++;
-        } else {
-            adapter.notifyTopRefresh(models);
-            swipeRefreshLayout.setRefreshing(false);
-        }
+        RequestParams params = new RequestParams();
+        params.put("pageNo", pageNo);
+        RequestManager.get(-1, Urls.getMutualHelpList, params, this);
     }
 
     @Override
@@ -60,7 +64,36 @@ public class HelpActivity extends BaseRefreshActivity {
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
+            List<HelpModel> models = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<HelpModel>>() {
+            }.getType());
 
+            swipeRefreshLayout.setRefreshing(false);
+            if (models != null && models.size() > 0) {
+                if (isLoadMore) {
+                    if (models.size() == 0) {
+                        adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
+                    } else if (models.size() < 10) {
+                        adapter.notifyBottomRefresh(models);
+                        adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
+                    } else {
+                        adapter.notifyBottomRefresh(models);
+                        isRefresh = false;
+                        mTempPageCount++;
+                    }
+                } else {
+                    adapter.notifyTopRefresh(models);
+                }
+            } else {
+                if (pageNo == 1) {
+                    adapter.clearData();
+                }
+                adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
+            }
+        } else {
+            ToastUtils.show(this, resultBean.getMsg());
+        }
     }
 
     @Override

@@ -72,7 +72,7 @@ public class ScrollingFragment extends BaseFragment implements AdapterView.OnIte
 
     private int type;//0：医生；1：保健品
 
-    private String key = "";
+    private int key = 0;
 
     private String strSpinner;
     private String strNote;

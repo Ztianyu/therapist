@@ -12,14 +12,14 @@ public class OptionModel implements Serializable {
      * value : 神经类
      */
 
-    private String key;
+    private int key;
     private String value;
 
-    public String getKey() {
+    public int getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(int key) {
         this.key = key;
     }
 

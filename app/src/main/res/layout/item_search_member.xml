@@ -15,7 +15,7 @@
         app:border_width="1dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:orientation="vertical">
@@ -66,15 +66,15 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="籍贯："
+                android:text="年龄："
                 android:textSize="@dimen/listContent" />
 
             <TextView
-                android:id="@+id/textSearchMemberPlace"
+                android:id="@+id/textSearchMemberAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="河北省保定市阳原县东桥坡村"
+                android:text="18岁"
                 android:textSize="@dimen/listContent" />
         </LinearLayout>
 
@@ -88,7 +88,7 @@
                 android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="现住址："
+                android:text="地址："
                 android:textSize="@dimen/listContent" />
 
             <TextView

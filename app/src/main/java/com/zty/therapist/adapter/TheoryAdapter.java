@@ -32,15 +32,15 @@ public class TheoryAdapter extends NormalAdapter<OptionModel> {
         ViewHolder viewHolder = (ViewHolder) holder;
 
         if (type == 0) {
-            if (model.getKey().equals("1")) {
+            if (model.getKey() == 1) {
                 viewHolder.setBgRes(R.id.imgTrainLeft, R.mipmap.ic_theory1);
-            } else if (model.getKey().equals("2")) {
+            } else if (model.getKey() == 2) {
                 viewHolder.setBgRes(R.id.imgTrainLeft, R.mipmap.ic_theory2);
-            } else if (model.getKey().equals("3")) {
+            } else if (model.getKey() == 3) {
                 viewHolder.setBgRes(R.id.imgTrainLeft, R.mipmap.ic_theory3);
-            } else if (model.getKey().equals("4")) {
+            } else if (model.getKey() == 4) {
                 viewHolder.setBgRes(R.id.imgTrainLeft, R.mipmap.ic_theory4);
-            } else if (model.getKey().equals("5")) {
+            } else if (model.getKey() == 5) {
                 viewHolder.setBgRes(R.id.imgTrainLeft, R.mipmap.ic_theory5);
             }
         } else {

@@ -17,6 +17,7 @@ public class SharedPrefUtils {
     public static final String ROLE = "role";
 
     public static final String USER_MESSAGE = "userMessage";
+    public static final String AbilityOption = "AbilityOptionModel";
 
     public static boolean getBoolean(Context context, String key) {
         return context.getSharedPreferences(APP_SHARED_STR,
