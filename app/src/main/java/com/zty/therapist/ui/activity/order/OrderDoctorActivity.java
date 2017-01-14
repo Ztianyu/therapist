@@ -1,5 +1,7 @@
 package com.zty.therapist.ui.activity.order;
 
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,6 +19,8 @@ import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.MyImageLoader;
 import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.TimeWheelUtils;
+import com.zty.therapist.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,6 +66,10 @@ public class OrderDoctorActivity extends BaseActivity {
     TextView textOrderIntegral;
     @BindView(R.id.btnBookDoctor)
     Button btnBookDoctor;
+    @BindView(R.id.btnChoseDate)
+    Button btnChoseDate;
+    @BindView(R.id.editPaintPro)
+    EditText editPaintPro;
 
     private String doctorId;
 
@@ -106,11 +114,14 @@ public class OrderDoctorActivity extends BaseActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                     break;
                 case CODE_SUBMIT:
+                    ToastUtils.show(this, "预订成功");
+                    finish();
                     break;
             }
+        } else {
+            ToastUtils.show(this, resultBean.getMsg());
         }
     }
 
@@ -124,7 +135,57 @@ public class OrderDoctorActivity extends BaseActivity {
         textOrderIntegral.setText(model.getMemberHealthCurrency() + "");
     }
 
-    @OnClick(R.id.btnBookDoctor)
-    public void onClick() {
+
+    private void submitDoctorOrder() {
+        RequestParams params = new RequestParams();
+        params.put("doctorId", doctorId);
+        params.put("patientNm", editPaintName.getText().toString());
+        params.put("contactsTel", editPaintPhone.getText().toString());
+        params.put("address", editPaintAddress.getText().toString());
+        params.put("startDate", editPaintExpectData.getText().toString());
+        params.put("item", editPaintPro.getText().toString());
+        RequestManager.post(CODE_SUBMIT, Urls.submitDoctorOrder, params, this);
+    }
+
+    @OnClick({R.id.btnChoseDate, R.id.btnBookDoctor})
+    public void onClick(View view) {
+        super.onClick(view);
+        switch (view.getId()) {
+            case R.id.btnChoseDate:
+                TimeWheelUtils.showDataSelect(this, editPaintExpectData);
+                break;
+            case R.id.btnBookDoctor:
+                if (checkData())
+                    submitDoctorOrder();
+                break;
+        }
+    }
+
+    private boolean checkData() {
+        if (TextUtils.isEmpty(editPaintName.getText().toString())) {
+            ToastUtils.show(this, "请输入患者姓名");
+            return false;
+        }
+        if (TextUtils.isEmpty(editPaintPhone.getText().toString())) {
+            ToastUtils.show(this, "请输入患者联系电话");
+            return false;
+        }
+        if (TextUtils.isEmpty(editPaintAddress.getText().toString())) {
+            ToastUtils.show(this, "请输入患者地址");
+            return false;
+        }
+        if (TextUtils.isEmpty(editPaintPro.getText().toString())) {
+            ToastUtils.show(this, "请输入医疗项目");
+            return false;
+        }
+        if (TextUtils.isEmpty(editPaintName.getText().toString())) {
+            ToastUtils.show(this, "请输入患者姓名");
+            return false;
+        }
+        if (TextUtils.isEmpty(editPaintExpectData.getText().toString())) {
+            ToastUtils.show(this, "请选择期望时间");
+            return false;
+        }
+        return true;
     }
 }

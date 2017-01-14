@@ -116,10 +116,8 @@ public class NickActivity extends BaseActivity implements OnSelectListener {
 
     @OnClick({R.id.imgUserHeaderNick, R.id.textUserNickName})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
-            case R.id.titleLeft:
-                finish();
-                break;
             case R.id.imgUserHeaderNick:
                 SelectPicUtils.showDialog(getSupportFragmentManager());
                 break;

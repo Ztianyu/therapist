@@ -1,8 +1,7 @@
 package com.zty.therapist.ui.activity.personal;
 
-import android.os.Bundle;
-import android.text.InputType;
-import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
@@ -10,7 +9,7 @@ import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.url.RequestManager;
-import com.zty.therapist.utils.MyTextUtils;
+import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.ResultUtil;
 import com.zty.therapist.utils.ToastUtils;
 import com.zty.therapist.utils.UserUtils;
@@ -18,44 +17,37 @@ import com.zty.therapist.utils.UserUtils;
 import butterknife.BindView;
 
 /**
- * Created by zty on 2017/1/9.
+ * Created by zty on 2017/1/14.
  */
 
-public class SetTextActivity extends BaseActivity {
-    @BindView(R.id.editSetText)
-    EditText editSetText;
+public class SetSexActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-    private String message;
-    private String url;
-    private String strTitle;
-    private String key;
+    @BindView(R.id.radioButtonMan)
+    RadioButton radioButtonMan;
+    @BindView(R.id.radioButtonWoman)
+    RadioButton radioButtonWoman;
+    @BindView(R.id.radioGroupSex)
+    RadioGroup radioGroupSex;
 
-    private int type;//0：字符串；1：数字；2：电话
+    private String strSex;
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_set_text;
+        return R.layout.activity_set_sex;
     }
 
     @Override
     protected void initData() {
-        Bundle bundle = getIntent().getExtras();
-        message = bundle.getString("message");
-        url = bundle.getString("url");
-        strTitle = bundle.getString("title");
-        key = bundle.getString("key");
-        type = bundle.getInt("type");
-
-        if (type == 1) {
-            editSetText.setInputType(InputType.TYPE_CLASS_NUMBER);
-        } else if (type == 2) {
-            editSetText.setInputType(InputType.TYPE_CLASS_PHONE);
-        }
-
-
-        editSetText.setText(MyTextUtils.isEmpty(message));
-        title.setText(strTitle);
+        title.setText("性 别");
         right.setText("保存");
+        strSex = getIntent().getStringExtra("sex");
+
+        if (strSex.equals("男")) {
+            radioButtonMan.setChecked(true);
+        } else {
+            radioButtonWoman.setChecked(true);
+        }
+        radioGroupSex.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -80,10 +72,21 @@ public class SetTextActivity extends BaseActivity {
     }
 
     @Override
-    public void rightClick() {
-        RequestParams params = new RequestParams();
-        params.put(key, editSetText.getText().toString());
-        RequestManager.post(-1, url, params, this);
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        switch (i) {
+            case R.id.radioButtonMan:
+                strSex = "男";
+                break;
+            case R.id.radioButtonWoman:
+                strSex = "女";
+                break;
+        }
     }
 
+    @Override
+    public void rightClick() {
+        RequestParams params = new RequestParams();
+        params.put("sex", strSex);
+        RequestManager.post(-1, Urls.update, params, this);
+    }
 }

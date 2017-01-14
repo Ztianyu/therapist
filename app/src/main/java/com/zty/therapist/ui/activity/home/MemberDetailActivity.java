@@ -1,9 +1,7 @@
 package com.zty.therapist.ui.activity.home;
 
-import android.support.v7.widget.AppCompatSpinner;
+import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -16,6 +14,7 @@ import com.zty.therapist.inter.DialogListener;
 import com.zty.therapist.model.AbilityOptionModel;
 import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.model.UserModel;
+import com.zty.therapist.service.InviteInformUtils;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.DialogUtils;
@@ -35,11 +34,11 @@ import butterknife.OnClick;
  * Created by zty on 2017/1/11.
  */
 
-public class MemberDetailActivity extends BaseActivity implements AdapterView.OnItemSelectedListener, DialogListener {
+public class MemberDetailActivity extends BaseActivity implements DialogListener {
 
     private static final int CODE_GET_OPTION = 0;
-    private static final int CODE_SUBMIT_OPTION = 1;
     private static final int CODE_EXIT_GROUP = 3;
+    private static final int CODE_EXIT_CLASS = 4;
 
     @BindView(R.id.textMemberDetailName)
     TextView textMemberDetailName;
@@ -69,23 +68,25 @@ public class MemberDetailActivity extends BaseActivity implements AdapterView.On
     TextView editUserWorkPhone;
     @BindView(R.id.btnMemberHandle)
     TextView btnMemberHandle;
-    @BindView(R.id.spinnerAbility1)
-    AppCompatSpinner spinnerAbility1;
-    @BindView(R.id.spinnerAbility2)
-    AppCompatSpinner spinnerAbility2;
-    @BindView(R.id.spinnerAbility3)
-    AppCompatSpinner spinnerAbility3;
-    @BindView(R.id.spinnerAbility4)
-    AppCompatSpinner spinnerAbility4;
-    @BindView(R.id.spinnerAbility5)
-    AppCompatSpinner spinnerAbility5;
+    @BindView(R.id.textAbility1)
+    TextView textAbility1;
+    @BindView(R.id.textAbility2)
+    TextView textAbility2;
+    @BindView(R.id.textAbility3)
+    TextView textAbility3;
+    @BindView(R.id.textAbility4)
+    TextView textAbility4;
+    @BindView(R.id.textAbility5)
+    TextView textAbility5;
+    @BindView(R.id.btnMemberEvaluate)
+    TextView btnMemberEvaluate;
 
     private String userId;
     private String teacherId;
 
     private int role;
 
-    private boolean isCanRemark = false;
+    private int type;
 
     @Override
     protected int getContentView() {
@@ -95,6 +96,7 @@ public class MemberDetailActivity extends BaseActivity implements AdapterView.On
     @Override
     protected void initData() {
         userId = getIntent().getStringExtra("userId");
+        type = getIntent().getIntExtra("type", 0);
 
         getAbilityOption();
 
@@ -103,49 +105,31 @@ public class MemberDetailActivity extends BaseActivity implements AdapterView.On
         if (role == 0) {
             right.setVisibility(View.INVISIBLE);
             btnMemberHandle.setVisibility(View.INVISIBLE);
+            btnMemberEvaluate.setVisibility(View.INVISIBLE);
         } else if (role == 1) {
-            right.setText("评价");
-            btnMemberHandle.setText("从该组移除");
+            btnMemberHandle.setText("移除该成员");
             btnMemberHandle.setVisibility(View.VISIBLE);
+        } else if (role == 2) {
+            if (type == 0) {
+                setRight(R.mipmap.ic_group_member);
+                btnMemberHandle.setText("移除该组长");
+                btnMemberHandle.setVisibility(View.VISIBLE);
+                btnMemberEvaluate.setVisibility(View.VISIBLE);
+            } else {
+                btnMemberHandle.setVisibility(View.INVISIBLE);
+                btnMemberEvaluate.setVisibility(View.INVISIBLE);
+            }
         }
+    }
 
-        spinnerAbility1.setOnItemSelectedListener(this);
-        spinnerAbility2.setOnItemSelectedListener(this);
-        spinnerAbility3.setOnItemSelectedListener(this);
-        spinnerAbility4.setOnItemSelectedListener(this);
-        spinnerAbility5.setOnItemSelectedListener(this);
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        UserUtils.getUserMessage(userId, this);
     }
 
     private void getAbilityOption() {
         RequestManager.get(CODE_GET_OPTION, Urls.getAbilityOption, null, this);
-    }
-
-    private void setAbility() {
-        RequestParams params = new RequestParams();
-        params.put("teacherId", teacherId);
-        params.put("workAbility", OptionUtils.workLastCode);
-        params.put("orgAbility", OptionUtils.orgLastCode);
-        params.put("communicationAbility", OptionUtils.communicationLastCode);
-        params.put("temper", OptionUtils.temperLastCode);
-        params.put("figure", OptionUtils.figureLastCode);
-        RequestManager.post(CODE_SUBMIT_OPTION, Urls.setAbility, params, this);
-    }
-
-    private void setSpinnerData(AbilityOptionModel abilityOptionModel) {
-        OptionUtils.setList(abilityOptionModel);
-        spinnerAbility1.setAdapter(new ArrayAdapter(this, R.layout.item_spinner, R.id.textSpinner, OptionUtils.workList));
-        spinnerAbility2.setAdapter(new ArrayAdapter(this, R.layout.item_spinner, R.id.textSpinner, OptionUtils.orgList));
-        spinnerAbility3.setAdapter(new ArrayAdapter(this, R.layout.item_spinner, R.id.textSpinner, OptionUtils.communicationList));
-        spinnerAbility4.setAdapter(new ArrayAdapter(this, R.layout.item_spinner, R.id.textSpinner, OptionUtils.temperList));
-        spinnerAbility5.setAdapter(new ArrayAdapter(this, R.layout.item_spinner, R.id.textSpinner, OptionUtils.figureList));
-    }
-
-    private void setAbilityState(boolean state) {
-        spinnerAbility1.setSelected(state);
-        spinnerAbility2.setSelected(state);
-        spinnerAbility3.setSelected(state);
-        spinnerAbility4.setSelected(state);
-        spinnerAbility5.setSelected(state);
     }
 
     @Override
@@ -169,19 +153,8 @@ public class MemberDetailActivity extends BaseActivity implements AdapterView.On
                 UserUtils.getUserMessage(userId, this);
                 handleOptions(response);
                 break;
-            case CODE_SUBMIT_OPTION:
-                ResultBean resultBean1 = ResultUtil.getResult(response);
-                if (resultBean1.isSuccess()) {
-                    ToastUtils.show(this, "评价成功");
-                    UserUtils.getUserMessage(userId, this);
-                    isCanRemark = !isCanRemark;
-                    setAbilityState(isCanRemark);
-                    right.setText("评价");
-                } else {
-                    ToastUtils.show(this, resultBean1.getMsg());
-                }
-                break;
             case CODE_EXIT_GROUP:
+            case CODE_EXIT_CLASS:
                 ResultBean resultBean2 = ResultUtil.getResult(response);
                 if (resultBean2.isSuccess()) {
                     ToastUtils.show(this, "移除成功");
@@ -211,15 +184,16 @@ public class MemberDetailActivity extends BaseActivity implements AdapterView.On
         editUserWorkPhone.setText(userModel.getUnitTel());
 
         if (userModel.getWorkAbility() > 0)
-            spinnerAbility1.setSelection(userModel.getWorkAbility() - 1);
+            textAbility1.setText(OptionUtils.getValue(OptionUtils.TYPE_WORK, userModel.getWorkAbility()));
         if (userModel.getOrgAbility() > 0)
-            spinnerAbility2.setSelection(userModel.getOrgAbility() - 1);
+            textAbility2.setText(OptionUtils.getValue(OptionUtils.TYPE_ORG, userModel.getOrgAbility()));
         if (userModel.getCommunicationAbility() > 0)
-            spinnerAbility3.setSelection(userModel.getCommunicationAbility() - 1);
+            textAbility3.setText(OptionUtils.getValue(OptionUtils.TYPE_COMMUNICATION, userModel.getCommunicationAbility()));
         if (userModel.getTemper() > 0)
-            spinnerAbility4.setSelection(userModel.getTemper() - 1);
+            textAbility4.setText(OptionUtils.getValue(OptionUtils.TYPE_TEMPER, userModel.getTemper()));
         if (userModel.getFigure() > 0)
-            spinnerAbility5.setSelection(userModel.getFigure() - 1);
+            textAbility5.setText(OptionUtils.getValue(OptionUtils.TYPE_FIGURE, userModel.getFigure()));
+
     }
 
     private void handleOptions(String result) {
@@ -229,7 +203,7 @@ public class MemberDetailActivity extends BaseActivity implements AdapterView.On
             if (jsonObject.has("head")) {
                 AbilityOptionModel abilityOptionModel = new Gson().fromJson(jsonObject.getString("head"), AbilityOptionModel.class);
                 if (abilityOptionModel != null) {
-                    setSpinnerData(abilityOptionModel);
+                    OptionUtils.setList(abilityOptionModel);
                 }
             }
         } catch (JSONException e) {
@@ -238,63 +212,38 @@ public class MemberDetailActivity extends BaseActivity implements AdapterView.On
     }
 
 
-    @OnClick({R.id.btnMemberHandle})
+    @OnClick({R.id.btnMemberHandle, R.id.btnMemberEvaluate})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnMemberHandle:
                 handle();
                 break;
+            case R.id.btnMemberEvaluate:
+                startActivity(new Intent(this, SetAbilityActivity.class).putExtra("teacherId", teacherId));
+                break;
         }
     }
 
     @Override
     public void rightClick() {
-        isCanRemark = !isCanRemark;
-        setAbilityState(isCanRemark);
-        if (isCanRemark) {
-            right.setText("保存");
-        } else {
-            setAbility();
-        }
+        startActivity(new Intent(this, MemberListActivity.class).putExtra("userId", userId));
     }
 
     private void handle() {
-        DialogUtils.show(this, "是否移除该成员", this);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (adapterView.getId()) {
-            case R.id.spinnerAbility1:
-                OptionUtils.workLastCode = OptionUtils.workListCode.get(i);
-                break;
-            case R.id.spinnerAbility2:
-                OptionUtils.orgLastCode = OptionUtils.orgListCode.get(i);
-                break;
-            case R.id.spinnerAbility3:
-                OptionUtils.communicationLastCode = OptionUtils.communicationListCode.get(i);
-                break;
-            case R.id.spinnerAbility4:
-                OptionUtils.temperLastCode = OptionUtils.temperListCode.get(i);
-                break;
-            case R.id.spinnerAbility5:
-                OptionUtils.figureLastCode = OptionUtils.figureListCode.get(i);
-                break;
+        if (role == 1) {
+            DialogUtils.show(this, "是否移除该成员", this);
+        } else if (role == 2) {
+            DialogUtils.show(this, "是否移除该组长", this);
         }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
     @Override
     public void onSure() {
-        RequestParams params = new RequestParams();
-        params.put("type", Config.CODE_SUBMIT_INCITE_INFORM_1);
-        params.put("operator", userId);
-        params.put("operation", Config.EXIT_GROUP);
-        params.put("state", 3);
-        RequestManager.post(CODE_EXIT_GROUP, Urls.submitInviteInform, params, this);
+        if (role == 1) {
+            InviteInformUtils.submitInviteInform(CODE_EXIT_GROUP, Config.CODE_SUBMIT_INCITE_INFORM_1, userId, Config.EXIT_GROUP, 3, this);
+        } else {
+            InviteInformUtils.submitInviteInform(CODE_EXIT_CLASS, Config.CODE_SUBMIT_INCITE_INFORM_2, userId, Config.EXIT_CLASS, 3, this);
+        }
     }
 }

@@ -16,11 +16,13 @@ import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.SearchMemberAdapter;
 import com.zty.therapist.base.BaseActivity;
+import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.config.Config;
 import com.zty.therapist.inter.DialogListener;
 import com.zty.therapist.inter.OnAddToGroupListener;
 import com.zty.therapist.model.MemberModel;
 import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.service.InviteInformUtils;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.DialogUtils;
@@ -42,6 +44,8 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
 
     private static final int CODE_GET_MEMBER_LIST = 0;
     private static final int CODE_ADD_TO_GROUP = 1;
+    private static final int CODE_GET_GROUP_LIST = 2;
+    private static final int CODE_ADD_TO_CLASS = 3;
 
     @BindView(R.id.editSearch)
     EditText editSearch;
@@ -57,6 +61,8 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
     private String operator;
     private int position;
 
+    private int role;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_add_member;
@@ -64,8 +70,14 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initData() {
+        role = TherapistApplication.getInstance().getRole();
 
-        title.setText("添加成员");
+        if (role == 2) {
+            title.setText("添加组");
+        } else {
+            title.setText("添加成员");
+        }
+
 
         editSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -93,6 +105,14 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void fetchData() {
+        if (role == 2) {
+            getGroupList();
+        } else {
+            getMemberList();
+        }
+    }
+
+    private void getMemberList() {
         RequestParams params = new RequestParams();
         if (ValidateUtil.isNum(strSearch)) {
             params.put("mobile", strSearch);
@@ -100,6 +120,16 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
             params.put("teacherNm", strSearch);
         }
         RequestManager.get(CODE_GET_MEMBER_LIST, Urls.getMemberList, params, this);
+    }
+
+    private void getGroupList() {
+        RequestParams params = new RequestParams();
+        if (ValidateUtil.isNum(strSearch)) {
+            params.put("mobile", strSearch);
+        } else {
+            params.put("teacherNm", strSearch);
+        }
+        RequestManager.get(CODE_GET_GROUP_LIST, Urls.getGroupList, params, this);
     }
 
     @Override
@@ -113,6 +143,7 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
         if (resultBean.isSuccess()) {
             switch (requestCode) {
                 case CODE_GET_MEMBER_LIST:
+                case CODE_GET_GROUP_LIST:
                     List<MemberModel> memberModels = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<MemberModel>>() {
                     }.getType());
 
@@ -120,6 +151,7 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
                         adapter.notifyTopRefresh(memberModels);
                     break;
                 case CODE_ADD_TO_GROUP:
+                case CODE_ADD_TO_CLASS:
                     ToastUtils.show(this, "邀请添加成功");
                     break;
             }
@@ -152,16 +184,20 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
     public void onAdd(String operator, int position) {
         this.position = position;
         this.operator = operator;
-        DialogUtils.show(this, "是否添加该成员", this);
+        if (role == 2) {
+            DialogUtils.show(this, "是否添加该组长到本班？", this);
+        } else {
+            DialogUtils.show(this, "是否添加该成员到本组？", this);
+        }
+
     }
 
     @Override
     public void onSure() {
-        RequestParams params = new RequestParams();
-        params.put("type", Config.CODE_SUBMIT_INCITE_INFORM_1);
-        params.put("operator", operator);
-        params.put("operation", Config.ADD_TO_GROUP);
-        params.put("state", 0);
-        RequestManager.post(CODE_ADD_TO_GROUP, Urls.submitInviteInform, params, this);
+        if (role == 2) {
+            InviteInformUtils.submitInviteInform(CODE_ADD_TO_CLASS, Config.CODE_SUBMIT_INCITE_INFORM_1, operator, Config.ADD_TO_GROUP, 0, this);
+        } else {
+            InviteInformUtils.submitInviteInform(CODE_ADD_TO_GROUP, Config.CODE_SUBMIT_INCITE_INFORM_2, operator, Config.ADD_TO_CLASS, 0, this);
+        }
     }
 }

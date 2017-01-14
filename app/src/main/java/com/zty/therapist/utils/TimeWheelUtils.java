@@ -1,10 +1,12 @@
 package com.zty.therapist.utils;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.zty.therapist.R;
@@ -22,7 +24,7 @@ import java.util.Calendar;
 
 public class TimeWheelUtils {
 
-    public static void show(Context context,final EditText editText){
+    public static void show(Context context, final EditText editText) {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -50,7 +52,6 @@ public class TimeWheelUtils {
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         editText.setText(wheelMain.getTime());
                     }
                 })
@@ -60,6 +61,23 @@ public class TimeWheelUtils {
                     }
                 })
                 .show();
+    }
 
+    public static void showDataSelect(Context context, final EditText editText) {
+        Calendar c = Calendar.getInstance();
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                StringBuffer sb = new StringBuffer();
+                sb.append(year)
+                        .append("-")
+                        .append((monthOfYear + 1) < 10 ? "0" + (monthOfYear + 1) : (monthOfYear + 1))
+                        .append("-")
+                        .append(dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+                editText.setText(sb.toString());
+            }
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
     }
 }

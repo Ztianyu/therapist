@@ -78,7 +78,7 @@ public class PersonalFragment extends BaseFragment {
             textUserHeaderName.setText(userModel.getTeacherNm());
             textUserHeaderPhone.setText(userModel.getMobile());
         } else {
-            imgUserHeader.setBackgroundResource(R.mipmap.icon_user);
+            imgUserHeader.setBackgroundResource(R.mipmap.ic_header_default);
             MyImageLoader.load(context, "", imgUserHeader);
             layoutUserMessage.setVisibility(View.INVISIBLE);
             textUserHeaderLogin.setVisibility(View.VISIBLE);

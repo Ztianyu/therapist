@@ -44,6 +44,10 @@ public class Urls {
 
     public static String submitForum = HOST + "/healthForum/submitForum";
 
+    public static String updatePhoto = HOST + "/rehabilitationTeacher/updatePhoto";
+
+    public static String update = HOST + "/rehabilitationTeacher/update";
+
     public static String uploadAndroidServlet = HOST_PROJECT + "/uploadAndroidServlet";
 
     public static String getHealthForumList = HOST + "/healthForum/getHealthForumList";
@@ -102,4 +106,13 @@ public class Urls {
 
     public static String getHouseRentList = HOST + "/houseRent/getHouseRentList";
 
+    public static String getTeamGroupList = HOST + "/rehabilitationTeam/getTeamGroupList";
+
+    public static String getGroupList = HOST + "/rehabilitationTeacher/getGroupList";
+
+    public static String submitDoctorOrder = HOST + "/doctorOrder/submitDoctorOrder";
+
+    public static String submitRehabilitationBulletin = HOST + "/rehabilitationBulletin/submitRehabilitationBulletin";
+
+    public static String getRehabilitationBulletinList = HOST + "/rehabilitationBulletin/getRehabilitationBulletinList";
 }

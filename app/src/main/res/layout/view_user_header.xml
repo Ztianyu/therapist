@@ -14,7 +14,7 @@
         android:id="@+id/imgUserHeader"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="@mipmap/icon_user"
+        android:background="@mipmap/ic_header_default"
         app:border_color="@color/gray"
         app:border_width="0.5dp" />
 
@@ -54,10 +54,8 @@
             android:layout_marginLeft="16dp"
             android:text="登录/注册"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
             android:visibility="invisible" />
     </FrameLayout>
-
 
 </LinearLayout>

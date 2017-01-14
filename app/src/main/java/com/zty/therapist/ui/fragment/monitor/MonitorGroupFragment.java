@@ -1,5 +1,6 @@
 package com.zty.therapist.ui.fragment.monitor;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -8,11 +9,12 @@ import android.widget.RadioGroup;
 
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.ui.activity.home.AddMemberActivity;
 import com.zty.therapist.ui.activity.home.GroupActivity;
+import com.zty.therapist.ui.activity.home.SendNoteActivity;
 import com.zty.therapist.ui.fragment.group.CommunicationFragment;
 import com.zty.therapist.ui.fragment.group.HouseRentFragment;
 import com.zty.therapist.ui.fragment.group.MemberFragment;
-import com.zty.therapist.ui.fragment.group.ReplaceWorkFragment;
 import com.zty.therapist.utils.ResourceUtil;
 
 import butterknife.BindView;
@@ -35,8 +37,8 @@ public class MonitorGroupFragment extends BaseFragment implements RadioGroup.OnC
     RadioButton radioButtonMember4;
 
     MemberFragment memberFragment;
-    ReplaceWorkFragment replaceWorkFragment;
-    HouseRentFragment houseRentFragment;
+    DoctorOrderFragment doctorOrderFragment;
+    NoteFragment noteFragment;
     CommunicationFragment communicationFragment;
 
 
@@ -102,16 +104,16 @@ public class MonitorGroupFragment extends BaseFragment implements RadioGroup.OnC
                 addOrShowFragment(getChildFragmentManager().beginTransaction(), memberFragment);
                 break;
             case R.id.radioButtonMember2:
-                if (replaceWorkFragment == null)
-                    replaceWorkFragment = new ReplaceWorkFragment();
+                if (doctorOrderFragment == null)
+                    doctorOrderFragment = new DoctorOrderFragment();
                 currentPage = 2;
-                addOrShowFragment(getChildFragmentManager().beginTransaction(), replaceWorkFragment);
+                addOrShowFragment(getChildFragmentManager().beginTransaction(), doctorOrderFragment);
                 break;
             case R.id.radioButtonMember3:
-                if (houseRentFragment == null)
-                    houseRentFragment = new HouseRentFragment();
+                if (noteFragment == null)
+                    noteFragment = new NoteFragment();
                 currentPage = 3;
-                addOrShowFragment(getChildFragmentManager().beginTransaction(), houseRentFragment);
+                addOrShowFragment(getChildFragmentManager().beginTransaction(), noteFragment);
                 break;
             case R.id.radioButtonMember4:
                 if (communicationFragment == null)
@@ -145,7 +147,7 @@ public class MonitorGroupFragment extends BaseFragment implements RadioGroup.OnC
             case 1:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
                 ((GroupActivity) context).title.setText("组长列表");
-                ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_add);
+                ((GroupActivity) context).setRight(R.mipmap.ic_add);
                 break;
             case 2:
                 ((GroupActivity) context).right.setVisibility(View.INVISIBLE);
@@ -154,7 +156,7 @@ public class MonitorGroupFragment extends BaseFragment implements RadioGroup.OnC
             case 3:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
                 ((GroupActivity) context).title.setText("通知公告");
-                ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_publish);
+                ((GroupActivity) context).setRight(R.mipmap.ic_publish);
                 break;
             case 4:
                 ((GroupActivity) context).right.setVisibility(View.INVISIBLE);
@@ -168,10 +170,12 @@ public class MonitorGroupFragment extends BaseFragment implements RadioGroup.OnC
         if (view.getId() == R.id.titleRight) {
             switch (currentPage) {
                 case 1:
+                    startActivity(new Intent(context, AddMemberActivity.class));
                     break;
                 case 2:
                     break;
                 case 3:
+                    startActivity(new Intent(context, SendNoteActivity.class));
                     break;
                 case 4:
                     break;
