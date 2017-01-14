@@ -39,6 +39,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initData() {
+
+//        getSupportActionBar().hide();
+
         left.setVisibility(View.INVISIBLE);
         radioGroup.setOnCheckedChangeListener(this);
 
@@ -126,7 +129,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 title.setText(ResourceUtil.resToStr(this, R.string.product));
                 break;
             case 4:
-                title.setText(ResourceUtil.resToStr(this, R.string.personal));
+                title.setText("");
                 break;
         }
 
