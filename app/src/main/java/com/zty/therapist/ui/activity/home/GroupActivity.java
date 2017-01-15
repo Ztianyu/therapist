@@ -42,6 +42,8 @@ public class GroupActivity extends BaseActivity implements View.OnClickListener 
             fragment = new MonitorGroupFragment();
         } else if (type == 3) {
             fragment = new AdministratorGroupFragment();
+        } else {
+            fragment = MemberGroupFragment.newInstance(0);
         }
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentGroup, fragment).commit();

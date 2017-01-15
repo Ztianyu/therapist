@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +27,7 @@ import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
+import com.zty.therapist.utils.ResourceUtil;
 import com.zty.therapist.utils.ResultUtil;
 import com.zty.therapist.widget.RecyclerViewDivider;
 
@@ -57,6 +59,10 @@ public class ScrollingFragment extends BaseFragment implements AdapterView.OnIte
     RelativeLayout scrollingHeader;
     @BindView(R.id.edit_search)
     LinearLayout editSearch;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.textToolTitle)
+    TextView textToolTitle;
 
     private FooterRefreshAdapter adapter;
 
@@ -97,6 +103,7 @@ public class ScrollingFragment extends BaseFragment implements AdapterView.OnIte
         type = getArguments().getInt("type");
         spinnerTop.setOnItemSelectedListener(this);
         if (type == 0) {
+            textToolTitle.setText(ResourceUtil.resToStr(context, R.string.expert));
             strSpinner = "城市：";
             strNote = "\u3000\u3000" + "以下城市的医生为与我方合作的全过知名专家，通过我们平台预定的医生可提供如下服务：\n" +
                     "1、由指定医生门诊服务、由指定医生主刀手术\n" +
@@ -107,6 +114,7 @@ public class ScrollingFragment extends BaseFragment implements AdapterView.OnIte
 
             adapter = new DoctorAdapter(context);
         } else {
+            textToolTitle.setText(ResourceUtil.resToStr(context, R.string.product));
             strSpinner = "类别：";
             strNote = "\u3000\u3000" + "本公司提供各种进口保障品，质量和产地都可以在网上查询，保证没有假货。您可以在您的服务人群中推广每次成交您都可以获得健康币的奖励。\n"
                     + "\u3000\u3000" + "健康币可以兑换提现（比率1:1）";

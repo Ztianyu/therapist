@@ -88,6 +88,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @OnClick({R.id.btnLogin, R.id.btnRegister, R.id.textForgetPw})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.btnLogin:
                 login();

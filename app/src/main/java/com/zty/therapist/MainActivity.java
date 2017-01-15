@@ -9,12 +9,6 @@ import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.ui.fragment.main.ScrollingFragment;
 import com.zty.therapist.ui.fragment.main.HomeFragment2;
 import com.zty.therapist.ui.fragment.main.PersonalFragment;
-import com.zty.therapist.utils.ResourceUtil;
-import com.zty.therapist.utils.TimeUtils;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import butterknife.BindView;
 
@@ -30,7 +24,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     BaseFragment currentFragment;
 
-    private int currentPage = 1;
 
     @Override
     protected int getContentView() {
@@ -40,7 +33,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void initData() {
 
-//        getSupportActionBar().hide();
+        getSupportActionBar().hide();
+
+        setFullScreen();
 
         left.setVisibility(View.INVISIBLE);
         radioGroup.setOnCheckedChangeListener(this);
@@ -51,8 +46,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         if (!homeFragment.isAdded()) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentHome, homeFragment).commit();
             currentFragment = homeFragment;
-            currentPage = 1;
-            setTitle();
         }
     }
 
@@ -70,28 +63,24 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         switch (i) {
             case R.id.radioButton1:
-                currentPage = 1;
                 if (homeFragment == null) {
                     homeFragment = new HomeFragment2();
                 }
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), homeFragment);
                 break;
             case R.id.radioButton2:
-                currentPage = 2;
                 if (doctorFragment == null) {
                     doctorFragment = ScrollingFragment.newInstance(0);
                 }
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), doctorFragment);
                 break;
             case R.id.radioButton3:
-                currentPage = 3;
                 if (productFragment == null) {
                     productFragment = ScrollingFragment.newInstance(1);
                 }
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), productFragment);
                 break;
             case R.id.radioButton4:
-                currentPage = 4;
                 if (personalFragment == null) {
                     personalFragment = new PersonalFragment();
                 }
@@ -107,31 +96,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         if (currentFragment == fragment)
             return;
 
-        setTitle();
-
         if (!fragment.isAdded()) { // 如果当前fragment未被添加，则添加到Fragment管理器中
             transaction.hide(currentFragment).add(R.id.fragmentHome, fragment).commit();
         } else {
             transaction.hide(currentFragment).show(fragment).commit();
         }
         currentFragment = fragment;
-    }
-
-    private void setTitle() {
-        switch (currentPage) {
-            case 1:
-                title.setText(ResourceUtil.resToStr(this, R.string.Housekeeping));
-                break;
-            case 2:
-                title.setText(ResourceUtil.resToStr(this, R.string.expert));
-                break;
-            case 3:
-                title.setText(ResourceUtil.resToStr(this, R.string.product));
-                break;
-            case 4:
-                title.setText("");
-                break;
-        }
-
     }
 }

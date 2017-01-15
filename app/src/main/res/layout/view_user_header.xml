@@ -8,7 +8,7 @@
     android:orientation="horizontal"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
-    android:paddingTop="16dp">
+    android:paddingTop="32dp">
 
     <com.zty.therapist.widget.CircleImageView
         android:id="@+id/imgUserHeader"

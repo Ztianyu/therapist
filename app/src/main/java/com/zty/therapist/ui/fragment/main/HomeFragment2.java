@@ -1,7 +1,9 @@
 package com.zty.therapist.ui.fragment.main;
 
 import android.content.Intent;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.youth.banner.Banner;
 import com.zty.therapist.R;
@@ -13,6 +15,7 @@ import com.zty.therapist.ui.activity.home.HelpActivity;
 import com.zty.therapist.ui.activity.home.InfoActivity;
 import com.zty.therapist.ui.activity.home.LearnActivity;
 import com.zty.therapist.utils.BannerUtils;
+import com.zty.therapist.utils.ResourceUtil;
 import com.zty.therapist.utils.ViewAdaptionUtils;
 import com.zty.therapist.widget.LabView;
 
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -41,6 +45,10 @@ public class HomeFragment2 extends BaseFragment {
     LabView homeLab6;
     @BindView(R.id.bannerHome)
     Banner bannerHome;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.textToolTitle)
+    TextView textToolTitle;
 
     @Override
     public int getContentVew() {
@@ -49,6 +57,7 @@ public class HomeFragment2 extends BaseFragment {
 
     @Override
     public void initData() {
+        textToolTitle.setText(ResourceUtil.resToStr(context, R.string.app_name));
 
         ViewAdaptionUtils.LinearLayoutAdaptation(bannerHome, 400);
 

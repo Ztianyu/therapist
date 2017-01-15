@@ -1,59 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    android:fitsSystemWindows="false">
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/scrollingHeader"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/colorTab">
+    <include layout="@layout/view_tool_bar" />
 
-        <TextView
-            android:id="@+id/textNote"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="4dp"
-            android:textSize="12sp" />
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:id="@+id/edit_search"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorInitFloatBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_behavior="@string/headerFloatBehavior">
-
-        <TextView
-            android:id="@+id/textSpinnerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
-            android:text="城市："
-            android:textColor="#90000000" />
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinnerTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"></android.support.v7.widget.AppCompatSpinner>
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
-        app:layout_behavior="@string/headerScrollingBehavior" />
+        android:fitsSystemWindows="false">
 
-</android.support.design.widget.CoordinatorLayout>
+        <RelativeLayout
+            android:id="@+id/scrollingHeader"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/colorTab">
+
+            <TextView
+                android:id="@+id/textNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/edit_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorInitFloatBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_behavior="@string/headerFloatBehavior">
+
+            <TextView
+                android:id="@+id/textSpinnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:text="城市："
+                android:textColor="#90000000" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinnerTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"></android.support.v7.widget.AppCompatSpinner>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            app:layout_behavior="@string/headerScrollingBehavior" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
