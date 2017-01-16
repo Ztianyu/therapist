@@ -38,6 +38,8 @@
             </intent-filter>
         </activity>
 
+        <service android:name=".notification.DownloadService"></service>
+
         <activity
             android:name=".ui.activity.personal.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

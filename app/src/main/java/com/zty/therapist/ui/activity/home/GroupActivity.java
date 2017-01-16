@@ -35,7 +35,6 @@ public class GroupActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void setFragment() {
-
         if (type == 0 || type == 1) {
             fragment = MemberGroupFragment.newInstance(type);
         } else if (type == 2) {

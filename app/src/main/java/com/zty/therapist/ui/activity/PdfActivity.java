@@ -37,7 +37,7 @@ public class PdfActivity extends BaseActivity implements OnPageChangeListener {
     }
 
     private void display() {
-        File file = new File(DownloadUtils.file + DownloadUtils.assent, pdfName);
+        File file = new File(DownloadUtils.file + DownloadUtils.assent, pdfName + ".pdf");
         pdfView.fromFile(file)
                 //                .pages(0, 0, 0, 0, 0, 0) // 默认全部显示，pages属性可以过滤性显示
                 .defaultPage(1)//默认展示第一页
