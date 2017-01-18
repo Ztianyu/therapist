@@ -9,7 +9,6 @@ public class Urls {
     public static String HOST_PROJECT = "http://14.29.68.166:8181/rehabilitationSystem";
     public static String HOST = HOST_PROJECT + "/admin/ws";
 
-
     //注册
     public static String register = HOST + "/user/register";
     //登录
@@ -112,8 +111,7 @@ public class Urls {
     public static String getTeamGroupList = HOST + "/rehabilitationTeam/getTeamGroupList";
     //获取组长列表（未分配班长）
     public static String getGroupList = HOST + "/rehabilitationTeacher/getGroupList";
-    //预定医生
-    public static String submitDoctorOrder = HOST + "/doctorOrder/submitDoctorOrder";
+
     //发布通知
     public static String submitRehabilitationBulletin = HOST + "/rehabilitationBulletin/submitRehabilitationBulletin";
     //通知列表
@@ -122,5 +120,46 @@ public class Urls {
     public static String getInviteContent = HOST + "/inviteContent/getInviteContent";
     //班组通知信息
     public static String getInviteInformList = HOST + "/inviteInform/getInviteInformList";
+    //同意、不同意邀请
+    public static String updateState = HOST + "/inviteInform/updateState";
+    //获取通知详情
+    public static String getInviteInform = HOST + "/inviteInform/getInviteInform";
+    //获取申请组长是否通过
+    public static String getInviteInformGroup = HOST + "/inviteInform/getInviteInformGroup";
+    //获取班长列表
+    public static String getRehabilitationTeamList = HOST + "/rehabilitationTeam/getRehabilitationTeamList";
+
+
+    //预定医生
+    public static String submitDoctorOrder = HOST + "/doctorOrder/submitDoctorOrder";
+    //医生订单列表
+    public static String getDoctorOrderList = HOST + "/doctorOrder/getDoctorOrderList";
+    //医生订单详情
+    public static String getDoctorOrder = HOST + "/doctorOrder/getDoctorOrder";
+    //处理益生订单
+    public static String processOrder = HOST + "/doctorOrder/processOrder";
+
+    //健康产品订单列表
+    public static String getProductsOrderList = HOST + "/productsOrder/getProductsOrderList";
+    //提交健康产品订单
+    public static String submitProductsOrder = HOST + "/productsOrder/submitProductsOrder";
+    //收货地址
+    public static String getAddressList = HOST + "/userAddress/getAddressList";
+    //添加收货地址
+    public static String submitAddress = HOST + "/userAddress/submitAddress";
+    //删除收货地址
+    public static String deleteAddress = HOST + "/userAddress/deleteAddress";
+    //获取默认收货地址
+    public static String getIsDefault = HOST + "/userAddress/getIsDefault";
+    //设置默认收货地址
+    public static String isDefault = HOST + "/userAddress/isDefault";
+
+    //省
+    public static String getProvinceArea = HOST + "/area/getProvinceArea";
+    //市
+    public static String getCityArea = HOST + "/area/getCityArea";
+    //县
+    public static String getDistrictArea = HOST + "/area/getDistrictArea";
+
 
 }

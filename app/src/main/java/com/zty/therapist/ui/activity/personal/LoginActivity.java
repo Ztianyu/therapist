@@ -74,7 +74,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 case CODE_LOGIN:
                     LoginModel model = GsonUtils.changeGsonToBean(resultBean.getResult(), LoginModel.class);
                     UserUtils.saveUser(this, model, editLoginName.getText().toString(), editLoginPassWord.getText().toString());
-                    UserUtils.getUserMessage(model.getUserId(), this);
+
+                    if (model.getRole() == 3) {
+                        toMain();
+                    } else {
+                        UserUtils.getUserMessage(model.getUserId(), this);
+                    }
                     break;
                 case UserUtils.CODE_GET_MESSAGE:
                     toMain();

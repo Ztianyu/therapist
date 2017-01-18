@@ -10,17 +10,19 @@
         android:id="@+id/textApplyNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="　　申请成为组长后您可以管理10个人左右的团队，替班使用，另外优先为您购买集体社保。团队成员的替班、相互交流和房屋共享等功能都可以在组内完成。同时系统每月给您100积分，积分可用来"
         android:textColor="@color/black"
         android:textSize="14sp" />
 
-    <Button
+    <TextView
         android:id="@+id/btnApply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:background="@mipmap/ic_btn_agree"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:text="申  请"
         android:textColor="@color/white"
         android:textSize="16sp" />
@@ -29,7 +31,8 @@
         android:id="@+id/textApplyResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorContent1"
         android:textSize="16sp" />
 
 </LinearLayout>

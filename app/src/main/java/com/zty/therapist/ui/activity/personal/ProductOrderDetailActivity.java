@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.youth.banner.Banner;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
+import com.zty.therapist.model.ProductOrderModel;
 import com.zty.therapist.utils.BannerUtils;
 import com.zty.therapist.utils.ViewAdaptionUtils;
 
@@ -19,6 +20,7 @@ import butterknife.BindView;
  */
 
 public class ProductOrderDetailActivity extends BaseActivity {
+
     @BindView(R.id.bannerProduct)
     Banner bannerProduct;
     @BindView(R.id.textProductDetailName)
@@ -40,6 +42,8 @@ public class ProductOrderDetailActivity extends BaseActivity {
     @BindView(R.id.textAddAddress)
     TextView textAddAddress;
 
+    private ProductOrderModel model;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_product_order_detail;
@@ -47,13 +51,10 @@ public class ProductOrderDetailActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
         title.setText("订单详情");
-
         textAddAddress.setVisibility(View.GONE);
-
         initBanner();
-
+        setText();
     }
 
     @Override
@@ -66,15 +67,41 @@ public class ProductOrderDetailActivity extends BaseActivity {
 
     }
 
-    private void initBanner() {
+    private void setText() {
+        model = (ProductOrderModel) getIntent().getSerializableExtra("model");
+        textProductDetailName.setText(model.getProductNm());
+        textProductDetailNote.setText(model.getProductNm());
+        textProductDetailPrise.setText(model.getPrice());
+        textProductDetailCount.setText(model.getQuantity() + "");
+        textTotalPrise.setText(model.getTotalPrice());
+        textUserAddress.setText(model.getAddress());
+        textOrderIntegral.setText(model.getHealthCurrency() + "");
 
-        ViewAdaptionUtils.LinearLayoutAdaptation(bannerProduct, 300);
-
-        List<String> images = new ArrayList<>();
-
-        for (int i = 0; i < 8; i++) {
-            images.add("http://img03.tooopen.com/images/20131102/sy_45238929299.jpg");
+        switch (model.getState()) {
+            case 0:
+                textDoctorProductState.setText("待发货");
+                break;
+            case 1:
+                textDoctorProductState.setText("已发货");
+                break;
+            case 2:
+                textDoctorProductState.setText("已完成");
+                break;
         }
-        BannerUtils.initBanner(bannerProduct, images, 0, 0);
+    }
+
+    private void initBanner() {
+        ViewAdaptionUtils.LinearLayoutAdaptation(bannerProduct, 400);
+        List<Integer> images = new ArrayList<>();
+        images.add(R.drawable.product1);
+        images.add(R.drawable.product2);
+        images.add(R.drawable.product3);
+        images.add(R.drawable.product4);
+        images.add(R.drawable.product5);
+        images.add(R.drawable.product6);
+        images.add(R.drawable.product7);
+        images.add(R.drawable.product8);
+        images.add(R.drawable.product9);
+        BannerUtils.initBanner1(bannerProduct, images, 0, 0);
     }
 }

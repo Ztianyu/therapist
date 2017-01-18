@@ -1,5 +1,6 @@
 package com.zty.therapist.ui.activity.order;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +16,12 @@ import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.model.DoctorModel;
 import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.ui.activity.personal.MyOrderActivity;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.MyImageLoader;
 import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.TimeUtils;
 import com.zty.therapist.utils.TimeWheelUtils;
 import com.zty.therapist.utils.ToastUtils;
 
@@ -117,6 +120,8 @@ public class OrderDoctorActivity extends BaseActivity {
                     break;
                 case CODE_SUBMIT:
                     ToastUtils.show(this, "预订成功");
+                    MyOrderActivity.currentPage = 2;
+                    startActivity(new Intent(this, MyOrderActivity.class));
                     finish();
                     break;
             }
@@ -143,6 +148,7 @@ public class OrderDoctorActivity extends BaseActivity {
         params.put("contactsTel", editPaintPhone.getText().toString());
         params.put("address", editPaintAddress.getText().toString());
         params.put("startDate", editPaintExpectData.getText().toString());
+        params.put("endDate", TimeUtils.getPeriodDate(editPaintExpectData.getText().toString(), 0, -10));
         params.put("item", editPaintPro.getText().toString());
         RequestManager.post(CODE_SUBMIT, Urls.submitDoctorOrder, params, this);
     }

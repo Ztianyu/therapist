@@ -2,9 +2,12 @@ package com.zty.therapist.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,5 +46,24 @@ public class ResourceUtil {
 
     public static Drawable resToDrawable(Context context, int drawableId) {
         return context.getResources().getDrawable(drawableId);
+    }
+
+    /**
+     * dp转px
+     */
+    public static int dp2px(Context context, float dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dp, context.getResources().getDisplayMetrics());
+    }
+
+    /**
+     * 获得屏幕宽度
+     */
+    public static int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
     }
 }

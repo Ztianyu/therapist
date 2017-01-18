@@ -1,12 +1,11 @@
 package com.zty.therapist.ui.activity.home;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.RequestParams;
 import com.zty.therapist.adapter.MemberAdapter;
 import com.zty.therapist.base.BaseNormalListActivity;
+import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.model.MemberModel;
 import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.url.RequestManager;
@@ -23,17 +22,47 @@ import java.util.List;
 
 public class MemberListActivity extends BaseNormalListActivity {
 
+    private static final int CODE_GROUP_MEMBER = 0;
+    private static final int CODE_MEMBER_LIST = 1;
+    private static final int CODE_GROUPS = 2;
+
+    private int type;//0：组长的成员列表；10：未分组成员列表
+    private int role;
+
     private String userId;
 
     @Override
     protected void initReadyData() {
-        title.setText("成员列表");
-        userId = getIntent().getStringExtra("userId");
+        role = TherapistApplication.getInstance().getRole();
+        type = getIntent().getIntExtra("type", 0);
+
+        if (role == 3) {
+            if (type == 1) {
+                title.setText("组长列表");
+                userId = getIntent().getStringExtra("userId");
+            } else if (type == 2) {
+                title.setText("成员列表");
+                userId = getIntent().getStringExtra("userId");
+            } else if (type == 10) {
+                title.setText("未分组成员列表");
+            }
+        } else {
+            title.setText("成员列表");
+            userId = getIntent().getStringExtra("userId");
+        }
     }
 
     @Override
     protected void setAdapter() {
-        adapter = new MemberAdapter(this, 1);
+        if (role == 3) {
+            if (type == 1) {
+                adapter = new MemberAdapter(this, 1);
+            } else if (type == 2) {
+                adapter = new MemberAdapter(this, 2);
+            }
+        } else {
+            adapter = new MemberAdapter(this, 1);
+        }
     }
 
     @Override
@@ -43,9 +72,21 @@ public class MemberListActivity extends BaseNormalListActivity {
 
     @Override
     protected void fetchData() {
-        RequestParams params = new RequestParams();
-        params.put("userId", userId);
-        RequestManager.get(-1, Urls.getGroupMemberList, params, this);
+        if (role == 3) {
+            if (type == 1) {
+                RequestParams params = new RequestParams();
+                params.put("userId", userId);
+                RequestManager.get(CODE_GROUPS, Urls.getTeamGroupList, params, this);
+            } else if (type == 2) {
+                RequestParams params = new RequestParams();
+                params.put("userId", userId);
+                RequestManager.get(CODE_MEMBER_LIST, Urls.getGroupMemberList, params, this);
+            }
+        } else {
+            RequestParams params = new RequestParams();
+            params.put("userId", userId);
+            RequestManager.get(CODE_GROUP_MEMBER, Urls.getGroupMemberList, params, this);
+        }
     }
 
     @Override
@@ -57,11 +98,17 @@ public class MemberListActivity extends BaseNormalListActivity {
     public void onSuccessCallback(int requestCode, String response) {
         ResultBean resultBean = ResultUtil.getResult(response);
         if (resultBean.isSuccess()) {
-            List<MemberModel> memberModels = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<MemberModel>>() {
-            }.getType());
+            switch (requestCode) {
+                case CODE_GROUP_MEMBER:
+                case CODE_MEMBER_LIST:
+                case CODE_GROUPS:
+                    List<MemberModel> memberModels = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<MemberModel>>() {
+                    }.getType());
 
-            if (memberModels != null)
-                adapter.notifyTopRefresh(memberModels);
+                    if (memberModels != null)
+                        adapter.notifyTopRefresh(memberModels);
+                    break;
+            }
         } else {
             ToastUtils.show(this, resultBean.getMsg());
         }

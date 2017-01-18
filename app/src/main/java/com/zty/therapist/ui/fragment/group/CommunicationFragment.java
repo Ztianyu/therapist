@@ -1,21 +1,30 @@
 package com.zty.therapist.ui.fragment.group;
 
-import com.zty.therapist.R;
-import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.base.BaseNormalListFragment;
 
 /**
  * 聊天列表
  * Created by tianyu on 2016/12/31.
  */
 
-public class CommunicationFragment extends BaseFragment {
+public class CommunicationFragment extends BaseNormalListFragment {
     @Override
-    public int getContentVew() {
-        return R.layout.view_recycler_refresh;
+    protected void initReadyData() {
+
     }
 
     @Override
-    public void initData() {
+    protected void setAdapter() {
+
+    }
+
+    @Override
+    protected boolean isHaveDivider() {
+        return false;
+    }
+
+    @Override
+    protected void fetchData() {
 
     }
 

@@ -39,6 +39,13 @@ public class NoteFragment extends BaseRefreshFragment {
         return false;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
+    }
+
     @Override
     protected void fetchData() {
         RequestParams params = new RequestParams();

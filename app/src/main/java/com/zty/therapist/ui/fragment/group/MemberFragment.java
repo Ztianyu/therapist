@@ -54,6 +54,8 @@ public class MemberFragment extends BaseNormalListFragment {
             RequestManager.get(-1, Urls.getGroupMemberList, null, this);
         } else if (role == 2) {
             RequestManager.get(-1, Urls.getTeamGroupList, null, this);
+        }else if(role ==3){
+            RequestManager.get(-1, Urls.getRehabilitationTeamList, null, this);
         }
     }
 

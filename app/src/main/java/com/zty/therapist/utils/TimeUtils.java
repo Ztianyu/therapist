@@ -2,6 +2,7 @@ package com.zty.therapist.utils;
 
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -188,6 +189,48 @@ public class TimeUtils {
             exception.printStackTrace();
         }
         return 0;
+    }
+
+    /**
+     * 获取几天前的日期（第几月前的日期）
+     *
+     * @param time
+     * @param dateType （0：获取几天前的日期；1：获取第几月前的日期）
+     * @param count    ( 天数（月数）)
+     * @return
+     */
+    public static String getPeriodDate(String time, int dateType,
+                                       int count) {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            c.setTime(simpleDate.parse(time));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int day; // 需要更改的天数(月数)
+
+        switch (dateType) {
+            case 0:
+                day = c.get(Calendar.DAY_OF_MONTH) - count;
+                c.set(Calendar.DAY_OF_MONTH, day);
+                break;
+            case 1:
+                day = c.get(Calendar.MONTH) - count;
+                c.set(Calendar.MONTH, day);
+                break;
+        }
+
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+        StringBuilder strForwardDate = new StringBuilder().append(mYear)
+                .append("-")
+                .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
+                .append("-").append((mDay < 10) ? "0" + mDay : mDay);
+        System.out.println("strDate------->" + strForwardDate + "--->"
+                + c.getTimeInMillis());
+        return strForwardDate.toString();
     }
 
     public static String getYear() {

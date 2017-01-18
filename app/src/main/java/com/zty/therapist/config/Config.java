@@ -19,4 +19,5 @@ public class Config {
 
     public static final String ADD_TO_CLASS = "邀请加入班";
     public static final String EXIT_CLASS = "退出班";
+
 }

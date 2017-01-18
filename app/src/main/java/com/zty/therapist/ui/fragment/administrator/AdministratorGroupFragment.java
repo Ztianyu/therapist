@@ -1,5 +1,6 @@
 package com.zty.therapist.ui.fragment.administrator;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -8,11 +9,16 @@ import android.widget.RadioGroup;
 
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.ui.activity.home.AddMemberActivity;
 import com.zty.therapist.ui.activity.home.GroupActivity;
+import com.zty.therapist.ui.activity.home.MemberListActivity;
+import com.zty.therapist.ui.activity.home.SendNoteActivity;
 import com.zty.therapist.ui.fragment.group.CommunicationFragment;
 import com.zty.therapist.ui.fragment.group.HouseRentFragment;
 import com.zty.therapist.ui.fragment.group.MemberFragment;
 import com.zty.therapist.ui.fragment.group.ReplaceWorkFragment;
+import com.zty.therapist.ui.fragment.monitor.DoctorOrderFragment;
+import com.zty.therapist.ui.fragment.monitor.NoteFragment;
 import com.zty.therapist.utils.ResourceUtil;
 
 import butterknife.BindView;
@@ -35,9 +41,9 @@ public class AdministratorGroupFragment extends BaseFragment implements RadioGro
     RadioButton radioButtonMember4;
 
     MemberFragment memberFragment;
-    ReplaceWorkFragment replaceWorkFragment;
-    HouseRentFragment houseRentFragment;
-    CommunicationFragment communicationFragment;
+    DoctorOrderFragment doctorOrderFragment;
+    GroupFragment groupFragment;
+    NoteFragment noteFragment;
 
 
     private int currentPage = 1;
@@ -102,22 +108,22 @@ public class AdministratorGroupFragment extends BaseFragment implements RadioGro
                 addOrShowFragment(getChildFragmentManager().beginTransaction(), memberFragment);
                 break;
             case R.id.radioButtonMember2:
-                if (replaceWorkFragment == null)
-                    replaceWorkFragment = new ReplaceWorkFragment();
+                if (doctorOrderFragment == null)
+                    doctorOrderFragment = new DoctorOrderFragment();
                 currentPage = 2;
-                addOrShowFragment(getChildFragmentManager().beginTransaction(), replaceWorkFragment);
+                addOrShowFragment(getChildFragmentManager().beginTransaction(), doctorOrderFragment);
                 break;
             case R.id.radioButtonMember3:
-                if (houseRentFragment == null)
-                    houseRentFragment = new HouseRentFragment();
+                if (groupFragment == null)
+                    groupFragment = new GroupFragment();
                 currentPage = 3;
-                addOrShowFragment(getChildFragmentManager().beginTransaction(), houseRentFragment);
+                addOrShowFragment(getChildFragmentManager().beginTransaction(), groupFragment);
                 break;
             case R.id.radioButtonMember4:
-                if (communicationFragment == null)
-                    communicationFragment = new CommunicationFragment();
+                if (noteFragment == null)
+                    noteFragment = new NoteFragment();
                 currentPage = 4;
-                addOrShowFragment(getChildFragmentManager().beginTransaction(), communicationFragment);
+                addOrShowFragment(getChildFragmentManager().beginTransaction(), noteFragment);
                 break;
         }
     }
@@ -145,7 +151,7 @@ public class AdministratorGroupFragment extends BaseFragment implements RadioGro
             case 1:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
                 ((GroupActivity) context).title.setText("班长列表");
-                ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_add);
+                ((GroupActivity) context).setRight(R.mipmap.ic_menu);
                 break;
             case 2:
                 ((GroupActivity) context).right.setVisibility(View.INVISIBLE);
@@ -158,7 +164,7 @@ public class AdministratorGroupFragment extends BaseFragment implements RadioGro
             case 4:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
                 ((GroupActivity) context).title.setText("通知公告");
-                ((GroupActivity) context).right.setBackgroundResource(R.mipmap.ic_publish);
+                ((GroupActivity) context).setRight(R.mipmap.ic_publish);
                 break;
         }
     }
@@ -168,12 +174,14 @@ public class AdministratorGroupFragment extends BaseFragment implements RadioGro
         if (view.getId() == R.id.titleRight) {
             switch (currentPage) {
                 case 1:
+                    startActivity(new Intent(context, MemberListActivity.class).putExtra("type", 10));
                     break;
                 case 2:
                     break;
                 case 3:
                     break;
                 case 4:
+                    startActivity(new Intent(context, SendNoteActivity.class));
                     break;
             }
         }

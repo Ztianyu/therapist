@@ -13,18 +13,18 @@
         android:id="@+id/textUserAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_location"
         android:drawablePadding="4dp"
-        android:text="收货地址：北京市西城区幸福街道20号锦绣家园12栋5单元1509"
-        android:drawableLeft="@mipmap/ic_location"/>
+        android:text="" />
 
     <TextView
         android:id="@+id/textAddAddress"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_gravity="right"
-        android:textColor="@color/refresh1"
         android:gravity="center_vertical"
-        android:text="新增地址"/>
+        android:text="其他地址"
+        android:textColor="@color/refresh1" />
 
 
 </LinearLayout>

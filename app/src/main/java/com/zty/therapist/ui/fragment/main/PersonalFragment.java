@@ -17,6 +17,7 @@ import com.zty.therapist.ui.activity.personal.MyOrderActivity;
 import com.zty.therapist.ui.activity.personal.SettingActivity;
 import com.zty.therapist.ui.activity.personal.UserMessageActivity;
 import com.zty.therapist.utils.MyImageLoader;
+import com.zty.therapist.utils.SharedPrefUtils;
 import com.zty.therapist.widget.CircleImageView;
 import com.zty.therapist.widget.MyStripMenuView;
 
@@ -52,6 +53,8 @@ public class PersonalFragment extends BaseFragment {
 
     private UserModel userModel;
 
+    private int role;
+
     @Override
     public int getContentVew() {
         return R.layout.fragment_personal;
@@ -70,6 +73,7 @@ public class PersonalFragment extends BaseFragment {
     private void setMessage() {
 
         userModel = TherapistApplication.getInstance().getUserModel();
+        role = TherapistApplication.getInstance().getRole();
 
         if (userModel != null) {
             MyImageLoader.load(context, userModel.getPhoto(), imgUserHeader);
@@ -78,10 +82,17 @@ public class PersonalFragment extends BaseFragment {
             textUserHeaderName.setText(userModel.getTeacherNm());
             textUserHeaderPhone.setText(userModel.getMobile());
         } else {
-            imgUserHeader.setBackgroundResource(R.mipmap.ic_header_default);
-            MyImageLoader.load(context, "", imgUserHeader);
-            layoutUserMessage.setVisibility(View.INVISIBLE);
-            textUserHeaderLogin.setVisibility(View.VISIBLE);
+            if (role == 3) {
+                layoutUserMessage.setVisibility(View.VISIBLE);
+                textUserHeaderLogin.setVisibility(View.INVISIBLE);
+                textUserHeaderName.setText(SharedPrefUtils.getString(context, SharedPrefUtils.LOGIN_NAME));
+                textUserHeaderPhone.setText("");
+            } else {
+                imgUserHeader.setBackgroundResource(R.mipmap.ic_header_default);
+                MyImageLoader.load(context, "", imgUserHeader);
+                layoutUserMessage.setVisibility(View.INVISIBLE);
+                textUserHeaderLogin.setVisibility(View.VISIBLE);
+            }
         }
     }
 

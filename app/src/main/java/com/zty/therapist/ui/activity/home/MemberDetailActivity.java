@@ -119,6 +119,17 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
                 btnMemberHandle.setVisibility(View.INVISIBLE);
                 btnMemberEvaluate.setVisibility(View.INVISIBLE);
             }
+        } else if (role == 3) {
+            btnMemberHandle.setVisibility(View.INVISIBLE);
+            btnMemberEvaluate.setVisibility(View.INVISIBLE);
+            setRight(R.mipmap.ic_group_member);
+            if (type == 0) {
+                right.setVisibility(View.VISIBLE);
+            } else if (type == 1) {
+                right.setVisibility(View.VISIBLE);
+            } else {
+                right.setVisibility(View.INVISIBLE);
+            }
         }
     }
 
@@ -227,7 +238,15 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
 
     @Override
     public void rightClick() {
-        startActivity(new Intent(this, MemberListActivity.class).putExtra("userId", userId));
+        if (role == 3) {
+            if (type == 0) {
+                startActivity(new Intent(this, MemberListActivity.class).putExtra("userId", userId).putExtra("type", 1));
+            } else if (type == 1) {
+                startActivity(new Intent(this, MemberListActivity.class).putExtra("userId", userId).putExtra("type", 2));
+            }
+        } else {
+            startActivity(new Intent(this, MemberListActivity.class).putExtra("userId", userId).putExtra("type", 0));
+        }
     }
 
     private void handle() {

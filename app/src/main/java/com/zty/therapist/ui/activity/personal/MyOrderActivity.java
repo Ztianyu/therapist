@@ -1,7 +1,6 @@
 package com.zty.therapist.ui.activity.personal;
 
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.widget.RadioGroup;
 
 import com.zty.therapist.R;
@@ -21,7 +20,7 @@ public class MyOrderActivity extends BaseActivity implements RadioGroup.OnChecke
     RadioGroup radioGroupOrder;
 
     BaseFragment currentFragment;
-    private int currentPage = 1;
+    public static int currentPage = 1;
 
     private OrderFragment productFragment;
     private OrderFragment doctorFragment;
@@ -36,15 +35,26 @@ public class MyOrderActivity extends BaseActivity implements RadioGroup.OnChecke
 
         radioGroupOrder.setOnCheckedChangeListener(this);
 
-        if (productFragment == null) {
-            productFragment = OrderFragment.newInstance(0);
-        }
-
-        if (!productFragment.isAdded()) {
-            getSupportFragmentManager().beginTransaction().add(R.id.fragmentOrder, productFragment).commit();
-            currentFragment = productFragment;
-            currentPage = 1;
-            setTitle();
+        if (currentPage == 1) {
+            if (productFragment == null) {
+                productFragment = OrderFragment.newInstance(0);
+            }
+            if (!productFragment.isAdded()) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fragmentOrder, productFragment).commit();
+                currentFragment = productFragment;
+                currentPage = 1;
+                setTitle();
+            }
+        } else {
+            if (doctorFragment == null) {
+                doctorFragment = OrderFragment.newInstance(1);
+            }
+            if (!doctorFragment.isAdded()) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fragmentOrder, doctorFragment).commit();
+                currentFragment = doctorFragment;
+                currentPage = 2;
+                setTitle();
+            }
         }
     }
 

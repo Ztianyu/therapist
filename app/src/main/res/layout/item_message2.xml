@@ -25,9 +25,7 @@
             android:id="@+id/textMessageContent2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp" />
+            android:padding="8dp"/>
 
         <View
             android:layout_width="match_parent"
@@ -37,7 +35,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <View
@@ -45,11 +43,14 @@
                 android:layout_height="1dp"
                 android:layout_weight="1"></View>
 
-            <Button
+            <TextView
                 android:id="@+id/btnAgree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_btn_agree"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
                 android:text="同 意"
                 android:textColor="@color/white" />
 
@@ -58,11 +59,14 @@
                 android:layout_height="1dp"
                 android:layout_weight="1"></View>
 
-            <Button
+            <TextView
                 android:id="@+id/btnNoAgree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/ic_btn_no_agree"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
                 android:text="不同意"
                 android:textColor="@color/white" />
 
