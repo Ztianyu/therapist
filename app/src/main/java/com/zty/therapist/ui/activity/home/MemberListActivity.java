@@ -59,6 +59,8 @@ public class MemberListActivity extends BaseNormalListActivity {
                 adapter = new MemberAdapter(this, 1);
             } else if (type == 2) {
                 adapter = new MemberAdapter(this, 2);
+            } else if (type == 10) {
+                adapter = new MemberAdapter(this, 10);
             }
         } else {
             adapter = new MemberAdapter(this, 1);
@@ -81,6 +83,8 @@ public class MemberListActivity extends BaseNormalListActivity {
                 RequestParams params = new RequestParams();
                 params.put("userId", userId);
                 RequestManager.get(CODE_MEMBER_LIST, Urls.getGroupMemberList, params, this);
+            } else if (type == 10) {
+                RequestManager.get(CODE_MEMBER_LIST, Urls.getMemberList, null, this);
             }
         } else {
             RequestParams params = new RequestParams();

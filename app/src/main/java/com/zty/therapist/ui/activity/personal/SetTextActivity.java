@@ -32,6 +32,8 @@ public class SetTextActivity extends BaseActivity {
 
     private int type;//0：字符串；1：数字；2：电话
 
+    private String id;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_set_text;
@@ -39,6 +41,9 @@ public class SetTextActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
+        id = TherapistApplication.getInstance().getUserModel().getId();
+
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("message");
         url = bundle.getString("url");
@@ -83,6 +88,7 @@ public class SetTextActivity extends BaseActivity {
     public void rightClick() {
         RequestParams params = new RequestParams();
         params.put(key, editSetText.getText().toString());
+        params.put("id", id);
         RequestManager.post(-1, url, params, this);
     }
 

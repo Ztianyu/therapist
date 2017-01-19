@@ -31,6 +31,8 @@ public class SetSexActivity extends BaseActivity implements RadioGroup.OnChecked
 
     private String strSex;
 
+    private String id;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_set_sex;
@@ -38,6 +40,9 @@ public class SetSexActivity extends BaseActivity implements RadioGroup.OnChecked
 
     @Override
     protected void initData() {
+
+        id = TherapistApplication.getInstance().getUserModel().getId();
+
         title.setText("性 别");
         right.setText("保存");
         strSex = getIntent().getStringExtra("sex");
@@ -87,6 +92,7 @@ public class SetSexActivity extends BaseActivity implements RadioGroup.OnChecked
     public void rightClick() {
         RequestParams params = new RequestParams();
         params.put("sex", strSex);
+        params.put("id", id);
         RequestManager.post(-1, Urls.update, params, this);
     }
 }

@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zty.therapist.R;
+import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.inter.OnMessageListener;
 import com.zty.therapist.model.MessageModel;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
 import com.zty.therapist.recycler.ViewHolder;
+import com.zty.therapist.utils.MyTextUtils;
 
 /**
  * Created by zty on 2016/12/27.
@@ -23,9 +25,12 @@ public class MessageAdapter extends FooterRefreshAdapter<MessageModel> {
 
     OnMessageListener listener;
 
+    private int role;
+
     public MessageAdapter(Context context, OnMessageListener listener) {
         super(context);
         this.listener = listener;
+        role = TherapistApplication.getInstance().getRole();
     }
 
     @Override
@@ -62,7 +67,7 @@ public class MessageAdapter extends FooterRefreshAdapter<MessageModel> {
         if (viewType == TYPE_ITEM1) {
             ViewHolder viewHolder1 = (ViewHolder) holder;
             viewHolder1.setText(R.id.textMessageTitle1, mData.get(position).getTitle());
-            viewHolder1.setText(R.id.textMessageContent1, mData.get(position).getTeacherNm() + "邀请您加入，" + mData.get(position).getContent());
+            viewHolder1.setText(R.id.textMessageContent1, MyTextUtils.isEmpty(mData.get(position).getTeacherNm()) + "邀请您加入，" + mData.get(position).getContent());
 
             int state = mData.get(position).getState();
             if (state == 1) {
@@ -75,7 +80,18 @@ public class MessageAdapter extends FooterRefreshAdapter<MessageModel> {
         } else if (viewType == TYPE_ITEM2) {
             ViewHolder viewHolder2 = (ViewHolder) holder;
             viewHolder2.setText(R.id.textMessageTitle2, mData.get(position).getTitle());
-            viewHolder2.setText(R.id.textMessageContent2, mData.get(position).getTeacherNm() + "邀请您加入，" + mData.get(position).getContent());
+            viewHolder2.setText(R.id.textMessageContent2, mData.get(position).getContent());
+
+            if (role != 3) {
+                if (mData.get(position).getType() == 3) {
+                    viewHolder2.getView(R.id.btnAgree).setVisibility(View.INVISIBLE);
+                    viewHolder2.getView(R.id.btnNoAgree).setVisibility(View.INVISIBLE);
+                }
+            } else {
+                viewHolder2.getView(R.id.btnAgree).setVisibility(View.VISIBLE);
+                viewHolder2.getView(R.id.btnNoAgree).setVisibility(View.VISIBLE);
+            }
+
             viewHolder2.setOnClick(R.id.btnAgree, new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

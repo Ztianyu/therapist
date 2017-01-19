@@ -162,10 +162,8 @@ public class AddMemberActivity extends BaseActivity implements View.OnClickListe
 
     @OnClick(R.id.imgSearch)
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
-            case R.id.titleLeft:
-                finish();
-                break;
             case R.id.imgSearch:
                 hideInput();
                 fetchData();

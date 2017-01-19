@@ -1,6 +1,7 @@
 package com.zty.therapist.ui.activity.home;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,10 +12,12 @@ import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.config.Config;
 import com.zty.therapist.inter.DialogListener;
+import com.zty.therapist.inter.OnDistributeRelay;
 import com.zty.therapist.model.AbilityOptionModel;
 import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.model.UserModel;
 import com.zty.therapist.service.InviteInformUtils;
+import com.zty.therapist.ui.fragment.home.AllotFragment;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.DialogUtils;
@@ -34,11 +37,12 @@ import butterknife.OnClick;
  * Created by zty on 2017/1/11.
  */
 
-public class MemberDetailActivity extends BaseActivity implements DialogListener {
+public class MemberDetailActivity extends BaseActivity implements DialogListener, OnDistributeRelay {
 
     private static final int CODE_GET_OPTION = 0;
     private static final int CODE_EXIT_GROUP = 3;
     private static final int CODE_EXIT_CLASS = 4;
+    private static final int CODE_REPLACE = 5;
 
     @BindView(R.id.textMemberDetailName)
     TextView textMemberDetailName;
@@ -120,14 +124,18 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
                 btnMemberEvaluate.setVisibility(View.INVISIBLE);
             }
         } else if (role == 3) {
-            btnMemberHandle.setVisibility(View.INVISIBLE);
+
             btnMemberEvaluate.setVisibility(View.INVISIBLE);
             setRight(R.mipmap.ic_group_member);
             if (type == 0) {
+                btnMemberHandle.setVisibility(View.INVISIBLE);
                 right.setVisibility(View.VISIBLE);
             } else if (type == 1) {
+                btnMemberHandle.setVisibility(View.VISIBLE);
+                btnMemberHandle.setText("换组长");
                 right.setVisibility(View.VISIBLE);
             } else {
+                btnMemberHandle.setVisibility(View.INVISIBLE);
                 right.setVisibility(View.INVISIBLE);
             }
         }
@@ -172,6 +180,15 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
                     btnMemberHandle.setVisibility(View.INVISIBLE);
                 } else {
                     ToastUtils.show(this, resultBean2.getMsg());
+                }
+                break;
+            case CODE_REPLACE:
+                ResultBean resultBean3 = ResultUtil.getResult(response);
+                if (resultBean3.isSuccess()) {
+                    ToastUtils.show(this, "替换成功");
+                    btnMemberHandle.setVisibility(View.INVISIBLE);
+                } else {
+                    ToastUtils.show(this, resultBean3.getMsg());
                 }
                 break;
         }
@@ -254,6 +271,15 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
             DialogUtils.show(this, "是否移除该成员", this);
         } else if (role == 2) {
             DialogUtils.show(this, "是否移除该组长", this);
+        } else if (role == 3) {
+            if (type == 1) {
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag("allotFragment");
+                if (fragment != null)
+                    getSupportFragmentManager().beginTransaction().remove(fragment);
+
+                AllotFragment allotFragment = AllotFragment.getInstance(0, userId, "请选择分配班长");
+                allotFragment.show(getSupportFragmentManager().beginTransaction(), "allotFragment");
+            }
         }
     }
 
@@ -264,5 +290,14 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
         } else {
             InviteInformUtils.submitInviteInform(CODE_EXIT_CLASS, Config.CODE_SUBMIT_INCITE_INFORM_2, userId, Config.EXIT_CLASS, 3, this);
         }
+    }
+
+    @Override
+    public void onDistribute(String lastUserId) {
+        // 更换组长
+        RequestParams params = new RequestParams();
+        params.put("groupUserId", userId);
+        params.put("replaceUserId", lastUserId);
+        RequestManager.post(CODE_REPLACE, Urls.replaceGroupLeader, params, this);
     }
 }

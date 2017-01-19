@@ -1,16 +1,20 @@
 package com.zty.therapist.ui.fragment.monitor;
 
+import android.support.v4.app.Fragment;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.RequestParams;
 import com.zty.therapist.adapter.DoctorHandleAdapter;
 import com.zty.therapist.base.BaseRefreshFragment;
 import com.zty.therapist.inter.OnConfirmListener;
+import com.zty.therapist.inter.OnDistributeRelay;
 import com.zty.therapist.inter.OnHandleListener;
 import com.zty.therapist.inter.OnSureListener;
 import com.zty.therapist.model.DoctorOrderModel;
 import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
+import com.zty.therapist.ui.fragment.home.AllotFragment;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.DialogUtils;
@@ -23,7 +27,7 @@ import java.util.List;
  * Created by zty on 2017/1/14.
  */
 
-public class DoctorOrderFragment extends BaseRefreshFragment implements OnHandleListener {
+public class DoctorOrderFragment extends BaseRefreshFragment implements OnHandleListener, OnDistributeRelay {
 
     private static final int CODE_CONFIRM = 0;
     private static final int CODE_SURE = 1;
@@ -101,6 +105,7 @@ public class DoctorOrderFragment extends BaseRefreshFragment implements OnHandle
                     break;
                 case CODE_CONFIRM:
                 case CODE_SURE:
+                case CODE_SET:
                     ToastUtils.show(context, "处理成功");
                     getDoctorOrder();
                     break;
@@ -114,7 +119,6 @@ public class DoctorOrderFragment extends BaseRefreshFragment implements OnHandle
         } else {
             ToastUtils.show(context, resultBean.getMsg());
         }
-
     }
 
     @Override
@@ -146,13 +150,20 @@ public class DoctorOrderFragment extends BaseRefreshFragment implements OnHandle
                 RequestManager.post(CODE_SURE, Urls.processOrder, params, DoctorOrderFragment.this);
             }
         });
-
     }
 
     @Override
     public void onSetTransactor(String id, int position) {
         this.id = id;
         this.position = position;
+        DialogUtils.select(context, this);
+    }
 
+    @Override
+    public void onDistribute(String lastUserId) {
+        RequestParams params = new RequestParams();
+        params.put("id", id);
+        params.put("transactor", lastUserId);
+        RequestManager.post(CODE_SET, Urls.distributeTransactor, params, DoctorOrderFragment.this);
     }
 }

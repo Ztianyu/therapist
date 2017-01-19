@@ -42,13 +42,15 @@ public class MessageListActivity extends BaseRefreshActivity implements OnMessag
 
     @Override
     protected void initReadyData() {
-        if (type == 0) {
-            title.setText("通知公告");
-        } else {
-            title.setText("班组通知");
-        }
         type = getIntent().getIntExtra("type", 0);
         role = TherapistApplication.getInstance().getRole();
+        if (type == 0) {
+            title.setText("通知公告");
+        } else if (type == 1) {
+            title.setText("班组通知");
+        } else if (type == 2) {
+            title.setText("班长申请");
+        }
     }
 
     @Override
@@ -71,10 +73,14 @@ public class MessageListActivity extends BaseRefreshActivity implements OnMessag
             RequestParams params = new RequestParams();
             params.put("pageNo", pageNo);
             RequestManager.get(CODE_NOTE, Urls.getRehabilitationBulletinList, params, this);
-        } else {
+        } else if (type == 1) {
             RequestParams params = new RequestParams();
             params.put("pageNo", pageNo);
             RequestManager.get(CODE_MESSAGE, Urls.getInviteInformList, params, this);
+        } else if (type == 2) {
+            RequestParams params = new RequestParams();
+            params.put("pageNo", pageNo);
+            RequestManager.get(CODE_MESSAGE, Urls.getInviteInformAdminList, params, this);
         }
     }
 

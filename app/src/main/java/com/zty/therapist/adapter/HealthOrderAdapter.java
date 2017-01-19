@@ -26,9 +26,9 @@ public class HealthOrderAdapter extends FooterRefreshAdapter<ProductOrderModel> 
     protected void convert(RecyclerView.ViewHolder holder, final ProductOrderModel productOrderModel) {
         ViewHolder viewHolder = (ViewHolder) holder;
 
-        viewHolder.setImage(mContext, R.id.imgProduct, "");
+        viewHolder.setImage(mContext, R.id.imgProduct, productOrderModel.getImgUrl());
         viewHolder.setText(R.id.textProductName, productOrderModel.getProductNm());
-        viewHolder.setText(R.id.textProductNote, productOrderModel.getProductNm());
+        viewHolder.setText(R.id.textProductNote, productOrderModel.getRemarks());
         viewHolder.setText(R.id.textProductPrise, productOrderModel.getTotalPrice());
         viewHolder.setText(R.id.textProductCount, productOrderModel.getQuantity() + "");
         viewHolder.setText(R.id.textProductIntegral, productOrderModel.getHealthCurrency() + "");

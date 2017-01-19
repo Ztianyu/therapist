@@ -8,14 +8,18 @@ import android.widget.TextView;
 import com.youth.banner.Banner;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.ui.activity.home.ClassRoomActivity;
 import com.zty.therapist.ui.activity.home.CommunityActivity;
 import com.zty.therapist.ui.activity.home.GroupActivity;
 import com.zty.therapist.ui.activity.home.HelpActivity;
 import com.zty.therapist.ui.activity.home.InfoActivity;
 import com.zty.therapist.ui.activity.home.LearnActivity;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.BannerUtils;
 import com.zty.therapist.utils.ResourceUtil;
+import com.zty.therapist.utils.ResultUtil;
 import com.zty.therapist.utils.ViewAdaptionUtils;
 import com.zty.therapist.widget.LabView;
 
@@ -71,6 +75,8 @@ public class HomeFragment2 extends BaseFragment {
 
         BannerUtils.initBanner(bannerHome, images, 1, 1);
 
+        RequestManager.get(-1, Urls.getSystemBulletinList, null, this);
+
     }
 
     @Override
@@ -80,7 +86,10 @@ public class HomeFragment2 extends BaseFragment {
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
 
+        }
     }
 
     @OnClick({R.id.homeLab1, R.id.homeLab2, R.id.homeLab3, R.id.homeLab4, R.id.homeLab5, R.id.homeLab6})

@@ -5,18 +5,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.loopj.android.http.RequestParams;
 import com.zty.therapist.R;
 import com.zty.therapist.adapter.DoctorIntegralAdapter;
 import com.zty.therapist.adapter.ProductIntegralAdapter;
 import com.zty.therapist.base.BaseFragment;
 import com.zty.therapist.model.DoctorRecordModel;
 import com.zty.therapist.model.IntegralRecordModel;
+import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.recycler.FooterRefreshAdapter;
+import com.zty.therapist.url.RequestManager;
+import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.ResourceUtil;
+import com.zty.therapist.utils.ResultUtil;
 import com.zty.therapist.widget.RecyclerViewDivider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -25,6 +27,9 @@ import butterknife.BindView;
  */
 
 public class IntegralRecordFragment extends BaseFragment {
+
+    private static final int CODE_PRODUCT_LIST = 0;
+    private static final int CODE_DOCTOR_LIST = 1;
 
     @BindView(R.id.recyclerViewIntegral)
     RecyclerView recyclerViewIntegral;
@@ -101,42 +106,21 @@ public class IntegralRecordFragment extends BaseFragment {
 
         fetchData();
 
-        textIntegralCount.setText(String.format(ResourceUtil.resToStr(context, R.string.integralCount), "5000"));
+        textIntegralCount.setText(String.format(ResourceUtil.resToStr(context, R.string.integralCount), "0"));
 
     }
 
     private void fetchData() {
-
-        List<Object> models;
         if (type == 0) {
-            models = new ArrayList<>();
-            IntegralRecordModel model;
-            for (int i = 0; i < 10; i++) {
-                model = new IntegralRecordModel();
-                if (pageNo == 1 && i == 0) {
-                    model.setTop(true);
-                }
-                models.add(model);
-            }
+            RequestParams params = new RequestParams();
+            params.put("pageNo", pageNo);
+            RequestManager.get(CODE_PRODUCT_LIST, Urls.getAccountInquiryOrderList, params, this);
         } else {
-            models = new ArrayList<>();
-            DoctorRecordModel model;
-            for (int i = 0; i < 10; i++) {
-                model = new DoctorRecordModel();
-                if (pageNo == 1 && i == 0) {
-                    model.setTop(true);
-                }
-                models.add(model);
-            }
+            RequestParams params = new RequestParams();
+            params.put("pageNo", pageNo);
+            RequestManager.get(CODE_DOCTOR_LIST, Urls.getAccountInquiryDoctorOrderList, params, this);
         }
 
-        if (isLoadMore) {
-            adapter.notifyBottomRefresh(models);
-            adapter.updateRefreshState(FooterRefreshAdapter.STATE_FINISH);
-            mTempPageCount++;
-        } else {
-            adapter.notifyTopRefresh(models);
-        }
     }
 
     @Override
@@ -146,6 +130,9 @@ public class IntegralRecordFragment extends BaseFragment {
 
     @Override
     public void onSuccessCallback(int requestCode, String response) {
+        ResultBean resultBean = ResultUtil.getResult(response);
+        if (resultBean.isSuccess()) {
 
+        }
     }
 }

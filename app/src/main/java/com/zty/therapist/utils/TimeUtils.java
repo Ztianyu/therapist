@@ -1,6 +1,8 @@
 package com.zty.therapist.utils;
 
 
+import android.text.TextUtils;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,11 +59,14 @@ public class TimeUtils {
 
 
     public static String getAge(String date) {
-        int year = Integer.parseInt(date.substring(0, 4));
-        int nowYear = Integer.parseInt(getDateAndMinute().substring(0, 4));
+        if (!TextUtils.isEmpty(date)) {
+            int year = Integer.parseInt(date.substring(0, 4));
+            int nowYear = Integer.parseInt(getDateAndMinute().substring(0, 4));
 
-        return (nowYear - year) + "岁";
-
+            return (nowYear - year) + "岁";
+        } else {
+            return "";
+        }
     }
 
     /**

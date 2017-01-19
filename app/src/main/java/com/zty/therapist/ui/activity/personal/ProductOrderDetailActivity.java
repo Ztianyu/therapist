@@ -70,7 +70,7 @@ public class ProductOrderDetailActivity extends BaseActivity {
     private void setText() {
         model = (ProductOrderModel) getIntent().getSerializableExtra("model");
         textProductDetailName.setText(model.getProductNm());
-        textProductDetailNote.setText(model.getProductNm());
+        textProductDetailNote.setText(model.getRemarks());
         textProductDetailPrise.setText(model.getPrice());
         textProductDetailCount.setText(model.getQuantity() + "");
         textTotalPrise.setText(model.getTotalPrice());

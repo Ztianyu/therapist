@@ -1,6 +1,7 @@
 package com.zty.therapist.ui.activity.personal;
 
 import android.support.v4.app.FragmentTransaction;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.zty.therapist.R;
@@ -18,6 +19,11 @@ import butterknife.BindView;
 public class MyOrderActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     @BindView(R.id.radioGroupOrder)
     RadioGroup radioGroupOrder;
+    @BindView(R.id.radioButtonOrder1)
+    RadioButton radioButtonOrder1;
+    @BindView(R.id.radioButtonOrder2)
+    RadioButton radioButtonOrder2;
+
 
     BaseFragment currentFragment;
     public static int currentPage = 1;
@@ -45,6 +51,8 @@ public class MyOrderActivity extends BaseActivity implements RadioGroup.OnChecke
                 currentPage = 1;
                 setTitle();
             }
+            radioGroupOrder.clearCheck();
+            radioButtonOrder1.setChecked(true);
         } else {
             if (doctorFragment == null) {
                 doctorFragment = OrderFragment.newInstance(1);
@@ -55,6 +63,8 @@ public class MyOrderActivity extends BaseActivity implements RadioGroup.OnChecke
                 currentPage = 2;
                 setTitle();
             }
+            radioGroupOrder.clearCheck();
+            radioButtonOrder2.setChecked(true);
         }
     }
 

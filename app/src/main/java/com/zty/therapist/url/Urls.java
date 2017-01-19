@@ -7,6 +7,7 @@ package com.zty.therapist.url;
 public class Urls {
 
     public static String HOST_PROJECT = "http://14.29.68.166:8181/rehabilitationSystem";
+    //    public static String HOST_PROJECT = "http://10.0.0.110:8080/elink";
     public static String HOST = HOST_PROJECT + "/admin/ws";
 
     //注册
@@ -112,6 +113,9 @@ public class Urls {
     //获取组长列表（未分配班长）
     public static String getGroupList = HOST + "/rehabilitationTeacher/getGroupList";
 
+
+    //系统公告
+    public static String getSystemBulletinList = HOST + "/systemBulletin/getSystemBulletinList";
     //发布通知
     public static String submitRehabilitationBulletin = HOST + "/rehabilitationBulletin/submitRehabilitationBulletin";
     //通知列表
@@ -128,6 +132,18 @@ public class Urls {
     public static String getInviteInformGroup = HOST + "/inviteInform/getInviteInformGroup";
     //获取班长列表
     public static String getRehabilitationTeamList = HOST + "/rehabilitationTeam/getRehabilitationTeamList";
+    //管理员分配处理人
+    public static String distributeTransactor = HOST + "/doctorOrder/distributeTransactor";
+    //管理员获取全部人员列表
+    public static String getAdminMemberList = HOST + "/rehabilitationTeacher/getAdminMemberList";
+    //设置组长
+    public static String submitGroupLeader = HOST + "/rehabilitationGroup/submitGroupLeader";
+    //设置班长
+    public static String submitMonitor = HOST + "/rehabilitationTeam/submitMonitor";
+    //换组长
+    public static String replaceGroupLeader = HOST + "/rehabilitationGroup/replaceGroupLeader";
+    //换班长
+    public static String replaceMonitor = HOST + "/rehabilitationTeam/replaceMonitor";
 
 
     //预定医生
@@ -160,6 +176,15 @@ public class Urls {
     public static String getCityArea = HOST + "/area/getCityArea";
     //县
     public static String getDistrictArea = HOST + "/area/getDistrictArea";
+
+    //保健品积分订单
+    public static String getAccountInquiryOrderList = HOST + "/accountInquiry/getProductsOrderList";
+
+    //医生积分订单
+    public static String getAccountInquiryDoctorOrderList = HOST + "/accountInquiry/getDoctorOrderList";
+
+    //医生积分订单
+    public static String getInviteInformAdminList = HOST + "/inviteInform/getInviteInformAdminList";
 
 
 }

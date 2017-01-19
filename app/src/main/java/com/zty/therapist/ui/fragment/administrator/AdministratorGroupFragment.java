@@ -13,6 +13,7 @@ import com.zty.therapist.ui.activity.home.AddMemberActivity;
 import com.zty.therapist.ui.activity.home.GroupActivity;
 import com.zty.therapist.ui.activity.home.MemberListActivity;
 import com.zty.therapist.ui.activity.home.SendNoteActivity;
+import com.zty.therapist.ui.activity.personal.MessageListActivity;
 import com.zty.therapist.ui.fragment.group.CommunicationFragment;
 import com.zty.therapist.ui.fragment.group.HouseRentFragment;
 import com.zty.therapist.ui.fragment.group.MemberFragment;
@@ -158,8 +159,9 @@ public class AdministratorGroupFragment extends BaseFragment implements RadioGro
                 ((GroupActivity) context).title.setText("医生订单");
                 break;
             case 3:
-                ((GroupActivity) context).right.setVisibility(View.INVISIBLE);
+                ((GroupActivity) context).right.setVisibility(View.VISIBLE);
                 ((GroupActivity) context).title.setText("班组分配");
+                ((GroupActivity) context).setRight(R.mipmap.ic_menu);
                 break;
             case 4:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
@@ -179,6 +181,7 @@ public class AdministratorGroupFragment extends BaseFragment implements RadioGro
                 case 2:
                     break;
                 case 3:
+                    startActivity(new Intent(context, MessageListActivity.class).putExtra("type", 2));
                     break;
                 case 4:
                     startActivity(new Intent(context, SendNoteActivity.class));

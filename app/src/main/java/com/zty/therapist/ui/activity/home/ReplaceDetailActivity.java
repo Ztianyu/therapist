@@ -60,6 +60,8 @@ public class ReplaceDetailActivity extends BaseActivity implements OnDistributeR
     private int role;
     private int state;
 
+    private String userId;
+
     private String strState;
 
     @Override
@@ -69,6 +71,7 @@ public class ReplaceDetailActivity extends BaseActivity implements OnDistributeR
 
     @Override
     protected void initData() {
+        userId = TherapistApplication.getInstance().getUserId();
         role = TherapistApplication.getInstance().getRole();
         shiftId = getIntent().getStringExtra("shiftId");
         title.setText("替班详情");
@@ -149,11 +152,10 @@ public class ReplaceDetailActivity extends BaseActivity implements OnDistributeR
     @Override
     public void rightClick() {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("allotFragment");
-
         if (fragment != null)
             getSupportFragmentManager().beginTransaction().remove(fragment);
 
-        AllotFragment allotFragment = new AllotFragment();
+        AllotFragment allotFragment = AllotFragment.getInstance(0, userId, "请选择替班人员");
         allotFragment.show(getSupportFragmentManager().beginTransaction(), "allotFragment");
     }
 

@@ -1,6 +1,5 @@
 package com.zty.therapist.ui.fragment.home;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,6 +39,9 @@ import butterknife.OnClick;
 
 public class AllotFragment extends DialogFragment implements RequestCallback {
 
+    private static final int CODE_MEMBER_LIST = 0;
+    private static final int CODE_CLASS_LIST = 1;
+
     @BindView(R.id.btnClose)
     ImageButton btnClose;
     @BindView(R.id.gridViewAllot)
@@ -50,8 +52,21 @@ public class AllotFragment extends DialogFragment implements RequestCallback {
     AllotAdapter adapter;
 
     private String lastUserId;
+    private int type;
+    private String message;
+    private String userId;
 
     private OnDistributeRelay onDistributeRelay;
+
+    public static AllotFragment getInstance(int type, String userId, String message) {
+        AllotFragment fragment = new AllotFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("type", type);
+        bundle.putString("message", message);
+        bundle.putString("userId", userId);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -91,15 +106,30 @@ public class AllotFragment extends DialogFragment implements RequestCallback {
                     dismiss();
                     onDistributeRelay.onDistribute(lastUserId);
                 } else {
-                    ToastUtils.show(getContext(), "请选择替班人员");
+                    ToastUtils.show(getContext(), message);
+                    if (type == 0) {
+                        ToastUtils.show(getContext(), "请选择替班人员");
+                    } else {
+                        ToastUtils.show(getContext(), "请选择分配班长");
+                    }
                 }
                 break;
         }
     }
 
     private void getMember() {
-        RequestParams params = new RequestParams();
-        RequestManager.get(-1, Urls.getGroupMemberList, params, this);
+        type = getArguments().getInt("type");
+        message = getArguments().getString("message");
+        userId = getArguments().getString("userId");
+
+        if (type == 0) {
+            RequestParams params = new RequestParams();
+            params.put("userId", userId);
+            RequestManager.get(CODE_MEMBER_LIST, Urls.getGroupMemberList, params, this);
+        } else if (type == 1) {
+            RequestParams params = new RequestParams();
+            RequestManager.get(CODE_CLASS_LIST, Urls.getRehabilitationTeamList, params, this);
+        }
     }
 
     @Override
@@ -111,10 +141,20 @@ public class AllotFragment extends DialogFragment implements RequestCallback {
     public void onSuccessCallback(int requestCode, String response) {
         ResultBean resultBean = ResultUtil.getResult(response);
         if (resultBean.isSuccess()) {
-            List<AllotModel> memberModels = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<AllotModel>>() {
-            }.getType());
-            if (memberModels != null && memberModels.size() > 0)
-                adapter.setData(memberModels);
+            switch (requestCode) {
+                case CODE_MEMBER_LIST:
+                    List<AllotModel> allotModels1 = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<AllotModel>>() {
+                    }.getType());
+                    if (allotModels1 != null && allotModels1.size() > 0)
+                        adapter.setData(allotModels1);
+                    break;
+                case CODE_CLASS_LIST:
+                    List<AllotModel> allotModels2 = new Gson().fromJson(resultBean.getResult(), new TypeToken<List<AllotModel>>() {
+                    }.getType());
+                    if (allotModels2 != null && allotModels2.size() > 0)
+                        adapter.setData(allotModels2);
+                    break;
+            }
         } else {
             ToastUtils.show(getActivity(), resultBean.getMsg());
         }
