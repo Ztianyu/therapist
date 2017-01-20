@@ -110,12 +110,15 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
         PackageManager pm = getPackageManager();
         boolean hasCamera = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.CAMERA", "com.zty.therapist"));
         boolean hasStorage = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.WRITE_EXTERNAL_STORAGE", "com.zty.therapist"));
-
+        boolean hasAudio = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.RECORD_AUDIO", "com.zty.therapist"));
         if (!hasCamera)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
 
         if (!hasStorage)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+        if (!hasAudio)
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
     }
 

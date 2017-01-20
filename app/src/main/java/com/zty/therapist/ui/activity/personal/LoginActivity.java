@@ -12,6 +12,7 @@ import com.zty.therapist.MainActivity;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.TherapistApplication;
+import com.zty.therapist.imlib.LibManger;
 import com.zty.therapist.manager.AppManager;
 import com.zty.therapist.model.LoginModel;
 import com.zty.therapist.model.ResultBean;

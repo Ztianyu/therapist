@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
+import com.zty.therapist.imlib.LibManger;
 import com.zty.therapist.utils.UserUtils;
 import com.zty.therapist.widget.StripViewNoImg;
 
@@ -63,6 +64,7 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.btnExitLogin:
                 UserUtils.clearUser(this);
+                LibManger.exit();
                 finish();
                 break;
         }

@@ -9,6 +9,7 @@ import com.lzy.okhttputils.OkHttpUtils;
 import com.lzy.okhttputils.cookie.store.PersistentCookieStore;
 import com.lzy.okhttputils.model.HttpParams;
 import com.zty.therapist.R;
+import com.zty.therapist.imlib.DemoHXSDKHelper;
 import com.zty.therapist.model.UserModel;
 import com.zty.therapist.utils.SharedPrefUtils;
 
@@ -22,6 +23,8 @@ public class TherapistApplication extends Application {
 
     private UserModel userModel;
 
+    public DemoHXSDKHelper hxSDKHelper = new DemoHXSDKHelper();
+
     private String userId;
     private String tokenId;
     private int role;
@@ -33,6 +36,7 @@ public class TherapistApplication extends Application {
         instance = this;
         setCurrentUser();
         initHttpUtils();
+        hxSDKHelper.onInit(this);
         ViewTarget.setTagId(R.id.glide_tag);
     }
 

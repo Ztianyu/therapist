@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,9 +82,12 @@ public class DialogUtils {
 
         dialog.getWindow().setContentView(customLayout);
 
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
         final EditText editConfirm = (EditText) customLayout.findViewById(R.id.editConfirm);
         // 确定按钮
-        Button btnSure = (Button) customLayout.findViewById(R.id.dialog_btn_sure);
+        TextView btnSure = (TextView) customLayout.findViewById(R.id.btnAllot);
         btnSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,9 +117,12 @@ public class DialogUtils {
 
         dialog.getWindow().setContentView(customLayout);
 
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
         final EditText editConfirm = (EditText) customLayout.findViewById(R.id.editConfirm);
         // 确定按钮
-        Button btnSure = (Button) customLayout.findViewById(R.id.dialog_btn_sure);
+        TextView btnSure = (TextView) customLayout.findViewById(R.id.btnAllot);
         btnSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

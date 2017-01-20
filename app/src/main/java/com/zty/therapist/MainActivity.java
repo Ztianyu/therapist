@@ -6,9 +6,11 @@ import android.widget.RadioGroup;
 
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.BaseFragment;
+import com.zty.therapist.imlib.LibManger;
 import com.zty.therapist.ui.fragment.main.ScrollingFragment;
 import com.zty.therapist.ui.fragment.main.HomeFragment2;
 import com.zty.therapist.ui.fragment.main.PersonalFragment;
+import com.zty.therapist.utils.SharedPrefUtils;
 
 import butterknife.BindView;
 
@@ -39,6 +41,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
         left.setVisibility(View.INVISIBLE);
         radioGroup.setOnCheckedChangeListener(this);
+
+        LibManger.login(SharedPrefUtils.getString(this, SharedPrefUtils.USER_ID), "123456", null);
 
         if (homeFragment == null) {
             homeFragment = new HomeFragment2();

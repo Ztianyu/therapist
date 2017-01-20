@@ -59,4 +59,6 @@ dependencies {
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
     compile 'com.lzy.net:okhttputils:1.6.5'
     compile project(path: ':jcvideoplayer-lib')
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.jude:easyrecyclerview:4.2.3'
 }

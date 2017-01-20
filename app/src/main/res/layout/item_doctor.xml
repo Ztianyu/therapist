@@ -10,7 +10,6 @@
         android:id="@+id/imgDoctor"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="@drawable/pic1"
         android:scaleType="centerCrop" />
 
     <LinearLayout
