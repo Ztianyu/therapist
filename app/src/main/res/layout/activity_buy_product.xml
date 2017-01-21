@@ -159,12 +159,20 @@
                 android:id="@+id/radioButtonPay1"
                 style="@style/PayRadioButton"
                 android:drawableLeft="@mipmap/ic_pay_ali"
+                android:text="支付宝"
+                android:textSize="15sp"
+                android:drawablePadding="12dp"
+                android:textColor="@color/black"
                 android:paddingLeft="4dp" />
 
             <RadioButton
                 android:id="@+id/radioButtonPay2"
                 style="@style/PayRadioButton"
                 android:layout_marginTop="8dp"
+                android:textSize="15sp"
+                android:text="微 信"
+                android:drawablePadding="12dp"
+                android:textColor="@color/black"
                 android:drawableLeft="@mipmap/ic_pay_we_chat"
                 android:paddingLeft="4dp" />
 
@@ -172,6 +180,10 @@
                 android:id="@+id/radioButtonPay3"
                 style="@style/PayRadioButton"
                 android:layout_marginTop="8dp"
+                android:textSize="15sp"
+                android:text="银 联"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"
                 android:drawableLeft="@mipmap/ic_pay_union" />
         </RadioGroup>
 

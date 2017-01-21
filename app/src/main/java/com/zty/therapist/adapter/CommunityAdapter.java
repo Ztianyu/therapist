@@ -71,7 +71,8 @@ public class CommunityAdapter extends FooterRefreshAdapter<CommunityModel> {
                 if (fragment != null)
                     fm.beginTransaction().remove(fragment);
 
-                CommentFragment commentFragment = new CommentFragment(mContext, communityModel.getId(), communityModel.getUserId(), viewHolder.getLayoutPosition(), listener);
+                CommentFragment commentFragment = CommentFragment.getInstance(mContext, communityModel.getId(), communityModel.getUserId(), viewHolder.getLayoutPosition(), listener);
+
                 commentFragment.show(fm.beginTransaction(), "dialogComment");
             }
         });

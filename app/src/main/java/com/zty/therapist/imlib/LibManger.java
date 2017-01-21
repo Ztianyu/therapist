@@ -15,6 +15,7 @@ import com.easemob.chat.VoiceMessageBody;
 import com.zty.therapist.imlib.chat.enity.MessageInfo;
 import com.zty.therapist.imlib.chat.util.Constants;
 import com.zty.therapist.imlib.utils.OnGroupCallback;
+import com.zty.therapist.utils.SharedPrefUtils;
 
 import java.io.File;
 import java.util.List;
@@ -91,7 +92,7 @@ public class LibManger {
         EMMessage message = null;
         //文字消息
         if (!TextUtils.isEmpty(messageInfo.getContent())) {
-            EMMessage.createSendMessage(EMMessage.Type.TXT);
+            message = EMMessage.createSendMessage(EMMessage.Type.TXT);
             message.setChatType(EMMessage.ChatType.GroupChat);
             TextMessageBody txtBody = new TextMessageBody(messageInfo.getContent());
             message.addBody(txtBody);
@@ -134,5 +135,20 @@ public class LibManger {
 
             }
         });
+    }
+
+    public static List<EMMessage> getMessages(String userName) {
+
+        EMConversation conversation = EMChatManager.getInstance().getConversation(userName);
+        List<EMMessage> messages = conversation.getAllMessages();
+
+        System.out.println(messages.toString());
+
+        List<EMMessage> emMessageList = null;
+        if (messages != null && messages.size() > 0) {
+            emMessageList = conversation.loadMoreGroupMsgFromDB(messages.get(0).getMsgId(), 20);
+            System.out.println(emMessageList.toString());
+        }
+        return messages;
     }
 }

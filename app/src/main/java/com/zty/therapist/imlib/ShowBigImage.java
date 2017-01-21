@@ -67,7 +67,7 @@ public class ShowBigImage extends AppCompatActivity {
         setContentView(R.layout.activity_show_big_image);
         image = (PhotoView) findViewById(R.id.image);
         loadLocalPb = (ProgressBar) findViewById(R.id.pb_load_local);
-        default_res = getIntent().getIntExtra("default_image", R.mipmap.default_avatar);
+        default_res = getIntent().getIntExtra("default_image", R.mipmap.default_image);
         Uri uri = getIntent().getParcelableExtra("uri");
         String remotepath = getIntent().getExtras().getString("remotepath");
         String secret = getIntent().getExtras().getString("secret");

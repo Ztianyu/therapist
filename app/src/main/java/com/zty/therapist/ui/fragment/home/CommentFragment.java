@@ -37,16 +37,33 @@ public class CommentFragment extends DialogFragment {
     private String userId;
     private int position;
 
-    public CommentFragment(Context context, String forumId, String userId, int position, SendReplayListener listener) {
-        this.context = context;
-        this.listener = listener;
-        this.forumId = forumId;
-        this.userId = userId;
-        this.position = position;
+    public static CommentFragment getInstance(Context context, String forumId, String userId, int position, SendReplayListener listener) {
+        CommentFragment fragment = new CommentFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("forumId", forumId);
+        bundle.putInt("position", position);
+        bundle.putString("userId", userId);
+        fragment.setArguments(bundle);
+
+        fragment.context = context;
+        fragment.listener = listener;
+
+        return fragment;
+    }
+
+    public void getData() {
+        Bundle bundle = getArguments();
+
+        this.forumId = bundle.getString("forumId");
+        this.userId = bundle.getString("userId");
+        this.position = bundle.getInt("position");
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+        getData();
+
         // 使用不带Theme的构造器, 获得的dialog边框距离屏幕仍有几毫米的缝隙。
         Dialog dialog = new Dialog(context, R.style.BottomDialog);
 

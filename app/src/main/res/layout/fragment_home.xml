@@ -112,7 +112,7 @@
                 android:layout_centerInParent="true"
                 app:lab_color="@color/black"
                 app:lab_img="@mipmap/ic_lab_content4"
-                app:lab_text="感情天地" />
+                app:lab_text="情感天地" />
         </RelativeLayout>
 
         <View

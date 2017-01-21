@@ -152,8 +152,10 @@ public class Urls {
     public static String getDoctorOrderList = HOST + "/doctorOrder/getDoctorOrderList";
     //医生订单详情
     public static String getDoctorOrder = HOST + "/doctorOrder/getDoctorOrder";
-    //处理益生订单
+    //处理医生订单
     public static String processOrder = HOST + "/doctorOrder/processOrder";
+    //确认医生订单
+    public static String confirmDoctorOrder = HOST + "/doctorOrder/confirmOrder";
 
     //健康产品订单列表
     public static String getProductsOrderList = HOST + "/productsOrder/getProductsOrderList";

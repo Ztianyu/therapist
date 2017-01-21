@@ -28,6 +28,7 @@
             android:layout_height="28dp"
             android:layout_marginRight="8dp"
             android:clickable="true"
+            android:visibility="gone"
             android:scaleType="centerCrop"
             android:src="@mipmap/icon_chat_voice" />
 
@@ -84,8 +85,8 @@
             android:text="发送"
             android:textColor="@color/white"
             android:visibility="gone"
-            app:normalBackgroundColor="@color/colorPrimary"
-            app:pressedBackgroundColor="@color/colorPrimaryDark"
+            app:normalBackgroundColor="@color/canSend"
+            app:pressedBackgroundColor="@color/canSendDark"
             app:radius="5dp" />
 
     </LinearLayout>

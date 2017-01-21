@@ -11,9 +11,36 @@ public class MessageInfo {
     private int sendState;
     private String time;
     private String header;
+    private String imageLocalUrl;
     private String imageUrl;
+    private String imageLocalPath;
+    private String imageSecret;
     private long voiceTime;
     private String msgId;
+
+    public String getImageLocalUrl() {
+        return imageLocalUrl;
+    }
+
+    public void setImageLocalUrl(String imageLocalUrl) {
+        this.imageLocalUrl = imageLocalUrl;
+    }
+
+    public String getImageSecret() {
+        return imageSecret;
+    }
+
+    public void setImageSecret(String imageSecret) {
+        this.imageSecret = imageSecret;
+    }
+
+    public String getImageLocalPath() {
+        return imageLocalPath;
+    }
+
+    public void setImageLocalPath(String imageLocalPath) {
+        this.imageLocalPath = imageLocalPath;
+    }
 
     public int getType() {
         return type;

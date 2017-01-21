@@ -41,6 +41,7 @@ public class BuyProductActivity extends BaseActivity implements RadioGroup.OnChe
 
     private static final int CODE_GET_DEFAULT_ADD = 0;
     private static final int CODE_SUBMIT = 1;
+
     @BindView(R.id.bannerProduct)
     Banner bannerProduct;
     @BindView(R.id.textProductDetailName)
@@ -150,8 +151,6 @@ public class BuyProductActivity extends BaseActivity implements RadioGroup.OnChe
                     finish();
                     break;
             }
-        } else {
-            ToastUtils.show(this, resultBean.getMsg());
         }
 
     }

@@ -29,17 +29,32 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/chat_item_header">
 
-            <com.zty.therapist.imlib.chat.widget.BubbleImageView
-                android:id="@+id/chat_item_content_image"
-                android:layout_width="150dp"
+
+            <com.zty.therapist.imlib.chat.widget.BubbleLinearLayout
+                android:id="@+id/chat_item_layout_image"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal"
                 android:visibility="gone"
-                app:angle="6dp"
-                app:arrowHeight="8dp"
+                app:angle="4dp"
+                app:arrowHeight="10dp"
                 app:arrowLocation="right"
-                app:arrowPosition="15dp"
-                app:arrowWidth="10dp" />
+                app:arrowPosition="10dp"
+                app:arrowWidth="8dp"
+                app:bubbleColor="@color/colorDivider">
+
+                <ImageView
+                    android:id="@+id/chat_item_content_image"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop" />
+
+            </com.zty.therapist.imlib.chat.widget.BubbleLinearLayout>
 
             <com.zty.therapist.imlib.chat.widget.BubbleLinearLayout
                 android:id="@+id/chat_item_layout_content"

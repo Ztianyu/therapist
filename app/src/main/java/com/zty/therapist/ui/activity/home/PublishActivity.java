@@ -100,12 +100,12 @@ public class PublishActivity extends BaseActivity implements OnSelectListener {
         String content = editPublish.getText().toString();
         if (TextUtils.isEmpty(content)) {
             ToastUtils.show(this, "请输入文字");
-            return;
-        }
-        if (type == 0) {
-            sendCommunity(content);
         } else {
-            sendInfoPhoto(content);
+            if (type == 0) {
+                sendCommunity(content);
+            } else {
+                sendInfoPhoto(content);
+            }
         }
     }
 

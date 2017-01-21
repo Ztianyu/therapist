@@ -144,10 +144,10 @@ public class DoctorOrderFragment extends BaseRefreshFragment implements OnHandle
             @Override
             public void onSure(int code, String content) {
                 RequestParams params = new RequestParams();
-                params.put("state", id);
-                params.put("id", code);
+                params.put("state", code);
+                params.put("id", id);
                 params.put("confirmExplain", content);
-                RequestManager.post(CODE_SURE, Urls.processOrder, params, DoctorOrderFragment.this);
+                RequestManager.post(CODE_SURE, Urls.confirmDoctorOrder, params, DoctorOrderFragment.this);
             }
         });
     }

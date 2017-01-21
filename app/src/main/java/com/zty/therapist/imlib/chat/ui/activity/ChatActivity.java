@@ -3,6 +3,7 @@ package com.zty.therapist.imlib.chat.ui.activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -16,12 +17,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.easemob.chat.EMMessage;
+import com.easemob.chat.ImageMessageBody;
+import com.easemob.util.EMLog;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
 import com.zty.therapist.base.TherapistApplication;
 import com.zty.therapist.imlib.LibManger;
 import com.zty.therapist.imlib.OnSendMessageListener;
+import com.zty.therapist.imlib.ShowBigImage;
 import com.zty.therapist.imlib.chat.adapter.ChatAdapter;
 import com.zty.therapist.imlib.chat.adapter.CommonFragmentPagerAdapter;
 import com.zty.therapist.imlib.chat.enity.FullImageInfo;
@@ -31,6 +36,7 @@ import com.zty.therapist.imlib.chat.ui.fragment.ChatFunctionFragment;
 import com.zty.therapist.imlib.chat.util.Constants;
 import com.zty.therapist.imlib.chat.util.GlobalOnItemClickManagerUtils;
 import com.zty.therapist.imlib.chat.util.MediaManager;
+import com.zty.therapist.imlib.chat.util.MessageUtils;
 import com.zty.therapist.imlib.chat.widget.EmotionInputDetector;
 import com.zty.therapist.imlib.chat.widget.NoScrollViewPager;
 import com.zty.therapist.imlib.chat.widget.StateButton;
@@ -39,6 +45,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,6 +166,10 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener 
             }
         });
         chatAdapter.addItemClickListener(itemClickListener);
+
+        messageInfos = new ArrayList<>();
+        chatAdapter.addAll(messageInfos);
+
         LoadData();
     }
 
@@ -173,17 +184,17 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener 
 
         @Override
         public void onImageClick(View view, int position) {
-            int location[] = new int[2];
-            view.getLocationOnScreen(location);
-            FullImageInfo fullImageInfo = new FullImageInfo();
-            fullImageInfo.setLocationX(location[0]);
-            fullImageInfo.setLocationY(location[1]);
-            fullImageInfo.setWidth(view.getWidth());
-            fullImageInfo.setHeight(view.getHeight());
-            fullImageInfo.setImageUrl(messageInfos.get(position).getImageUrl());
-            EventBus.getDefault().postSticky(fullImageInfo);
-            startActivity(new Intent(ChatActivity.this, FullImageActivity.class));
-            overridePendingTransition(0, 0);
+
+            Intent intent = new Intent(ChatActivity.this, ShowBigImage.class);
+            File file = new File(messageInfos.get(position).getImageLocalPath());
+            if (file.exists()) {
+                Uri uri = Uri.fromFile(file);
+                intent.putExtra("uri", uri);
+            } else {
+                intent.putExtra("secret", messageInfos.get(position).getImageSecret());
+                intent.putExtra("remotepath", messageInfos.get(position).getImageUrl());
+            }
+            startActivity(intent);
         }
 
         @Override
@@ -219,8 +230,25 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener 
      * 构造聊天数据
      */
     private void LoadData() {
-        messageInfos = new ArrayList<>();
-        chatAdapter.addAll(messageInfos);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final List<EMMessage> emMessageList = LibManger.getMessages(groupId);
+                messageInfos.clear();
+                messageInfos.addAll(MessageUtils.changeData(emMessageList));
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatAdapter.clear();
+                        chatAdapter.addAll(messageInfos);
+                        adapter.notifyDataSetChanged();
+                        chatList.scrollToPosition(chatAdapter.getCount() - 1);
+                    }
+                });
+            }
+        }).start();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -230,27 +258,9 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener 
         messageInfo.setType(Constants.CHAT_ITEM_TYPE_RIGHT);
         messageInfo.setSendState(Constants.CHAT_ITEM_SENDING);
         LibManger.sendMessage(groupId, messageInfo, this);
-
-        messageInfos.add(messageInfo);
-        chatAdapter.add(messageInfo);
-        chatList.scrollToPosition(chatAdapter.getCount() - 1);
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
-                chatAdapter.notifyDataSetChanged();
-            }
-        }, 2000);
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                MessageInfo message = new MessageInfo();
-                message.setContent("这是模拟消息回复");
-                message.setType(Constants.CHAT_ITEM_TYPE_LEFT);
-                message.setHeader("http://tupian.enterdesk.com/2014/mxy/11/2/1/12.jpg");
-                messageInfos.add(message);
-                chatAdapter.add(message);
-                chatList.scrollToPosition(chatAdapter.getCount() - 1);
-            }
-        }, 3000);
+//        messageInfos.add(messageInfo);
+//        chatAdapter.add(messageInfo);
+//        chatList.scrollToPosition(chatAdapter.getCount() - 1);
     }
 
     @Override
@@ -278,12 +288,26 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener 
     }
 
     @Override
-    public void onSuccess(MessageInfo messageInfo) {
-        messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
+    public void onSuccess(final MessageInfo messageInfo) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                LoadData();
+//                messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
+//                chatAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
-    public void onError(MessageInfo messageInfo, String error) {
-        messageInfo.setSendState(Constants.CHAT_ITEM_SEND_ERROR);
+    public void onError(final MessageInfo messageInfo, String error) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                LoadData();
+//                messageInfo.setSendState(Constants.CHAT_ITEM_SEND_ERROR);
+//                chatAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }
