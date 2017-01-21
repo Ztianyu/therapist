@@ -41,7 +41,7 @@
             android:id="@+id/radioButton3"
             style="@style/MyRadioButton"
             android:drawableTop="@drawable/tab_health_selector"
-            android:text="保健品" />
+            android:text="健康产品" />
 
         <RadioButton
             android:id="@+id/radioButton4"

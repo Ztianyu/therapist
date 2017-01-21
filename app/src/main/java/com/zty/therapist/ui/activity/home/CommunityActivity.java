@@ -32,7 +32,7 @@ public class CommunityActivity extends BaseRefreshActivity implements SendReplay
 
     @Override
     protected void initReadyData() {
-        title.setText("感情天地");
+        title.setText("情感天地");
         setRight(R.mipmap.ic_publish);
     }
 
