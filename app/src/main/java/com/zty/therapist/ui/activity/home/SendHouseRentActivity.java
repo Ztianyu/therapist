@@ -34,7 +34,7 @@ public class SendHouseRentActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        title.setText("房屋租赁");
+        title.setText("住所分享");
         right.setText("发布");
     }
 

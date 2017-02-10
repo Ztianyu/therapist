@@ -1,7 +1,5 @@
 package com.zty.therapist.imlib.chat.util;
 
-import android.text.TextUtils;
-import android.util.Log;
 
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.ImageMessageBody;
@@ -35,6 +33,7 @@ public class MessageUtils {
 
                 messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
                 messageInfo.setMsgId(emMessage.getMsgId());
+                messageInfo.setFrom(emMessage.getFrom());
                 if (emMessage.getType() == EMMessage.Type.TXT)
                     messageInfo.setContent(((TextMessageBody) emMessage.getBody()).getMessage());
                 if (emMessage.getType() == EMMessage.Type.IMAGE) {
@@ -60,5 +59,43 @@ public class MessageUtils {
             }
         }
         return messageInfoList;
+    }
+
+    public static MessageInfo changeData(EMMessage emMessage) {
+        MessageInfo messageInfo = new MessageInfo();
+
+        if (emMessage != null) {
+            if (emMessage.getFrom().equals(TherapistApplication.getInstance().getUserId())) {
+                messageInfo.setType(Constants.CHAT_ITEM_TYPE_RIGHT);
+                messageInfo.setHeader(TherapistApplication.getInstance().getUserModel().getPhoto());
+            } else {
+                messageInfo.setType(Constants.CHAT_ITEM_TYPE_LEFT);
+            }
+
+            messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
+            messageInfo.setMsgId(emMessage.getMsgId());
+            messageInfo.setFrom(emMessage.getFrom());
+            if (emMessage.getType() == EMMessage.Type.TXT)
+                messageInfo.setContent(((TextMessageBody) emMessage.getBody()).getMessage());
+            if (emMessage.getType() == EMMessage.Type.IMAGE) {
+
+                String imageLocalUrl = ((ImageMessageBody) emMessage.getBody()).getLocalUrl();
+                String remotePath = ((ImageMessageBody) emMessage.getBody()).getRemoteUrl();
+                String filePath = ImageUtils.getImagePath(remotePath);
+
+                String thumbRemoteUrl = ((ImageMessageBody) emMessage.getBody()).getThumbnailUrl();
+                String secret = ((ImageMessageBody) emMessage.getBody()).getSecret();
+
+                messageInfo.setImageLocalUrl(imageLocalUrl);
+                messageInfo.setImageSecret(secret);
+                messageInfo.setImageLocalPath(filePath);
+                messageInfo.setImageUrl(thumbRemoteUrl);
+            }
+            if (emMessage.getType() == EMMessage.Type.VOICE) {
+                messageInfo.setFilepath(((VoiceMessageBody) emMessage.getBody()).getRemoteUrl());
+                messageInfo.setVoiceTime(((VoiceMessageBody) emMessage.getBody()).getLength() * 1000);
+            }
+        }
+        return messageInfo;
     }
 }

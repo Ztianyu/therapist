@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.zty.therapist.R;
 import com.zty.therapist.imlib.chat.adapter.ChatAdapter;
@@ -18,7 +19,12 @@ import com.zty.therapist.imlib.chat.util.Utils;
 import com.zty.therapist.imlib.chat.widget.BubbleLinearLayout;
 import com.zty.therapist.imlib.chat.widget.GifTextView;
 import com.zty.therapist.imlib.utils.ImageUtils;
+import com.zty.therapist.model.ResultBean;
+import com.zty.therapist.model.UserModel;
+import com.zty.therapist.url.RequestCallback;
 import com.zty.therapist.utils.MyImageLoader;
+import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.UserUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +34,6 @@ import butterknife.ButterKnife;
  * 邮箱：rance935@163.com
  */
 public class ChatAcceptViewHolder extends BaseViewHolder<MessageInfo> {
-
 
     @BindView(R.id.chat_item_date)
     TextView chatItemDate;
@@ -65,7 +70,8 @@ public class ChatAcceptViewHolder extends BaseViewHolder<MessageInfo> {
         if (!TextUtils.isEmpty(data.getHeader())) {
             MyImageLoader.load(getContext(), data.getHeader(), chatItemHeader);
         } else {
-            MyImageLoader.load(getContext(), R.mipmap.default_avatar, chatItemHeader);
+            loadHeader(data.getFrom());
+//            MyImageLoader.load(getContext(), R.mipmap.default_avatar, chatItemHeader);
         }
         chatItemHeader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,5 +130,24 @@ public class ChatAcceptViewHolder extends BaseViewHolder<MessageInfo> {
             layoutParams.height = Utils.dp2px(getContext(), 48);
             chatItemLayoutContent.setLayoutParams(layoutParams);
         }
+    }
+
+    private void loadHeader(String userId) {
+        UserUtils.getUserMessage(userId, new RequestCallback() {
+            @Override
+            public void onFailureCallback(int requestCode, String errorMsg) {
+
+            }
+
+            @Override
+            public void onSuccessCallback(int requestCode, String response) {
+                ResultBean resultBean = ResultUtil.getResult(response);
+                if (resultBean.isSuccess()) {
+                    UserModel userModel = new Gson().fromJson(resultBean.getResult(), UserModel.class);
+                    if (userModel != null && !TextUtils.isEmpty(userModel.getPhoto()))
+                        MyImageLoader.load(getContext(), userModel.getPhoto(), chatItemHeader);
+                }
+            }
+        });
     }
 }

@@ -45,7 +45,7 @@ public class DownloadService extends Service {
     private PendingIntent pendingIntent = null;
 
     // 通知栏消息
-    private int notificationID = 1000;//预警通知
+    private int notificationID = 1000;
     private NotificationCompat.Builder builder;
     private NotificationManager messageNotificationManager = null;
 

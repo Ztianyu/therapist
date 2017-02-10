@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 
+import com.zty.therapist.MainActivity;
+
 import java.util.Stack;
 
 /**
@@ -13,13 +15,18 @@ public class AppManager {
     private static Stack<Activity> mActivityStack;
     private static AppManager instance;
 
-    private AppManager() {}
+    private AppManager() {
+    }
 
     public static AppManager getInstance() {
         if (instance == null) {
             instance = new AppManager();
         }
         return instance;
+    }
+
+    public int getSize() {
+        return mActivityStack.size();
     }
 
     /**
@@ -94,10 +101,8 @@ public class AppManager {
     /**
      * 退出应用程序
      *
-     * @param context
-     *            上下文
-     * @param isBackground
-     *            是否开启后台运行
+     * @param context      上下文
+     * @param isBackground 是否开启后台运行
      */
     public void AppExit(Context context, Boolean isBackground) {
         try {
@@ -114,8 +119,6 @@ public class AppManager {
             }
         }
     }
-
-
 
 
 }

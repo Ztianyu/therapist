@@ -141,7 +141,7 @@ public class MemberGroupFragment extends BaseFragment implements RadioGroup.OnCh
                 break;
             case 3:
                 ((GroupActivity) context).right.setVisibility(View.VISIBLE);
-                ((GroupActivity) context).title.setText("房屋信息");
+                ((GroupActivity) context).title.setText("住所分享");
                 ((GroupActivity) context).setRight(R.mipmap.ic_publish);
                 break;
             case 4:

@@ -142,11 +142,10 @@ public class LibManger {
         EMConversation conversation = EMChatManager.getInstance().getConversation(userName);
         List<EMMessage> messages = conversation.getAllMessages();
 
-        System.out.println(messages.toString());
-
         List<EMMessage> emMessageList = null;
         if (messages != null && messages.size() > 0) {
-            emMessageList = conversation.loadMoreGroupMsgFromDB(messages.get(0).getMsgId(), 20);
+            emMessageList = conversation.loadMoreGroupMsgFromDB(messages.get(messages.size() - 1).getMsgId(), 20);
+            System.out.println("messages   size:"+messages.size());
             System.out.println(emMessageList.toString());
         }
         return messages;

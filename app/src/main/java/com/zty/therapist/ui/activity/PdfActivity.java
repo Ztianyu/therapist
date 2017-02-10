@@ -41,6 +41,7 @@ public class PdfActivity extends BaseActivity implements OnPageChangeListener {
         pdfView.fromFile(file)
                 //                .pages(0, 0, 0, 0, 0, 0) // 默认全部显示，pages属性可以过滤性显示
                 .defaultPage(1)//默认展示第一页
+                .swipeVertical(true)
                 .onPageChange(this)//监听页面切换
                 .load();
     }
