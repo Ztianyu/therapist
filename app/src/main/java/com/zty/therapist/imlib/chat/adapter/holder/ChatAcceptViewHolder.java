@@ -24,6 +24,7 @@ import com.zty.therapist.model.UserModel;
 import com.zty.therapist.url.RequestCallback;
 import com.zty.therapist.utils.MyImageLoader;
 import com.zty.therapist.utils.ResultUtil;
+import com.zty.therapist.utils.TimeUtils;
 import com.zty.therapist.utils.UserUtils;
 
 import butterknife.BindView;
@@ -79,6 +80,15 @@ public class ChatAcceptViewHolder extends BaseViewHolder<MessageInfo> {
                 onItemClickListener.onHeaderClick(getDataPosition());
             }
         });
+
+        chatItemDate.setText(TimeUtils.getChatTime((new Long(data.getTime()))));
+
+        if (TimeUtils.getTimeCount(new Long(data.getTime())) > 10) {
+            chatItemDate.setVisibility(View.VISIBLE);
+        } else {
+            chatItemDate.setVisibility(View.GONE);
+        }
+
         if (data.getContent() != null) {
             chatItemContentText.setSpanText(handler, data.getContent(), true);
             chatItemVoice.setVisibility(View.GONE);

@@ -24,6 +24,7 @@ import com.zty.therapist.imlib.chat.widget.BubbleLinearLayout;
 import com.zty.therapist.imlib.chat.widget.GifTextView;
 import com.zty.therapist.imlib.utils.ImageUtils;
 import com.zty.therapist.utils.MyImageLoader;
+import com.zty.therapist.utils.TimeUtils;
 
 import java.io.File;
 
@@ -85,6 +86,14 @@ public class ChatSendViewHolder extends BaseViewHolder<MessageInfo> {
                 onItemClickListener.onHeaderClick(getDataPosition());
             }
         });
+
+        chatItemDate.setText(TimeUtils.getChatTime((new Long(data.getTime()))));
+        if (TimeUtils.getTimeCount(new Long(data.getTime())) > 10) {
+            chatItemDate.setVisibility(View.VISIBLE);
+        } else {
+            chatItemDate.setVisibility(View.GONE);
+        }
+
         if (data.getContent() != null) {
             chatItemContentText.setSpanText(handler, data.getContent(), true);
             chatItemVoice.setVisibility(View.GONE);

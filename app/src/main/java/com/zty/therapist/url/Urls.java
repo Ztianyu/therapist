@@ -90,6 +90,9 @@ public class Urls {
     public static String cancelRelay = HOST + "/shiftRecord/cancelRelay";
     //替班详情
     public static String getShiftRecord = HOST + "/shiftRecord/getShiftRecord";
+    //替班积分
+    public static String getIntegral = HOST + "/shiftRecord/getIntegral";
+
     //分配替班人员
     public static String distributeRelay = HOST + "/shiftRecord/distributeRelay";
     //评价选项

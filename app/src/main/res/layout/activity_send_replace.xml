@@ -212,32 +212,94 @@
                 android:minLines="5" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/TextSendInfo"
-                android:text="替班积分：" />
-
-            <EditText
-                android:id="@+id/editReplacerIntegral"
-                style="@style/EditSendInfo" />
-        </LinearLayout>
-
         <TextView
             android:id="@+id/textReplaceNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginTop="16dp"
-            android:text="备注：替班积分的设置不能低于10积分/小时的标准"
+            android:text="当前剩余积分：1000 积分"
             android:textColor="@color/gray"
             android:textSize="12sp" />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <RadioGroup
+                android:id="@+id/radioGroupIntegral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonIntegral1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableTop="@drawable/integral_min_selector" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonIntegral2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/integral_mid_selector" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonIntegral3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@drawable/integral_max_selector" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/textIntegralMin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="60"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textIntegralMid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="90"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textIntegralMax"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="120"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 </ScrollView>

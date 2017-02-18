@@ -17,15 +17,18 @@ import com.zty.therapist.model.AbilityOptionModel;
 import com.zty.therapist.model.ResultBean;
 import com.zty.therapist.model.UserModel;
 import com.zty.therapist.service.InviteInformUtils;
+import com.zty.therapist.ui.activity.LocationActivity;
 import com.zty.therapist.ui.fragment.home.AllotFragment;
 import com.zty.therapist.url.RequestManager;
 import com.zty.therapist.url.Urls;
 import com.zty.therapist.utils.DialogUtils;
+import com.zty.therapist.utils.MyImageLoader;
 import com.zty.therapist.utils.OptionUtils;
 import com.zty.therapist.utils.ResultUtil;
 import com.zty.therapist.utils.SharedPrefUtils;
 import com.zty.therapist.utils.ToastUtils;
 import com.zty.therapist.utils.UserUtils;
+import com.zty.therapist.widget.CircleImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -84,6 +87,10 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
     TextView textAbility5;
     @BindView(R.id.btnMemberEvaluate)
     TextView btnMemberEvaluate;
+    @BindView(R.id.imgMemberDetail)
+    CircleImageView imgMemberDetail;
+    @BindView(R.id.textMemberLocation)
+    TextView textMemberLocation;
 
     private String userId;
     private String teacherId;
@@ -197,6 +204,8 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
     private void setUserMessage(UserModel userModel) {
         teacherId = userModel.getId();
 
+        MyImageLoader.load(this, userModel.getPhoto(), imgMemberDetail);
+
         textMemberDetailName.setText(userModel.getTeacherNm());
         textMemberDetailSex.setText(userModel.getSex());
         textMemberDetailPhone.setText(userModel.getMobile());
@@ -240,7 +249,7 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
     }
 
 
-    @OnClick({R.id.btnMemberHandle, R.id.btnMemberEvaluate})
+    @OnClick({R.id.btnMemberHandle, R.id.btnMemberEvaluate, R.id.textMemberLocation})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -249,6 +258,9 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
                 break;
             case R.id.btnMemberEvaluate:
                 startActivity(new Intent(this, SetAbilityActivity.class).putExtra("teacherId", teacherId));
+                break;
+            case R.id.textMemberLocation:
+                startActivity(new Intent(this, LocationActivity.class));
                 break;
         }
     }
@@ -300,4 +312,5 @@ public class MemberDetailActivity extends BaseActivity implements DialogListener
         params.put("replaceUserId", lastUserId);
         RequestManager.post(CODE_REPLACE, Urls.replaceGroupLeader, params, this);
     }
+
 }

@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by admin_1 on 2017/1/9.
+ * Created by zty on 2017/1/9.
  */
 public class TimeUtils {
     private static final long ONE_MINUTE = 60;
@@ -106,7 +106,59 @@ public class TimeUtils {
             int month = calendar.get(Calendar.MONTH) + 1;// JANUARY which is 0 so month+1
             return year + "年前";
         }
+    }
 
+    /*
+     * 判断聊天时间与当前时间差
+     */
+    public static long getTimeCount(long l) {
+        long now = new Date().getTime() / 1000;
+        return (now - l / 1000) / ONE_MINUTE;
+    }
+
+    public static String getChatTime(long l) {
+        String res = "";
+
+        String strTime = stampToDate(l);
+
+        long time = l / 1000;
+        long now = new Date().getTime() / 1000;
+        long ago = (now - time) / ONE_MINUTE;
+        long todayStart = dateToStamp(getDate() + " 00:00:00") / 1000;
+
+        if (todayStart <= time && ago > 10) {
+            res = strTime.substring(11, 16);
+        } else if (todayStart > time) {
+            res = strTime.substring(0, 16);
+        }
+        return res;
+    }
+
+    /*
+     * 将时间转换为时间戳
+     */
+    public static long dateToStamp(String s) {
+        long res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        res = date.getTime();
+        return res;
+    }
+
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampToDate(long s) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(s);
+        res = simpleDateFormat.format(date);
+        return res;
     }
 
     /**
@@ -130,7 +182,6 @@ public class TimeUtils {
             long minute = remain % ONE_DAY % ONE_HOUR / ONE_MINUTE;
             return "只剩下" + day + "天" + hour + "小时" + minute + "分钟";
         }
-
     }
 
     /**
@@ -244,11 +295,11 @@ public class TimeUtils {
 
     public static String getMonth() {
         int month = calendar.get(Calendar.MONTH) + 1;
-        return month + "";
+        return month > 10 ? "" + month : "0" + month;
     }
 
     public static String getDay() {
-        return calendar.get(Calendar.DATE) + "";
+        return calendar.get(Calendar.DATE) > 10 ? calendar.get(Calendar.DATE) + "" : "0" + calendar.get(Calendar.DATE);
     }
 
     public static String get24Hour() {

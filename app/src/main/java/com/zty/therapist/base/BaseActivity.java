@@ -111,6 +111,9 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
         boolean hasCamera = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.CAMERA", "com.zty.therapist"));
         boolean hasStorage = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.WRITE_EXTERNAL_STORAGE", "com.zty.therapist"));
         boolean hasAudio = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.RECORD_AUDIO", "com.zty.therapist"));
+        boolean hasCoarseLocation = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.ACCESS_COARSE_LOCATION", "com.zty.therapist"));
+        boolean hasFindLocation = (PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.ACCESS_FINE_LOCATION", "com.zty.therapist"));
+
         if (!hasCamera)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
 
@@ -119,6 +122,12 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
 
         if (!hasAudio)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
+
+        if (!hasCoarseLocation)
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+
+        if (!hasFindLocation)
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
     }
 

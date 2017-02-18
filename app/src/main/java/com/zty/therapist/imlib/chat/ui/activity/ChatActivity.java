@@ -4,22 +4,28 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
+import com.jude.easyrecyclerview.swipe.SwipeRefreshLayout;
 import com.zty.therapist.MainActivity;
 import com.zty.therapist.R;
 import com.zty.therapist.base.BaseActivity;
@@ -41,6 +47,8 @@ import com.zty.therapist.imlib.chat.widget.NoScrollViewPager;
 import com.zty.therapist.imlib.chat.widget.StateButton;
 import com.zty.therapist.imlib.controller.HXSDKHelper;
 import com.zty.therapist.manager.AppManager;
+import com.zty.therapist.utils.TimeUtils;
+import com.zty.therapist.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,7 +63,7 @@ import butterknife.BindView;
 /**
  * 聊天 界面
  */
-public class ChatActivity extends BaseActivity implements OnSendMessageListener, EMEventListener {
+public class ChatActivity extends BaseActivity implements OnSendMessageListener, EMEventListener, android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.chat_list)
     EasyRecyclerView chatList;
@@ -94,6 +102,12 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener,
     private String groupId;
 
     private String userHeader;
+
+    RecyclerArrayAdapter.ItemView itemView;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    private int chatFristPostion = 0;
 
     @Override
     protected int getContentView() {
@@ -169,6 +183,33 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener,
         messageInfos = new ArrayList<>();
         chatAdapter.addAll(messageInfos);
 
+        itemView = new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_chat_header, parent, false);
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+                TextView textView = (TextView) headerView.findViewById(R.id.textChatHeader);
+
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onRefresh();
+                    }
+                });
+            }
+        };
+
+        chatAdapter.addHeader(itemView);
+
+        chatList.setRefreshListener(this);
+
+        chatList.setRefreshingColor(R.color.refresh1, R.color.refresh2, R.color.refresh3);
+
+
         LoadData();
 
         EMChatManager.getInstance().registerEventListener(
@@ -230,29 +271,21 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener,
         }
     };
 
+    List<EMMessage> emMessageList;
+
     /**
      * 构造聊天数据
      */
     private void LoadData() {
+        emMessageList = LibManger.getMessages(groupId, 0);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final List<EMMessage> emMessageList = LibManger.getMessages(groupId);
-                messageInfos.clear();
-                messageInfos.addAll(MessageUtils.changeData(emMessageList));
+        messageInfos.clear();
+        messageInfos.addAll(MessageUtils.changeData(emMessageList));
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        chatAdapter.clear();
-                        chatAdapter.addAll(messageInfos);
-                        adapter.notifyDataSetChanged();
-                        chatList.scrollToPosition(chatAdapter.getCount() - 1);
-                    }
-                });
-            }
-        }).start();
+        chatAdapter.clear();
+        chatAdapter.addAll(messageInfos);
+        adapter.notifyDataSetChanged();
+        chatList.scrollToPosition(chatAdapter.getCount() - 1);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -261,10 +294,11 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener,
         messageInfo.setHeader(userHeader);
         messageInfo.setType(Constants.CHAT_ITEM_TYPE_RIGHT);
         messageInfo.setSendState(Constants.CHAT_ITEM_SENDING);
+        messageInfo.setTime(TimeUtils.dateToStamp(TimeUtils.getFullDate()) + "");
         LibManger.sendMessage(groupId, messageInfo, this);
-//        messageInfos.add(messageInfo);
-//        chatAdapter.add(messageInfo);
-//        chatList.scrollToPosition(chatAdapter.getCount() - 1);
+        messageInfos.add(messageInfo);
+        chatAdapter.add(messageInfo);
+        chatList.scrollToPosition(chatAdapter.getCount() - 1);
     }
 
     @Override
@@ -295,26 +329,30 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener,
 
     @Override
     public void onSuccess(final MessageInfo messageInfo) {
-        runOnUiThread(new Runnable() {
+
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                LoadData();
-//                messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
-//                chatAdapter.notifyDataSetChanged();
+                Message message = new Message();
+                message.what = 1;
+                handler.sendMessage(message);
+                Log.i("message", "onSuccess");
             }
-        });
+        }).start();
     }
 
     @Override
     public void onError(final MessageInfo messageInfo, String error) {
-        runOnUiThread(new Runnable() {
+
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                LoadData();
-//                messageInfo.setSendState(Constants.CHAT_ITEM_SEND_ERROR);
-//                chatAdapter.notifyDataSetChanged();
+                Message message = new Message();
+                message.what = 2;
+                handler.sendMessage(message);
+                Log.i("message", "onError");
             }
-        });
+        }).start();
     }
 
     @Override
@@ -326,7 +364,11 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener,
                 if (message.getTo().equals(groupId)) {
                     //声音和震动提示有新消息
                     HXSDKHelper.getInstance().getNotifier().viberateAndPlayTone(message);
-                    LoadData();
+
+                    MessageInfo messageInfo = MessageUtils.changeData(message);
+                    messageInfos.add(messageInfo);
+                    chatAdapter.add(messageInfo);
+                    chatList.scrollToPosition(chatAdapter.getCount() - 1);
                 }
                 break;
         }
@@ -344,5 +386,47 @@ public class ChatActivity extends BaseActivity implements OnSendMessageListener,
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            MessageInfo messageInfo = chatAdapter.getItem(chatAdapter.getCount() - 1);
+
+            switch (msg.what) {
+                case 1:
+                    messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
+                    break;
+                case 2:
+                    messageInfo.setSendState(Constants.CHAT_ITEM_SEND_ERROR);
+                    break;
+            }
+            chatAdapter.notifyDataSetChanged();
+        }
+    };
+
+    @Override
+    public void onRefresh() {
+
+        chatFristPostion += 20;
+
+        chatList.setRefreshing(true);
+        List<EMMessage> messages = LibManger.getMessages(groupId, chatFristPostion);
+
+        if (messages != null && messages.size() > 0) {
+            List<MessageInfo> messages1 = MessageUtils.changeData(messages);
+            messageInfos.addAll(0, messages1);
+            chatAdapter.insertAll(messages1, 0);
+            adapter.notifyDataSetChanged();
+
+            chatList.scrollToPosition(chatAdapter.getCount() - 1 - 20);
+
+            chatList.setRefreshing(false);
+        } else {
+            ToastUtils.show(this, "没有更多了");
+            chatList.setRefreshing(false);
+        }
     }
 }

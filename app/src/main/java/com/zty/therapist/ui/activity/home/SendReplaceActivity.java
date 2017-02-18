@@ -1,8 +1,10 @@
 package com.zty.therapist.ui.activity.home;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
@@ -16,6 +18,7 @@ import com.zty.therapist.utils.TimeWheelUtils;
 import com.zty.therapist.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -23,7 +26,7 @@ import butterknife.OnClick;
  * Created by tianyu on 2017/1/2.
  */
 
-public class SendReplaceActivity extends BaseActivity {
+public class SendReplaceActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     @BindView(R.id.editReplacerName)
     EditText editReplacerName;
     @BindView(R.id.editReplacerSex)
@@ -40,8 +43,6 @@ public class SendReplaceActivity extends BaseActivity {
     EditText editReplacerAddress;
     @BindView(R.id.editReplacerNote)
     EditText editReplacerNote;
-    @BindView(R.id.editReplacerIntegral)
-    EditText editReplacerIntegral;
     @BindView(R.id.textReplaceNote)
     TextView textReplaceNote;
     @BindView(R.id.editReplacerEndTime)
@@ -50,6 +51,14 @@ public class SendReplaceActivity extends BaseActivity {
     Button btnReplacerTime;
     @BindView(R.id.btnReplacerEndTime)
     Button btnReplacerEndTime;
+    @BindView(R.id.radioGroupIntegral)
+    RadioGroup radioGroupIntegral;
+    @BindView(R.id.textIntegralMin)
+    TextView textIntegralMin;
+    @BindView(R.id.textIntegralMid)
+    TextView textIntegralMid;
+    @BindView(R.id.textIntegralMax)
+    TextView textIntegralMax;
 
     @Override
     protected int getContentView() {
@@ -60,6 +69,8 @@ public class SendReplaceActivity extends BaseActivity {
     protected void initData() {
         title.setText("替班申请");
         right.setText("申请");
+
+        radioGroupIntegral.setOnCheckedChangeListener(this);
     }
 
     private void submitShiftRecord() {
@@ -108,11 +119,24 @@ public class SendReplaceActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnReplacerTime:
-                TimeWheelUtils.show(this,editReplacerTime);
+                TimeWheelUtils.show(this, editReplacerTime);
                 break;
             case R.id.btnReplacerEndTime:
-                TimeWheelUtils.show(this,editReplacerEndTime);
+                TimeWheelUtils.show(this, editReplacerEndTime);
                 break;
         }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        switch (i) {
+            case R.id.radioButtonIntegral1:
+                break;
+            case R.id.radioButtonIntegral2:
+                break;
+            case R.id.radioButtonIntegral3:
+                break;
+        }
+
     }
 }

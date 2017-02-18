@@ -9,6 +9,9 @@ public class Config {
     public static final String MOB_APP_KEY = "19f5499d4a480";
     public static final String MOB_APP_SECRET = "f7bc6c568ffccf5244c006a12156d49b";
 
+    //高德地图
+    public static final String AMAP_KEY = "4c5c5d78da687705bc0739a22771679c";
+
 
     public static final int CODE_SUBMIT_INCITE_INFORM_1 = 1;//加入组
     public static final int CODE_SUBMIT_INCITE_INFORM_2 = 2;//加入班

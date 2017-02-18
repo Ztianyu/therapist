@@ -3,6 +3,7 @@ package com.zty.therapist;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
@@ -83,25 +84,25 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 if (homeFragment == null) {
                     homeFragment = new HomeFragment2();
                 }
-                addOrShowFragment(getSupportFragmentManager().beginTransaction(), homeFragment);
+                addOrShowFragment(getSupportFragmentManager(), homeFragment);
                 break;
             case R.id.radioButton2:
                 if (doctorFragment == null) {
                     doctorFragment = ScrollingFragment.newInstance(0);
                 }
-                addOrShowFragment(getSupportFragmentManager().beginTransaction(), doctorFragment);
+                addOrShowFragment(getSupportFragmentManager(), doctorFragment);
                 break;
             case R.id.radioButton3:
                 if (productFragment == null) {
                     productFragment = ScrollingFragment.newInstance(1);
                 }
-                addOrShowFragment(getSupportFragmentManager().beginTransaction(), productFragment);
+                addOrShowFragment(getSupportFragmentManager(), productFragment);
                 break;
             case R.id.radioButton4:
                 if (personalFragment == null) {
                     personalFragment = new PersonalFragment();
                 }
-                addOrShowFragment(getSupportFragmentManager().beginTransaction(), personalFragment);
+                addOrShowFragment(getSupportFragmentManager(), personalFragment);
                 break;
         }
     }
@@ -109,14 +110,14 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     /**
      * 添加或者显示 fragment
      */
-    private void addOrShowFragment(FragmentTransaction transaction, BaseFragment fragment) {
+    private void addOrShowFragment(FragmentManager fragmentManager, BaseFragment fragment) {
         if (currentFragment == fragment)
             return;
 
         if (!fragment.isAdded()) { // 如果当前fragment未被添加，则添加到Fragment管理器中
-            transaction.hide(currentFragment).add(R.id.fragmentHome, fragment).commit();
+            fragmentManager.beginTransaction().hide(currentFragment).add(R.id.fragmentHome, fragment).commit();
         } else {
-            transaction.hide(currentFragment).show(fragment).commit();
+            fragmentManager.beginTransaction().hide(currentFragment).show(fragment).commit();
         }
         currentFragment = fragment;
     }

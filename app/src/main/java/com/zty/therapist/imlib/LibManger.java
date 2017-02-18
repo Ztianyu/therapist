@@ -137,17 +137,29 @@ public class LibManger {
         });
     }
 
-    public static List<EMMessage> getMessages(String userName) {
+    private static String startMsgId;
+
+    public static List<EMMessage> getMessages(String userName, int chatPage) {
 
         EMConversation conversation = EMChatManager.getInstance().getConversation(userName);
+        conversation.markAllMessagesAsRead();
         List<EMMessage> messages = conversation.getAllMessages();
 
-        List<EMMessage> emMessageList = null;
-        if (messages != null && messages.size() > 0) {
-            emMessageList = conversation.loadMoreGroupMsgFromDB(messages.get(messages.size() - 1).getMsgId(), 20);
-            System.out.println("messages   size:"+messages.size());
-            System.out.println(emMessageList.toString());
+        System.out.println("messages   size:" + messages.size());
+
+        if (chatPage == 0) {
+            if (messages != null && messages.size() > 0)
+                startMsgId = messages.get(0).getMsgId();
+            return messages;
+        } else {
+            List<EMMessage> emMessageList = null;
+            if (!TextUtils.isEmpty(startMsgId)) {
+                emMessageList = conversation.loadMoreGroupMsgFromDB(startMsgId, 20);
+                if (emMessageList != null && emMessageList.size() > 0)
+                    startMsgId = emMessageList.get(0).getMsgId();
+            }
+            System.out.println("emMessageList   size:" + emMessageList.size());
+            return emMessageList;
         }
-        return messages;
     }
 }

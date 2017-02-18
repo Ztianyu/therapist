@@ -2,12 +2,15 @@ package com.zty.therapist.imlib.chat.adapter;
 
 import android.content.Context;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
+import com.zty.therapist.R;
 import com.zty.therapist.imlib.chat.adapter.holder.ChatAcceptViewHolder;
 import com.zty.therapist.imlib.chat.adapter.holder.ChatSendViewHolder;
 import com.zty.therapist.imlib.chat.enity.MessageInfo;
@@ -25,6 +28,8 @@ public class ChatAdapter extends RecyclerArrayAdapter<MessageInfo> {
     public ChatAdapter(Context context) {
         super(context);
         handler = new Handler();
+
+
     }
 
     @Override

@@ -34,6 +34,7 @@ public class MessageUtils {
                 messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
                 messageInfo.setMsgId(emMessage.getMsgId());
                 messageInfo.setFrom(emMessage.getFrom());
+                messageInfo.setTime(emMessage.getMsgTime() + "");
                 if (emMessage.getType() == EMMessage.Type.TXT)
                     messageInfo.setContent(((TextMessageBody) emMessage.getBody()).getMessage());
                 if (emMessage.getType() == EMMessage.Type.IMAGE) {
