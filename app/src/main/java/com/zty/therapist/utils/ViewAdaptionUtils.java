@@ -21,10 +21,8 @@ public class ViewAdaptionUtils {
     public static void LinearLayoutAdaptation(View view, int height) {
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                (int) (BaseActivity.screenHeight * height / baseHeight));
+                LinearLayout.LayoutParams.MATCH_PARENT, (BaseActivity.screenHeight * height / baseHeight));
 
         view.setLayoutParams(layoutParams);
-
     }
 }

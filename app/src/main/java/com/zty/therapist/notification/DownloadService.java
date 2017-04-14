@@ -16,6 +16,7 @@ import android.util.Log;
 
 import com.lzy.okhttputils.OkHttpUtils;
 import com.lzy.okhttputils.callback.FileCallback;
+import com.lzy.okhttputils.model.HttpParams;
 import com.zty.therapist.R;
 import com.zty.therapist.ui.activity.PdfActivity;
 

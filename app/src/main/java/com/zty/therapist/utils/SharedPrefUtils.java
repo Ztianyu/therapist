@@ -7,7 +7,7 @@ public class SharedPrefUtils {
     /**
      * SharedPreferences xml 名称
      */
-    private static final String APP_SHARED_STR = "OldPeopleZone_Pref";
+    private static final String APP_SHARED_STR = "Therapist_Pref";
 
     public static final String USER_ID = "userId";
     public static final String TOKEN_ID = "tokenId";
