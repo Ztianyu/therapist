@@ -93,8 +93,10 @@ public class ConfirmPhoneActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.btnGetCode:
-                if (confirmPhone())
+                if (confirmPhone()) {
+                    sendCode();
                     SMSSDK.getVerificationCode("86", editPhone.getText().toString());
+                }
                 break;
             case R.id.btnConfirmPhone:
                 if (!TextUtils.isEmpty(editCode.getText().toString())) {
@@ -134,10 +136,13 @@ public class ConfirmPhoneActivity extends BaseActivity implements View.OnClickLi
             super.handleMessage(msg);
 
             if (msg.what == -9) {
-                btnGetCode.setText("重新发送(" + i + ")");
+                if (btnGetCode != null)
+                    btnGetCode.setText("重新发送(" + i + ")");
             } else if (msg.what == -8) {
-                btnGetCode.setText("获取验证码");
-                btnGetCode.setClickable(true);
+                if (btnGetCode != null) {
+                    btnGetCode.setText("获取验证码");
+                    btnGetCode.setClickable(true);
+                }
                 i = 30;
             }
         }
@@ -156,10 +161,10 @@ public class ConfirmPhoneActivity extends BaseActivity implements View.OnClickLi
                 //回调完成
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                     //提交验证码成功
-                    startActivity(new Intent(ConfirmPhoneActivity.this, SetPassWordActivity.class).putExtra("phone", strPhone).putExtra("type", type));
+                    startActivity(new Intent(ConfirmPhoneActivity.this, SetPassWordActivity.class).putExtra("phone", editPhone.getText().toString()).putExtra("type", type));
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                     //获取验证码成功
-                    sendCode();
+
                 } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
                     //返回支持发送验证码的国家列表
                 }

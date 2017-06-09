@@ -85,8 +85,6 @@ public abstract class BaseActivity extends AppCompatActivity implements RequestC
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
-
-
     }
 
     protected abstract int getContentView();
